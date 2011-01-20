@@ -1,0 +1,192 @@
+
+// Query: 'legal charges'
+// ===
+// Data source: files/data/BP_Oil
+// ===
+// Sim representation of query: {legal=1.0, charges=1.0}
+// ===
+// Div representation of query: {legal=1.0, charges=1.0}
+// ===
+// Result list: MMR (lambda=0.5) -- sim: TF (reweighted_sim=true) -- div: TF (reweighted_sim=true)
+// ===
+1	US_sues_BP_eight_others_over_Gulf_oil_spill__Thursday_16_December_2010_030900_PM_EST
+2	British_court_to_decide_on_WikiLeaks_founders_bail__Thursday_16_December_2010_064400_PM_EST
+3	Disasters_cause_losses_of_222_billion_US_dollars_in_2010__Tuesday_30_November_2010_091400_PM_EST
+4	Oilsoaked_boom_from_BP_spill_recycled_for_GMs_Volt__Tuesday_21_December_2010_112900_AM_EST
+5	Panda_diplomacy_caps_UKChina_trade_deals__Tuesday_11_January_2011_022900_AM_EST
+6	Geek_was_chic_in_online_search_for_2010__Friday_10_December_2010_112000_AM_EST
+7	BPs_oil_spill_bill_could_be_much_less__Friday_26_November_2010_120000_AM_EST
+8	Iraq_awards_gas_fields__Wednesday_20_October_2010_103900_PM_EST
+9	BP_shares_edge_higher_on_news_of_Rosneft_tieup__Tuesday_18_January_2011_051900_AM_EST
+10	Obama_to_hold_talks_with_Gillard_in_Japan__Friday_29_October_2010_065900_AM_EST
+
+
+// Query: 'legal charges'
+// ===
+// Data source: files/data/BP_Oil
+// ===
+// Sim representation of query: {legal=2.120263536200091, charges=3.912023005428146}
+// ===
+// Div representation of query: {legal=2.120263536200091, charges=3.912023005428146}
+// ===
+// Result list: MMR (lambda=0.5) -- sim: TFIDF (reweighted_sim=true) -- div: TFIDF (reweighted_sim=true)
+// ===
+1	US_sues_BP_eight_others_over_Gulf_oil_spill__Thursday_16_December_2010_030900_PM_EST
+2	British_court_to_decide_on_WikiLeaks_founders_bail__Thursday_16_December_2010_064400_PM_EST
+3	Geek_was_chic_in_online_search_for_2010__Friday_10_December_2010_112000_AM_EST
+4	Obama_to_hold_talks_with_Gillard_in_Japan__Friday_29_October_2010_065900_AM_EST
+5	Oilsoaked_boom_from_BP_spill_recycled_for_GMs_Volt__Tuesday_21_December_2010_112900_AM_EST
+6	BPs_Alaska_pipelines_in_danger_of_rupturing__Thursday_4_November_2010_120000_AM_EST
+7	Depression_soars_among_Gulf_residents_after_oil_spill__Wednesday_29_September_2010_040900_AM_EST
+8	Iraq_awards_gas_fields__Wednesday_20_October_2010_103900_PM_EST
+9	US_panel_slams_firms_over_rig_disaster__Wednesday_10_November_2010_110900_AM_EST
+10	BP_shares_edge_higher_on_news_of_Rosneft_tieup__Tuesday_18_January_2011_051900_AM_EST
+
+
+// Query: 'legal charges'
+// ===
+// Data source: files/data/BP_Oil
+// ===
+// Sim representation of query: {legal=1.0, charges=1.0}
+// ===
+// Div representation of query: {legal=2.120263536200091, charges=3.912023005428146}
+// ===
+// Result list: MMR (lambda=0.5) -- sim: BM25 (k1=0.5, k3=0.5, b=0.5) -- div: TFIDF (reweighted_sim=true)
+// ===
+1	US_sues_BP_eight_others_over_Gulf_oil_spill__Thursday_16_December_2010_030900_PM_EST
+2	BP_seeks_to_shift_blame_for_oil_spill__Thursday_9_September_2010_051900_PM_EST
+3	British_court_to_decide_on_WikiLeaks_founders_bail__Thursday_16_December_2010_064400_PM_EST
+4	BP_payments_turn_into_idle_largesse__Saturday_23_October_2010_120000_AM_EST
+5	WikiLeaks_founder_Assange_granted_bail_in_London__Friday_17_December_2010_033900_AM_EST
+6	Disasters_cause_losses_of_222_billion_US_dollars_in_2010__Tuesday_30_November_2010_091400_PM_EST
+7	Oilsoaked_boom_from_BP_spill_recycled_for_GMs_Volt__Tuesday_21_December_2010_112900_AM_EST
+8	Panda_diplomacy_caps_UKChina_trade_deals__Tuesday_11_January_2011_022900_AM_EST
+9	Geek_was_chic_in_online_search_for_2010__Friday_10_December_2010_112000_AM_EST
+10	BPs_oil_spill_bill_could_be_much_less__Friday_26_November_2010_120000_AM_EST
+
+
+// Query: 'legal charges'
+// ===
+// Data source: files/data/BP_Oil
+// ===
+// Sim representation of query: {legal=1.0, charges=1.0}
+// ===
+// Div representation of query: {legal=2.120263536200091, charges=3.912023005428146}
+// ===
+// Result list: MMR (lambda=0.0) -- sim: BM25 (k1=0.5, k3=0.5, b=0.5) -- div: TFIDF (reweighted_sim=true)
+// ===
+1	US_sues_BP_eight_others_over_Gulf_oil_spill__Thursday_16_December_2010_030900_PM_EST
+2	BP_seeks_to_shift_blame_for_oil_spill__Thursday_9_September_2010_051900_PM_EST
+3	WikiLeaks_founder_Assange_granted_bail_in_London__Friday_17_December_2010_033900_AM_EST
+4	BP_payments_turn_into_idle_largesse__Saturday_23_October_2010_120000_AM_EST
+5	British_court_to_decide_on_WikiLeaks_founders_bail__Thursday_16_December_2010_064400_PM_EST
+6	BP_Rosneft_reach_historic_Artic_deal__Saturday_15_January_2011_022400_PM_EST
+7	US_probe_shares_out_systemic_blame_for_oil_spill__Thursday_6_January_2011_052400_PM_EST
+8	BP_Rosneft_announce_share_swap_Arctic_exploration_deal__Saturday_15_January_2011_120000_AM_EST
+9	Transocean_accuses_BP_of_poor_rig_design__Thursday_9_September_2010_021400_AM_EST
+10	Panda_diplomacy_caps_UKChina_trade_deals__Tuesday_11_January_2011_022900_AM_EST
+
+
+// Query: 'legal charges'
+// ===
+// Data source: files/data/BP_Oil
+// ===
+// Sim representation of query: 
+// - 0.064: [claims, before, says, federal, compensation]
+// - 0.003: [obama, house, like, years, indonesia]
+// - 0.003: [gas, oil, per, energy, minister]
+// - 0.001: [gulf, disaster, billion, oil, rig]
+// - 0.023: [bp, oil, company, mexico, spill]
+// - 0.002: [transocean, report, safety, blowout, halliburton]
+// - 0.051: [assange, us, court, british, wikileaks]
+// - 0.002: [year, top, search, hated, world]
+// - 0.047: [gulf, us, spill, coast, states]
+// - 0.002: [drilling, gulf, moratorium, government, offshore]
+// - 0.002: [security, russia, war, moscow, nato]
+// - 0.79: [oil, water, re, impact, miles]
+// - 0.002: [birds, fish, national, wildlife, deaths]
+// - 0.003: [after, set, president, officials, time]
+// - 0.003: [billion, us, rosneft, deal, dollars]
+// ===
+// Div representation of query: 
+// - 0.064: [claims, before, says, federal, compensation]
+// - 0.003: [obama, house, like, years, indonesia]
+// - 0.003: [gas, oil, per, energy, minister]
+// - 0.001: [gulf, disaster, billion, oil, rig]
+// - 0.023: [bp, oil, company, mexico, spill]
+// - 0.002: [transocean, report, safety, blowout, halliburton]
+// - 0.051: [assange, us, court, british, wikileaks]
+// - 0.002: [year, top, search, hated, world]
+// - 0.047: [gulf, us, spill, coast, states]
+// - 0.002: [drilling, gulf, moratorium, government, offshore]
+// - 0.002: [security, russia, war, moscow, nato]
+// - 0.79: [oil, water, re, impact, miles]
+// - 0.002: [birds, fish, national, wildlife, deaths]
+// - 0.003: [after, set, president, officials, time]
+// - 0.003: [billion, us, rosneft, deal, dollars]
+// ===
+// Result list: MMR (lambda=0.5) -- sim: LDAKernel: reweighted_sim=true, #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=true -- div: LDAKernel: reweighted_sim=true, #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=true
+// ===
+1	Oil_from_BP_spill_travelled_500km__Saturday_2_October_2010_045400_AM_EST
+2	Oilsoaked_boom_from_BP_spill_recycled_for_GMs_Volt__Tuesday_21_December_2010_112900_AM_EST
+3	US_sues_BP_eight_others_over_Gulf_oil_spill__Thursday_16_December_2010_030900_PM_EST
+4	Disasters_cause_losses_of_222_billion_US_dollars_in_2010__Tuesday_30_November_2010_091400_PM_EST
+5	BP_payments_turn_into_idle_largesse__Saturday_23_October_2010_120000_AM_EST
+6	Two_actors_18m_and_a_lawsuit__Friday_24_December_2010_102200_AM_EST
+7	BPs_Alaska_pipelines_in_danger_of_rupturing__Thursday_4_November_2010_120000_AM_EST
+8	BPs_oil_spill_bill_could_be_much_less__Friday_26_November_2010_120000_AM_EST
+9	Contractor_BP_interfered_with_critical_efforts__Tuesday_5_October_2010_090500_AM_EST
+10	BP_to_complete_sealing_busted_well__Sunday_19_September_2010_022400_AM_EST
+
+
+// Query: 'legal charges'
+// ===
+// Data source: files/data/BP_Oil
+// ===
+// Sim representation of query: 
+// - 0.064: [claims, before, says, federal, compensation]
+// - 0.003: [obama, house, like, years, indonesia]
+// - 0.003: [gas, oil, per, energy, minister]
+// - 0.001: [gulf, disaster, billion, oil, rig]
+// - 0.023: [bp, oil, company, mexico, spill]
+// - 0.002: [transocean, report, safety, blowout, halliburton]
+// - 0.051: [assange, us, court, british, wikileaks]
+// - 0.002: [year, top, search, hated, world]
+// - 0.047: [gulf, us, spill, coast, states]
+// - 0.002: [drilling, gulf, moratorium, government, offshore]
+// - 0.002: [security, russia, war, moscow, nato]
+// - 0.79: [oil, water, re, impact, miles]
+// - 0.002: [birds, fish, national, wildlife, deaths]
+// - 0.003: [after, set, president, officials, time]
+// - 0.003: [billion, us, rosneft, deal, dollars]
+// ===
+// Div representation of query: 
+// - 0.064: [claims, before, says, federal, compensation]
+// - 0.003: [obama, house, like, years, indonesia]
+// - 0.003: [gas, oil, per, energy, minister]
+// - 0.001: [gulf, disaster, billion, oil, rig]
+// - 0.023: [bp, oil, company, mexico, spill]
+// - 0.002: [transocean, report, safety, blowout, halliburton]
+// - 0.051: [assange, us, court, british, wikileaks]
+// - 0.002: [year, top, search, hated, world]
+// - 0.047: [gulf, us, spill, coast, states]
+// - 0.002: [drilling, gulf, moratorium, government, offshore]
+// - 0.002: [security, russia, war, moscow, nato]
+// - 0.79: [oil, water, re, impact, miles]
+// - 0.002: [birds, fish, national, wildlife, deaths]
+// - 0.003: [after, set, president, officials, time]
+// - 0.003: [billion, us, rosneft, deal, dollars]
+// ===
+// Result list: MMR (lambda=0.5) -- sim: PLSRKernel: #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=false -- div: PLSRKernel: #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=false
+// ===
+1	Oil_from_BP_spill_travelled_500km__Saturday_2_October_2010_045400_AM_EST
+2	Oilsoaked_boom_from_BP_spill_recycled_for_GMs_Volt__Tuesday_21_December_2010_112900_AM_EST
+3	US_sues_BP_eight_others_over_Gulf_oil_spill__Thursday_16_December_2010_030900_PM_EST
+4	Disasters_cause_losses_of_222_billion_US_dollars_in_2010__Tuesday_30_November_2010_091400_PM_EST
+5	BP_payments_turn_into_idle_largesse__Saturday_23_October_2010_120000_AM_EST
+6	WikiLeaks_founder_Assange_granted_bail_in_London__Friday_17_December_2010_033900_AM_EST
+7	Two_actors_18m_and_a_lawsuit__Friday_24_December_2010_102200_AM_EST
+8	BP_to_complete_sealing_busted_well__Sunday_19_September_2010_022400_AM_EST
+9	BPs_Alaska_pipelines_in_danger_of_rupturing__Thursday_4_November_2010_120000_AM_EST
+10	Depression_soars_among_Gulf_residents_after_oil_spill__Wednesday_29_September_2010_040900_AM_EST
+

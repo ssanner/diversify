@@ -1,0 +1,192 @@
+
+// Query: 'gun control lobby'
+// ===
+// Data source: files/data/Barack_Obama/
+// ===
+// Sim representation of query: {control=1.0, lobby=1.0, gun=1.0}
+// ===
+// Div representation of query: {control=1.0, lobby=1.0, gun=1.0}
+// ===
+// Result list: MMR (lambda=0.5) -- sim: TF (reweighted_sim=true) -- div: TF (reweighted_sim=true)
+// ===
+1	Giffords_continues_to_make_progress__Tuesday_18_January_2011_120000_AM_EST
+2	Artist_settles_dispute_over_use_of_Obama_photograph__Friday_14_January_2011_120000_AM_EST
+3	Giffords_communicating_with_family_say_doctors__Saturday_15_January_2011_120000_AM_EST
+4	Obama_backs_Hariri_amid_Lebanon_crisis__Thursday_13_January_2011_055900_AM_EST
+5	Obama_addresses_Arizona_memorial__Thursday_13_January_2011_011400_PM_EST
+6	Voters_help_Libs_as_big_donations_end__Saturday_15_January_2011_120000_AM_EST
+7	US_trade_gap_shrinks_but_not_with_China__Friday_14_January_2011_052900_AM_EST
+8	Obama_the_orator_hits_home__Saturday_15_January_2011_120000_AM_EST
+9	Nine_killed_by_Afghan_bomb_en_route_to_wedding__Monday_17_January_2011_024400_AM_EST
+10	Obama_visits_shot_politician_in_hospital__Thursday_13_January_2011_114400_AM_EST
+
+
+// Query: 'gun control lobby'
+// ===
+// Data source: files/data/Barack_Obama/
+// ===
+// Sim representation of query: {control=1.9859154836690125, lobby=3.9318256327243257, gun=1.9859154836690125}
+// ===
+// Div representation of query: {control=1.9859154836690125, lobby=3.9318256327243257, gun=1.9859154836690125}
+// ===
+// Result list: MMR (lambda=0.5) -- sim: TFIDF (reweighted_sim=true) -- div: TFIDF (reweighted_sim=true)
+// ===
+1	Giffords_continues_to_make_progress__Tuesday_18_January_2011_120000_AM_EST
+2	Tunisian_president_toppled_after_23_years_in_power__Saturday_15_January_2011_120000_AM_EST
+3	US_trade_gap_shrinks_but_not_with_China__Friday_14_January_2011_052900_AM_EST
+4	Artist_settles_dispute_over_use_of_Obama_photograph__Friday_14_January_2011_120000_AM_EST
+5	US_looks_back_at_success_in_first_Gulf_War__Sunday_16_January_2011_062900_PM_EST
+6	Frenchmans_killer_gets_death_in_Yemen__Monday_17_January_2011_072400_PM_EST
+7	Obama_addresses_Arizona_memorial__Thursday_13_January_2011_011400_PM_EST
+8	Hezbollah_threatens_to_topple_Beirut_government__Thursday_13_January_2011_120000_AM_EST
+9	Leaders_gather_to_remember_Holbrooke__Saturday_15_January_2011_120000_AM_EST
+10	Count_gathers_pace_in_south_Sudan_nationhood_vote__Monday_17_January_2011_053900_PM_EST
+
+
+// Query: 'gun control lobby'
+// ===
+// Data source: files/data/Barack_Obama/
+// ===
+// Sim representation of query: {control=1.0, lobby=1.0, gun=1.0}
+// ===
+// Div representation of query: {control=1.9859154836690125, lobby=3.9318256327243257, gun=1.9859154836690125}
+// ===
+// Result list: MMR (lambda=0.5) -- sim: BM25 (k1=0.5, k3=0.5, b=0.5) -- div: TFIDF (reweighted_sim=true)
+// ===
+1	The_killer_political_metaphor_under_fire__Saturday_15_January_2011_120000_AM_EST
+2	Giffords_continues_to_make_progress__Tuesday_18_January_2011_120000_AM_EST
+3	Clinton_presses_China_on_rights_before_visit__Saturday_15_January_2011_014900_PM_EST
+4	Shot_in_the_brain_a_week_ago_now_her_eyes_are_open__Friday_14_January_2011_103900_AM_EST
+5	Tunisia_on_edge_after_protests_force_out_president__Saturday_15_January_2011_120000_AM_EST
+6	Obama_pays_emotional_Arizona_tribute__Thursday_13_January_2011_034900_PM_EST
+7	Obama_urges_unity_in_face_of_shootings__Friday_14_January_2011_120000_AM_EST
+8	Obama_sees_rain_puddles_in_heaven_for_slain_girl__Thursday_13_January_2011_120000_AM_EST
+9	Tunisian_president_toppled_after_23_years_in_power__Saturday_15_January_2011_120000_AM_EST
+10	Tunisian_president_toppled_after_23_years__Saturday_15_January_2011_120000_AM_EST
+
+
+// Query: 'gun control lobby'
+// ===
+// Data source: files/data/Barack_Obama/
+// ===
+// Sim representation of query: {control=1.0, lobby=1.0, gun=1.0}
+// ===
+// Div representation of query: {control=1.9859154836690125, lobby=3.9318256327243257, gun=1.9859154836690125}
+// ===
+// Result list: MMR (lambda=0.0) -- sim: BM25 (k1=0.5, k3=0.5, b=0.5) -- div: TFIDF (reweighted_sim=true)
+// ===
+1	The_killer_political_metaphor_under_fire__Saturday_15_January_2011_120000_AM_EST
+2	Giffords_continues_to_make_progress__Tuesday_18_January_2011_120000_AM_EST
+3	Tunisian_president_toppled_after_23_years_in_power__Saturday_15_January_2011_120000_AM_EST
+4	Shot_in_the_brain_a_week_ago_now_her_eyes_are_open__Friday_14_January_2011_103900_AM_EST
+5	Obama_urges_unity_in_face_of_shootings__Friday_14_January_2011_120000_AM_EST
+6	Clinton_presses_China_on_rights_before_visit__Saturday_15_January_2011_014900_PM_EST
+7	Shot_US_lawmaker_makes_major_progress__Friday_14_January_2011_053400_AM_EST
+8	Tunisia_on_edge_after_protests_force_out_president__Saturday_15_January_2011_120000_AM_EST
+9	Obama_pays_emotional_Arizona_tribute__Thursday_13_January_2011_034900_PM_EST
+10	Obama_sees_rain_puddles_in_heaven_for_slain_girl__Thursday_13_January_2011_120000_AM_EST
+
+
+// Query: 'gun control lobby'
+// ===
+// Data source: files/data/Barack_Obama/
+// ===
+// Sim representation of query: 
+// - 0.007: [campaign, party, good, year, million]
+// - 0: [last, before, including, expected, american]
+// - 0.001: [ali, ben, tunisia, protests, tunisian]
+// - 0: [state, president, obama, clinton, political]
+// - 0: [queensland, help, still, brisbane, going]
+// - 0: [south, north, referendum, sudan, abyei]
+// - 0: [obama, holbrooke, president, us, world]
+// - 0: [us, part, afghanistan, war, military]
+// - 0: [obama, political, us, arizona, tragedy]
+// - 0.625: [times, tone, gun, ap, fairey]
+// - 0.005: [after, service, children, church, father]
+// - 0.011: [after, president, country, time, first]
+// - 0: [china, us, hu, visit, billion]
+// - 0.35: [giffords, shooting, tucson, loughner, eyes]
+// - 0: [hariri, hezbollah, lebanon, government, tribunal]
+// ===
+// Div representation of query: 
+// - 0.007: [campaign, party, good, year, million]
+// - 0: [last, before, including, expected, american]
+// - 0.001: [ali, ben, tunisia, protests, tunisian]
+// - 0: [state, president, obama, clinton, political]
+// - 0: [queensland, help, still, brisbane, going]
+// - 0: [south, north, referendum, sudan, abyei]
+// - 0: [obama, holbrooke, president, us, world]
+// - 0: [us, part, afghanistan, war, military]
+// - 0: [obama, political, us, arizona, tragedy]
+// - 0.625: [times, tone, gun, ap, fairey]
+// - 0.005: [after, service, children, church, father]
+// - 0.011: [after, president, country, time, first]
+// - 0: [china, us, hu, visit, billion]
+// - 0.35: [giffords, shooting, tucson, loughner, eyes]
+// - 0: [hariri, hezbollah, lebanon, government, tribunal]
+// ===
+// Result list: MMR (lambda=0.5) -- sim: LDAKernel: reweighted_sim=true, #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=true -- div: LDAKernel: reweighted_sim=true, #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=true
+// ===
+1	Artist_settles_dispute_over_use_of_Obama_photograph__Friday_14_January_2011_120000_AM_EST
+2	Giffords_communicating_with_family_say_doctors__Saturday_15_January_2011_120000_AM_EST
+3	Giffords_continues_to_make_progress__Tuesday_18_January_2011_120000_AM_EST
+4	The_killer_political_metaphor_under_fire__Saturday_15_January_2011_120000_AM_EST
+5	Obamas_oratory_faces_test_as_Tucson_mourns_its_dead__Thursday_13_January_2011_120000_AM_EST
+6	Frenchmans_killer_gets_death_in_Yemen__Monday_17_January_2011_072400_PM_EST
+7	Grief_for_a_girl_with_a_tragic_part_in_history__Saturday_15_January_2011_120000_AM_EST
+8	Obama_to_console_US_at_Arizona_service__Thursday_13_January_2011_105900_AM_EST
+9	Obama_urges_unity_in_face_of_shootings__Friday_14_January_2011_120000_AM_EST
+10	Wounded_congresswomans_condition_upgraded__Monday_17_January_2011_111900_AM_EST
+
+
+// Query: 'gun control lobby'
+// ===
+// Data source: files/data/Barack_Obama/
+// ===
+// Sim representation of query: 
+// - 0.007: [campaign, party, good, year, million]
+// - 0: [last, before, including, expected, american]
+// - 0.001: [ali, ben, tunisia, protests, tunisian]
+// - 0: [state, president, obama, clinton, political]
+// - 0: [queensland, help, still, brisbane, going]
+// - 0: [south, north, referendum, sudan, abyei]
+// - 0: [obama, holbrooke, president, us, world]
+// - 0: [us, part, afghanistan, war, military]
+// - 0: [obama, political, us, arizona, tragedy]
+// - 0.625: [times, tone, gun, ap, fairey]
+// - 0.005: [after, service, children, church, father]
+// - 0.011: [after, president, country, time, first]
+// - 0: [china, us, hu, visit, billion]
+// - 0.35: [giffords, shooting, tucson, loughner, eyes]
+// - 0: [hariri, hezbollah, lebanon, government, tribunal]
+// ===
+// Div representation of query: 
+// - 0.007: [campaign, party, good, year, million]
+// - 0: [last, before, including, expected, american]
+// - 0.001: [ali, ben, tunisia, protests, tunisian]
+// - 0: [state, president, obama, clinton, political]
+// - 0: [queensland, help, still, brisbane, going]
+// - 0: [south, north, referendum, sudan, abyei]
+// - 0: [obama, holbrooke, president, us, world]
+// - 0: [us, part, afghanistan, war, military]
+// - 0: [obama, political, us, arizona, tragedy]
+// - 0.625: [times, tone, gun, ap, fairey]
+// - 0.005: [after, service, children, church, father]
+// - 0.011: [after, president, country, time, first]
+// - 0: [china, us, hu, visit, billion]
+// - 0.35: [giffords, shooting, tucson, loughner, eyes]
+// - 0: [hariri, hezbollah, lebanon, government, tribunal]
+// ===
+// Result list: MMR (lambda=0.5) -- sim: PLSRKernel: #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=false -- div: PLSRKernel: #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=false
+// ===
+1	Artist_settles_dispute_over_use_of_Obama_photograph__Friday_14_January_2011_120000_AM_EST
+2	Shot_US_lawmaker_makes_major_progress__Friday_14_January_2011_053400_AM_EST
+3	Frenchmans_killer_gets_death_in_Yemen__Monday_17_January_2011_072400_PM_EST
+4	Shot_in_the_brain_a_week_ago_now_her_eyes_are_open__Friday_14_January_2011_103900_AM_EST
+5	The_killer_political_metaphor_under_fire__Saturday_15_January_2011_120000_AM_EST
+6	Giffords_communicating_with_family_say_doctors__Saturday_15_January_2011_120000_AM_EST
+7	Giffords_continues_to_make_progress__Tuesday_18_January_2011_120000_AM_EST
+8	Grief_for_a_girl_with_a_tragic_part_in_history__Saturday_15_January_2011_120000_AM_EST
+9	Obamas_oratory_faces_test_as_Tucson_mourns_its_dead__Thursday_13_January_2011_120000_AM_EST
+10	Lebanon_crisis_as_Hariri_murder_indictment_filed__Tuesday_18_January_2011_013900_PM_EST
+
