@@ -1,0 +1,32 @@
+/** Abstract Class for a generic ResultList Selector... subclasses
+ *  must implement the abstract methods.  The subclass MMR implements
+ *  a greedy result list selection method, but other subclasses might
+ *  choose other approaches (e.g., global optimization).
+ * 
+ * @author Scott Sanner (ssanner@gmail.com)
+ */
+
+package diversity;
+
+import java.util.*;
+
+// Classes should extend this one and implement
+public abstract class ResultListSelector {
+
+	public static boolean SHOW_DEBUG = false;
+
+	public static int _nDocCounter = 0;
+	
+	public Map<String, Object> _docRepr = new HashMap<String, Object>();
+	public Map<String, String> _docOrig = new HashMap<String, String>();
+	
+	public abstract ArrayList<String> getResultList(String query, int list_size);
+
+	public abstract void addDoc(String doc_name, String orig_content);
+
+	public abstract String getDescription();
+	
+	public String getDoc(String doc_name) {
+		return _docOrig.get(doc_name);
+	}
+}
