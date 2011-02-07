@@ -1,3 +1,8 @@
+/** Code to load and evaluate TREC 6-8 Interactive track
+ *   
+ * @author Scott Sanner (ssanner@gmail.com)
+ */
+
 package trec.evaldiv;
 
 import java.io.BufferedReader;
@@ -31,7 +36,7 @@ import util.FileFinder;
 
 public class TestTREC {
 
-	public final static boolean DEBUG = true;
+	public final static boolean DEBUG = false;
 	
 	public final static int NUM_RESULTS = 10;
 	
@@ -40,14 +45,14 @@ public class TestTREC {
 	public final static String ASPECT_FILE  = "files/trec/TRECQueryAspects.txt";
 	
 	public final static String[] TREC_QUERIES = 
-		{ "307i", /*"322i", "326i", "347i", "352i", "353i", 
+		{ "307i", "322i", "326i", "347i", "352i"/*, "353i", 
 		  "357i", "362i", "366i", "387i", "392i", "408i", 
 		  "414i", "428i", "431i", "438i", "446i"*/ };
 	
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		// Build FT Document map
 		HashMap<String,Doc> docs = new HashMap<String,Doc>();
@@ -55,8 +60,8 @@ public class TestTREC {
 		for (File f : files) {
 			Doc d = new TRECDoc(f);
 			docs.put(d._name, d);
-			//if (DEBUG) 
-			//	System.out.println("TRECDoc: " + f + " -> " + d + "\n - content: " + d.getDocContent());
+			if (DEBUG) 
+				System.out.println("TRECDoc: " + f + " -> " + d + "\n - content: " + d.getDocContent());
 		}
 		System.out.println("Read " + docs.size() + " documents");
 		
@@ -78,10 +83,10 @@ public class TestTREC {
 	
 		// Build the Loss functions
 		ArrayList<AspectLoss> loss_functions = new ArrayList<AspectLoss>();
-		loss_functions.add(new USLoss());
-		loss_functions.add(new WSLoss());
-		loss_functions.add(new AvgUSLoss());
-		loss_functions.add(new AvgWSLoss());
+		//loss_functions.add(new USLoss());
+		//loss_functions.add(new WSLoss());
+		//loss_functions.add(new AvgUSLoss());
+		//loss_functions.add(new AvgWSLoss());
 		loss_functions.add(new AllUSLoss());
 		loss_functions.add(new AllWSLoss());
 		

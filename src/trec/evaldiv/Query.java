@@ -1,3 +1,8 @@
+/** Query representation for TREC Interactive and CLUEWEB Diversity tracks
+ *   
+ * @author Scott Sanner (ssanner@gmail.com)
+ */
+
 package trec.evaldiv;
 
 public class Query {

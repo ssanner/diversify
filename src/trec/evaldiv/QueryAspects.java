@@ -1,3 +1,8 @@
+/** Query aspect representation for TREC Interactive and CLUEWEB Diversity tracks
+ *   
+ * @author Scott Sanner (ssanner@gmail.com)
+ */
+
 package trec.evaldiv;
 
 import java.util.Arrays;
@@ -99,7 +104,6 @@ public class QueryAspects {
 		for (int i = 0; i < _numAspects; i++)
 			if (b_aspects[i])
 				count_aspects++;
-		
 		
 		return count_aspects / (double)_numAspects;
 	}
