@@ -22,7 +22,7 @@ import util.VectorUtils;
 
 public class Evaluator {
 
-	public static final boolean USE_ALL_DOCS = false;
+	public static final boolean USE_ALL_DOCS = true;
 
 	public static final String OUTPUT_FILENAME = "files/trec/RESULTS/trec6-8avg.txt";
 	public static final boolean DEBUG = true;
@@ -82,7 +82,6 @@ public class Evaluator {
 				}
 				
 				// Get the results
-				t.getResultList(query, num_results);
 				ArrayList<String> result_list = t.getResultList(q.getQueryContent(), num_results);
 				if (DEBUG)
 					System.out.println("- Result list: " + result_list);
@@ -111,6 +110,7 @@ public class Evaluator {
 						wsl_vs_rank = VectorUtils.Sum(wsl_vs_rank, (double[])o);
 				}
 			}
+			t.clearDocs();
 			
 			usl_vs_rank = VectorUtils.ScalarMultiply(usl_vs_rank, 1d/query_names.size());
 			wsl_vs_rank = VectorUtils.ScalarMultiply(wsl_vs_rank, 1d/query_names.size());
@@ -122,7 +122,7 @@ public class Evaluator {
 			for (int i = 0; i < usl_vs_rank.length; i++)
 				ps.print("\t" + usl_vs_rank[i]);
 			for (int i = 0; i < wsl_vs_rank.length; i++)
-				ps.print("\t" + usl_vs_rank[i]);
+				ps.print("\t" + wsl_vs_rank[i]);
 			ps.println();
 		}
 		

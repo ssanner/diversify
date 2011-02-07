@@ -9,8 +9,8 @@ public class Query {
 
 	// Constants
 	public static final boolean INCLUDE_QUERY_TITLE       = true;
-	public static final boolean INCLUDE_QUERY_DESCRIPTION = true;
-	public static final boolean INCLUDE_QUERY_OTHER       = true;
+	public static final boolean INCLUDE_QUERY_DESCRIPTION = false;
+	public static final boolean INCLUDE_QUERY_OTHER       = false;
 	
 	// Data Members
 	public String _name;
