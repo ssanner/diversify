@@ -40,6 +40,13 @@ public class LDAKernel extends Kernel {
 		_bReweightedSimilarity = weighted_similarity;
 	}
 	
+	public void clear() {
+		_mPrevInit = null;
+		_doc2topicVector = null;
+		_hmHashCode2DocID = null;
+		_lda = new LDAInterface();
+	}
+
 	@Override
 	public Object getObjectRepresentation(String content) {
 		

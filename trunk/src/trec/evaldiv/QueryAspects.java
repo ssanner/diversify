@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import trec.evaldiv.doc.Doc;
 
@@ -20,11 +21,15 @@ public class QueryAspects {
 		_aspects = new HashMap<String,boolean[]>();
 	}
 	
+	public Set<String> getRelevantDocs() {
+		return _aspects.keySet();
+	}
+	
 	public void addAspect(String doc, String aspect_str) {
 		if (_numAspects < 0)
 			_numAspects = aspect_str.length();
 		
-		System.out.println("Adding aspect: " + doc + " :: " + aspect_str);
+		//System.out.println("Adding aspect: " + doc + " :: " + aspect_str);
 		boolean[] b_aspects = new boolean[_numAspects];
 		int aspect_count = 0;
 		for (int i = 0; i < _numAspects; i++)

@@ -36,6 +36,13 @@ public class BM25Kernel extends Kernel {
 		_b  = b;
 	}
 
+	public void clear() {
+		_dDefaultIDF = -1d;
+		_dAvgDocLength = -1d;
+		_hmKey2IDF = null;
+		_mPrevInit = null;	
+	}
+	
 	public void init(Map<String, String> docs) {
 		if (docs == _mPrevInit)
 			return; // Already initialized

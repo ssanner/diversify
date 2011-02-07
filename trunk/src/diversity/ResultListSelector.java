@@ -15,14 +15,16 @@ public abstract class ResultListSelector {
 
 	public static boolean SHOW_DEBUG = false;
 
-	public static int _nDocCounter = 0;
-	
 	public Map<String, Object> _docRepr = new HashMap<String, Object>();
 	public Map<String, String> _docOrig = new HashMap<String, String>();
 	
 	public abstract ArrayList<String> getResultList(String query, int list_size);
 
 	public abstract void addDoc(String doc_name, String orig_content);
+
+	public abstract void initDocs();
+
+	public abstract void clearDocs();
 
 	public abstract String getDescription();
 	
