@@ -36,5 +36,7 @@ party libraries are redistributed:
                              
     ml.lda.LdaGibbsSampler   GPLv2 or higher: see header comments
 
+	TREC query data          Freely available from: http://trec.nist.gov/
+
 Where the above 3rd party licenses are not GPL compatible, these
 libraries are exempt from GPL license restrictions.
