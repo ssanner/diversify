@@ -1,5 +1,12 @@
+/** Main Evaluator for TREC Interactive and CLUEWEB Diversity tracks
+ *   
+ * @author Scott Sanner (ssanner@gmail.com)
+ */
+
 package trec.evaldiv;
 
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +15,8 @@ import java.util.Set;
 import diversity.ResultListSelector;
 
 import trec.evaldiv.doc.Doc;
+import trec.evaldiv.loss.AllUSLoss;
+import trec.evaldiv.loss.AllWSLoss;
 import trec.evaldiv.loss.AspectLoss;
 import util.VectorUtils;
 
@@ -15,6 +24,7 @@ public class Evaluator {
 
 	public static final boolean USE_ALL_DOCS = false;
 
+	public static final String OUTPUT_FILENAME = "files/trec/RESULTS/trec6-8avg.txt";
 	public static final boolean DEBUG = true;
 	
 	public static void doEval(
@@ -24,7 +34,9 @@ public class Evaluator {
 			HashMap<String,QueryAspects> query_aspects,
 			List<AspectLoss> loss_functions,
 			List<ResultListSelector> tests,
-			int num_results) {
+			int num_results) throws Exception {
+		
+		PrintStream ps = new PrintStream(new FileOutputStream(OUTPUT_FILENAME));
 		
 		// Loop:
 		// - go through each test t (a variant of MMR)
@@ -34,11 +46,16 @@ public class Evaluator {
 		//            - go through all loss functions l
 		//                - evaluate loss
 		
+		int test_num = 0;
 		for (ResultListSelector t : tests) {
 			
 			if (DEBUG)
 				System.out.println("- Processing test '" + t.getDescription() + "'");
 
+			// Maintain average US and WSL vectors
+			double[] usl_vs_rank = new double[num_results];
+			double[] wsl_vs_rank = new double[num_results];
+			
 			for (String query : query_names) {
 
 				// Get query relevant info
@@ -86,9 +103,30 @@ public class Evaluator {
 					System.out.println("MMR Alg: " + t.getDescription());
 					System.out.println("Loss Function: " + loss.getName());
 					System.out.println("Evaluation: " + loss_result_str);
+					
+					// Maintain averages
+					if (loss instanceof AllUSLoss)
+						usl_vs_rank = VectorUtils.Sum(usl_vs_rank, (double[])o);
+					if (loss instanceof AllWSLoss)
+						wsl_vs_rank = VectorUtils.Sum(wsl_vs_rank, (double[])o);
 				}
 			}
+			
+			usl_vs_rank = VectorUtils.ScalarMultiply(usl_vs_rank, 1d/query_names.size());
+			wsl_vs_rank = VectorUtils.ScalarMultiply(wsl_vs_rank, 1d/query_names.size());
+			
+			System.out.println("==================================================");
+			++test_num;
+			System.out.println("Exporting " + test_num + ": " + t.getDescription());
+			ps.print("" + test_num);
+			for (int i = 0; i < usl_vs_rank.length; i++)
+				ps.print("\t" + usl_vs_rank[i]);
+			for (int i = 0; i < wsl_vs_rank.length; i++)
+				ps.print("\t" + usl_vs_rank[i]);
+			ps.println();
 		}
+		
+		ps.close();
 	}
 	
 }

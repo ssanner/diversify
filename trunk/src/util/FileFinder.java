@@ -1,3 +1,8 @@
+/** Simple recursive file searcher
+ *   
+ * @author Scott Sanner (ssanner@gmail.com)
+ */
+
 package util;
 
 import java.io.File;

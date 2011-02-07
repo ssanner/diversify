@@ -1,3 +1,8 @@
+/** Document implementation for TREC Interactive track data (TREC Disks 4-5)
+ *   
+ * @author Scott Sanner (ssanner@gmail.com)
+ */
+
 package trec.evaldiv.doc;
 
 import java.io.*;

@@ -1,3 +1,8 @@
+/** Loss function implementation for diversity evaluation
+ *   
+ * @author Scott Sanner (ssanner@gmail.com)
+ */
+
 package trec.evaldiv.loss;
 
 import java.util.List;

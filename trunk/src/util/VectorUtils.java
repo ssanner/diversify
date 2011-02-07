@@ -69,7 +69,15 @@ public class VectorUtils {
 			return d;
 	}
 	
-	private static double[] ScalarMultiply(double[] d, double val) {
+	public static double[] Sum(double[] d1, double[] d2) {
+		double[] sum = new double[d1.length];
+		for (int k = 0; k < d1.length; k++) {
+			sum[k] += d1[k] + d2[k];
+		}
+		return sum;
+	}
+
+	public static double[] ScalarMultiply(double[] d, double val) {
 		double[] new_d = new double[d.length];
 		for (int k = 0; k < d.length; k++) {
 			new_d[k] += d[k]*val;
