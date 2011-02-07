@@ -45,9 +45,9 @@ public class TestTREC {
 	public final static String ASPECT_FILE  = "files/trec/TRECQueryAspects.txt";
 	
 	public final static String[] TREC_QUERIES = 
-		{ "307i", "322i", "326i", "347i", "352i"/*, "353i", 
+		{ "307i", "322i", "326i", "347i", "352i", "353i", 
 		  "357i", "362i", "366i", "387i", "392i", "408i", 
-		  "414i", "428i", "431i", "438i", "446i"*/ };
+		  "414i", "428i", "431i", "438i", "446i" };
 	
 	/**
 	 * @param args
@@ -108,22 +108,32 @@ public class TestTREC {
 		
 		// Add all MMR test variants (vary lambda and kernels)
 		tests.add( new MMR(
+				0.0d /* lambda: 0d is all weight on query sim */, 
+				TF_kernel /* sim */,
+				TF_kernel /* div */ ));
+
+		tests.add( new MMR(
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				TF_kernel /* sim */,
 				TF_kernel /* div */ ));
 		
+		tests.add( new MMR(
+				0.0d /* lambda: 0d is all weight on query sim */, 
+				TFIDF_kernel /* sim */,
+				TFIDF_kernel /* div */ ));
+
 		tests.add( new MMR(
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				TFIDF_kernel /* sim */,
 				TFIDF_kernel /* div */ ));
 		
 		tests.add( new MMR(
-				0.5d /* lambda: 0d is all weight on query sim */, 
+				0.0d /* lambda: 0d is **all weight** on query sim */, 
 				BM25_kernel  /* sim */,
 				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 		
 		tests.add( new MMR(
-				0.0d /* lambda: 0d is **all weight** on query sim */, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
 				BM25_kernel  /* sim */,
 				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 

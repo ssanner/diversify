@@ -15,7 +15,7 @@ public class AllUSLoss extends AspectLoss {
 	public Object eval(QueryAspects qa, List<String> docs) {
 		
 		double scores[] = new double[docs.size()];
-		for (int r = 1; r < docs.size(); r++)
+		for (int r = 1; r <= docs.size(); r++)
 			scores[r-1] = qa.getUniformSubtopicLoss(docs, r); 
 		
 		return scores;
