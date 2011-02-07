@@ -30,6 +30,9 @@ party libraries are redistributed:
 
     snowball_stemmber.jar    BSD License: 
                              http://snowball.tartarus.org/license.php
+             
+    xml-apis.jar,            Apache License 2.0
+    xercesImpl.jar           http://www.apache.org/licenses/LICENSE-2.0.txt
                              
     ml.lda.LdaGibbsSampler   GPLv2 or higher: see header comments
 
