@@ -1,0 +1,406 @@
+Number: 
+303i 
+
+Title: 
+Hubble Telescope Achievements 
+
+Description: 
+Identify positive accomplishments of the Hubble telescope 
+since it was launched in 1991.
+ 
+Instances: 
+Documents are relevant that show the Hubble telescope has 
+produced new data, better quality data than previously 
+available, data that has increased human knowledge of the 
+universe, or data that has led to disproving previously 
+existing theories or hypotheses.  Documents limited to the 
+shortcomings of the telescope would be irrelevant.  Details 
+of repairs or modifications to the telescope without 
+reference to positive achievements would not be relevant.
+
+--------
+Number: 
+307i 
+
+Title:
+New Hydroelectric Projects 
+
+Description: 
+Identify hydroelectric projects proposed or under 
+construction by country and location.  Detailed description 
+of nature, extent, purpose, problems, and consequences is 
+desirable.
+ 
+Instances:
+Relevant documents would contain as a minimum a clear 
+statement that a hydroelectric project is planned or 
+construction is under way and the location of the project.  
+Renovation of existing facilities would be judged not 
+relevant unless plans call for a significant increase in 
+acre-feet or reservoir or a marked change in the 
+environmental impact of the project.  Arguments for and 
+against proposed projects are relevant as long as they are 
+supported by specifics, including as a minimum the name or 
+location of the project.  A statement that an individual or 
+organization is for or against such projects in general 
+would not be relevant.  Proposals or projects underway to 
+dismantle existing facilities or drain existing reservoirs 
+are not relevant, nor are articles reporting a decision to 
+drop a proposed plan.
+
+--------
+Number: 
+322i
+
+Title:
+International Art Crime 
+
+Description: 
+Isolate instances of fraud or embezzlement in the 
+international art trade.
+
+Instances: 
+A relevant document is any report that identifies an 
+instance of fraud or embezzlement in the international 
+buying or selling of art objects.  Objects include 
+paintings, jewelry, sculptures and any other valuable works 
+of art.  Specific instances must be identified for a 
+document to be relevant; generalities are not relevant.
+ 
+--------
+Number: 
+326i
+
+Title:
+Ferry Sinkings  
+
+Description: 
+Any report of a ferry sinking where 100 or more people lost 
+their lives.
+
+Instances: 
+To be relevant, a document must identify a ferry that has 
+sunk causing the death of 100 or more humans.  It must 
+identify the ferry by name or place where the sinking 
+occurred.  Details of the cause of the sinking would be 
+helpful but are not necessary to be relevant.  A reference 
+to a ferry sinking without the number of deaths would not be 
+relevant.
+ 
+--------
+Number: 
+339i
+
+Title:
+Alzheimer's Drug Treatment 
+
+Description: 
+What drugs are being used in the treatment of Alzheimer's 
+Disease and how successful are they?
+
+Instances:
+A relevant document should name a drug used in the treatment 
+of Alzheimer's Disease and also its manufacturer, and should 
+give some indication of the drug's success or failure.
+
+
+--------
+Number: 
+347i
+
+Title: 
+Wildlife Extinction 
+
+Description: 
+The spotted owl episode in America highlighted U.S. efforts 
+to prevent the extinction of wildlife species.  What is not 
+well known is the effort of other countries to prevent the 
+demise of species native to their countries.  What other 
+countries have begun efforts to prevent such declines?
+
+Instances: 
+A relevant item will specify the country, the involved 
+species, and steps taken to save the species.
+ 
+-------------------------------------------------------------------------
+Number: 
+ 	352i
+    
+Title: 	
+	British Chunnel impacts  
+
+Description: 
+	Impacts of the Chunnel - anticipated or actual - on the British 
+ 	economy and/or the life style of the British
+ 
+Instances:
+        In the time alloted, please find as many DIFFERENT impacts of 
+	the sort described above as you can. Please save at least one 
+	document for EACH such  DIFFERENT impact.
+	If one document discusses several such impacts, then you need
+	not save other documents that repeat those, since your goal 
+	is to identify as many DIFFERENT impacts of the sort described 
+	above as possible.
+
+-------------------------------------------------------------------------
+Number: 
+	353i  
+ 
+Title: 	
+	Antarctic exploration
+
+Description: 
+	Identify systematic explorations and scientific investigations
+	of Antarctica, current or planned.
+
+Instances:
+        In the time alloted, please find as many DIFFERENT explorations
+	or investigations of the sort described above as you can. Please 
+	save at least one document for EACH such DIFFERENT exploration or
+	investigation. 
+	If one document discusses several such investigations/explorations, 
+	then you need not save other documents that repeat those, since your 
+	goal is to identify as many DIFFERENT investigations or explorations
+	of the sort described above as possible.
+-------------------------------------------------------------------------
+Number: 
+	357i 
+  
+Title: 
+	territorial waters dispute 
+
+Description: 
+	Identify documents discussing international boundary 
+	disputes relevant to the 200-mile special economic 
+	zones or 12-mile territorial waters subsequent to 
+	the passing of the "International Convention on the 
+	Law of the Sea".
+
+Instances:
+        In the time alloted, please find as many DIFFERENT disputes of 
+	the sort described above as you can. Please save at least one 
+	document for EACH such DIFFERENT dispute. 
+	If one document discusses several such disputes, then you need
+	not save other documents that repeat those, since your goal is 
+	to identify as many DIFFERENT disputes of the sort described
+	above as possible.
+
+-------------------------------------------------------------------------
+Number: 
+	362i   
+
+Title: 
+	human smuggling 
+
+Description: 
+	Identify incidents of human smuggling.
+
+Instances:
+        In the time alloted, please find as many DIFFERENT incidents of 
+	the sort described above as you can. Please save at least one 
+	document for EACH DIFFERENT incident of the sort described above. 
+	If one document discusses several such incidents, then you 
+	need not save other documents that repeat those, since your goal 
+	is to identify DIFFERENT incidents of the sort described above.
+
+-------------------------------------------------------------------------
+Number: 
+	365i   
+
+Title: 
+	El Nino   
+
+Description: 
+	What effects have been attributed to El Nino?
+ 
+Instances:
+        In the time alloted, please find as many DIFFERENT effects of 
+	the sort described above as you can. Please save at least one 
+	document for EACH such DIFFERENT effect. 
+	If one document discusses several such effects, then you need
+	not save other documents that repeat those, since your goal 
+	is to identify as many DIFFERENT effects of the sort described 
+	above as possible.
+
+-------------------------------------------------------------------------
+Number: 
+	366i 
+  
+Title: 
+	commercial cyanide uses 
+
+Description: 
+	What are the industrial or commercial uses of 
+	cyanide or its derivatives? 
+ 
+Instances:
+        In the time alloted, please find as many DIFFERENT uses of 
+	the sort described above as you can. Please save at least one 
+	document for EACH such DIFFERENT use.
+	If one document discusses several such uses, then you need not 
+	save other documents that repeat those, since your goal is to
+	identify as many DIFFERENT uses of the sort described above as
+	possible.
+
+-------------------------------------------------------------------------
+Number: 
+	387i  
+ 
+Title: 
+	radioactive waste 
+
+Description: 
+	Identify documents that discuss effective and safe ways to 
+	permanently handle long-lived radioactive wastes.
+ 
+Instances:
+        In the time alloted, please find as many DIFFERENT ways of 
+	the sort described above as you can. Please save at least one 
+	document for EACH such DIFFERENT way.
+	If one document discusses several such ways, then you need not
+	not save other documents that repeat those, since your goal is
+	to identify as many DIFFERENT ways of the sort described above
+	as possible.
+
+-------------------------------------------------------------------------
+Number: 
+	392i  
+ 
+Title: 
+	robotics 
+
+Description: 
+	What are the applications of robotics in the world today?
+
+Instances:
+        In the time alloted, please find as many DIFFERENT applications of 
+	the sort described above as you can. Please save at least one 
+	document for EACH such DIFFERENT application.
+	If one document discusses several such applications, then you 
+	need not save other documents that repeat those, since your goal 
+	is to identify as many DIFFERENT applications of the sort described 
+	above as possible.
+
+------------------------------------------------------------------------- 
+
+==========
+==========
+==========
+
+Number: 
+  408i 
+
+Title:
+  tropical storms 
+
+Description: 
+  What tropical storms (hurricanes and typhoons) have
+  caused property damage and/or loss of life?
+
+Instances:
+  In the time alloted, please find as many DIFFERENT storms of 
+  the sort described above as you can. Please save at least one 
+  document for EACH such DIFFERENT storm.
+  If one document discusses several such storms, then you need
+  not save other documents that repeat those, since your goal 
+  is to identify as many DIFFERENT storms of the sort described 
+  above as possible.
+
+
+Number: 
+  414i 
+
+Title: 
+  Cuba, sugar, imports 
+
+Description: 
+  What countries import Cuban sugar?
+
+Instances:
+  In the time alloted, please find as many DIFFERENT countries of 
+  the sort described above as you can. Please save at least one 
+  document for EACH such DIFFERENT country.
+  If one document discusses several such countries, then you need
+  not save other documents that repeat those, since your goal 
+  is to identify as many DIFFERENT countries of the sort described 
+  above as possible.
+
+
+Number: 
+  428i 
+
+Title: 
+  declining birth rates 
+
+Description:
+  What countries other than the US and China have or have had
+  a declining birth rate? 
+
+Instances:
+  In the time alloted, please find as many DIFFERENT countries of 
+  the sort described above as you can. Please save at least one 
+  document for EACH such DIFFERENT country.
+  If one document discusses several such countries, then you need
+  not save other documents that repeat those, since your goal 
+  is to identify as many DIFFERENT countries of the sort described 
+  above as possible.
+ 
+
+Number: 
+  431i 
+
+Title: 
+  robotic technology 
+
+Description: 
+  What are the latest developments in robotic technology 
+  and in its use?
+
+Instances:
+  In the time alloted, please find as many DIFFERENT developments of 
+  the sort described above as you can. Please save at least one  
+  document for EACH such DIFFERENT development.
+  If one document discusses several such developments, then you need
+  not save other documents that repeat those, since your goal 
+  is to identify as many DIFFERENT developments of the sort described 
+  above as possible.
+
+
+Number: 
+  438i 
+
+Title: 
+  tourism, increase 
+
+Description:
+  What countries have experienced an increase in tourism? 
+
+Instances:
+  In the time alloted, please find as many DIFFERENT countries of 
+  the sort described above as you can. Please save at least one 
+  document for EACH such DIFFERENT country.
+  If one document discusses several such countries, then you need
+  not save other documents that repeat those, since your goal 
+  is to identify as many DIFFERENT countries of the sort described 
+  above as possible.
+
+
+Number:
+  446i
+ 
+Title: 
+  tourists, violence 
+
+Description: 
+  In what countries have tourists been subject to
+  acts of violence causing bodily harm or death?
+
+Instances:
+  In the time alloted, please find as many DIFFERENT countries of 
+  the sort described above as you can. Please save at least one 
+  document for EACH such DIFFERENT country.
+  If one document discusses several such countries, then you need
+  not save other documents that repeat those, since your goal 
+  is to identify as many DIFFERENT countries of the sort described 
+  above as possible.
+
