@@ -25,6 +25,12 @@ public class TFIDF extends Kernel {
 		_bReweightedSimilarity = weighted_similarity;
 	}
 
+	public void clear() {
+		_dDefaultIDF = -1d;
+		_hmKey2IDF = null;
+		_mPrevInit = null;	
+	}
+	
 	public void init(Map<String, String> docs) {
 		if (docs == _mPrevInit)
 			return; // Already initialized

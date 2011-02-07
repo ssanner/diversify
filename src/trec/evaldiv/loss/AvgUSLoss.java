@@ -11,7 +11,7 @@ public class AvgUSLoss extends AspectLoss {
 		
 		double score_sum = 0d; 
 		for (int r = 1; r < docs.size(); r++)
-			score_sum = qa.getUniformSubtopicLoss(docs, r); 
+			score_sum += qa.getUniformSubtopicLoss(docs, r); 
 		
 		return score_sum / (double)docs.size();
 	}

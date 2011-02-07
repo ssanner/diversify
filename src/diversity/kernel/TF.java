@@ -19,6 +19,10 @@ public class TF extends Kernel {
 	public TF(boolean weighted_similarity) {
 		_bReweightedSimilarity = weighted_similarity;
 	}
+	
+	public void clear() {
+		// Nothing to clear
+	}
 
 	public void init(Map<String, String> docs) {
 		// Nothing to init

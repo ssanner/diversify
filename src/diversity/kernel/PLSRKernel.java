@@ -47,6 +47,15 @@ public class PLSRKernel extends Kernel {
 	}
 	
 	@Override
+	public void clear() {
+		ONE = null;
+		_mPrevInit = null;
+		_doc2topicVector = null;
+		_hmHashCode2DocID = null;
+		_lda = new LDAInterface();
+	}
+
+	@Override
 	public Object getObjectRepresentation(String content) {
 		
 		double[] topic_vector = null;

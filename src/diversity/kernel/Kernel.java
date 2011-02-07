@@ -17,6 +17,7 @@ public abstract class Kernel {
 	public abstract double sim(Object s1, Object s2, Object q);
 	public boolean supportsSetSim() { return false; }
 	public Double setSim(Object s1, Set<Object> s2, Object q) { return null; } 
+	public abstract void clear();
 	public abstract void init(Map<String,String> docs);
 	/* Should only be called after init(...) has been called */
 	public abstract Object getObjectRepresentation(String content);

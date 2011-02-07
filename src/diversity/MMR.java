@@ -12,7 +12,6 @@ import diversity.kernel.Kernel;
 public class MMR extends ResultListSelector {
 	
 	public double _dLambda;
-	public Map    _query;
 	public Kernel _sim;
 	public Kernel _div;
 	
@@ -21,14 +20,20 @@ public class MMR extends ResultListSelector {
 		_dLambda = lambda;
 		_sim = sim;
 		_div = div;
-		_docOrig.clear();
 	}
 	
 	public void addDoc(String doc_name, String content) {
 		_docOrig.put(doc_name, content);
 	}
-		
-	public void init() {
+	
+	public void clearDocs() {
+		_docRepr.clear();
+		_docOrig.clear();
+		_sim.clear();
+		_div.clear();
+	}
+	
+	public void initDocs() {
 
 		// The similarity kernel may need to do pre-processing (e.g., LDA training)
 		_sim.init(_docOrig); // LDA should maintain keys for mapping later
@@ -89,7 +94,7 @@ public class MMR extends ResultListSelector {
 		ArrayList<String> result_list = new ArrayList<String>();
 
 		// Intialize document set
-		init();
+		initDocs();
 		
 		// Get representation for query
 		Object query_repr = _sim.getObjectRepresentation(query);

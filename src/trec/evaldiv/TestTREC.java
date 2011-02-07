@@ -2,32 +2,47 @@ package trec.evaldiv;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
+import diversity.MMR;
+import diversity.ResultListSelector;
+import diversity.kernel.BM25Kernel;
+import diversity.kernel.Kernel;
+import diversity.kernel.LDAKernel;
+import diversity.kernel.PLSRKernel;
+import diversity.kernel.TF;
+import diversity.kernel.TFIDF;
+
 import trec.evaldiv.doc.Doc;
 import trec.evaldiv.doc.TRECDoc;
+import trec.evaldiv.loss.AllUSLoss;
+import trec.evaldiv.loss.AllWSLoss;
+import trec.evaldiv.loss.AspectLoss;
+import trec.evaldiv.loss.AvgUSLoss;
+import trec.evaldiv.loss.AvgWSLoss;
+import trec.evaldiv.loss.USLoss;
+import trec.evaldiv.loss.WSLoss;
 import util.FileFinder;
 
-/*** Evaluates different algorithms (PLMMR, MMR) on TREC queries from 
- *   Yue and Joachims, ICML 2008.
- * 
- * @author ssanner
- *
- */
+///////////////////////////////////////////////////////////////////////////////
+// Evaluates Different Diversification Algorithms on TREC 6-8 Interactive Track
+///////////////////////////////////////////////////////////////////////////////
+
 public class TestTREC {
 
 	public final static boolean DEBUG = true;
+	
+	public final static int NUM_RESULTS = 10;
 	
 	public final static String TREC_DOC_DIR = "files/trec/TREC_DATA";
 	public final static String QUERY_FILE   = "files/trec/TRECQuery.txt";
 	public final static String ASPECT_FILE  = "files/trec/TRECQueryAspects.txt";
 	
 	public final static String[] TREC_QUERIES = 
-		{ "307i", "322i", "326i", "347i", "352i", "353i", 
+		{ "307i", /*"322i", "326i", "347i", "352i", "353i", 
 		  "357i", "362i", "366i", "387i", "392i", "408i", 
-		  "414i", "428i", "431i", "438i", "446i" };
+		  "414i", "428i", "431i", "438i", "446i"*/ };
 	
 	/**
 	 * @param args
@@ -61,11 +76,72 @@ public class TestTREC {
 				System.out.println(q + "\n");
 		}
 	
+		// Build the Loss functions
+		ArrayList<AspectLoss> loss_functions = new ArrayList<AspectLoss>();
+		loss_functions.add(new USLoss());
+		loss_functions.add(new WSLoss());
+		loss_functions.add(new AvgUSLoss());
+		loss_functions.add(new AvgWSLoss());
+		loss_functions.add(new AllUSLoss());
+		loss_functions.add(new AllWSLoss());
+		
+		// Build the TREC tests
+		// Build a new result list selectors... all use the greedy MMR approach,
+		// each simply selects a different similarity metric
+		ArrayList<ResultListSelector> tests = new ArrayList<ResultListSelector>();
+		
+		// Instantiate all the kernels that we will use with the algorithms below
+		Kernel TF_kernel    = new TF(true /* query-relevant diversity */);
+		Kernel TFIDF_kernel = new TFIDF(true /* query-relevant diversity */);
+		Kernel LDA_kernel   = new LDAKernel(15 /* NUM TOPICS - suggest 15 */, true /* spherical */, true /* query-relevant diversity */);
+		Kernel PLSR_kernel  = new PLSRKernel(15 /* NUM TOPICS - suggest 15 */, false /* spherical */);
+		Kernel BM25_kernel  = 
+			new BM25Kernel( /* 0 for any disables effect */
+				0.5d /* k1 - doc TF */, 
+				0.5d /* k3 - query TF */,
+				0.5d /* b - doc length penalty */ );
+		
+		// Add all MMR test variants (vary lambda and kernels)
+		tests.add( new MMR(
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				TF_kernel /* sim */,
+				TF_kernel /* div */ ));
+		
+		tests.add( new MMR(
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				TFIDF_kernel /* sim */,
+				TFIDF_kernel /* div */ ));
+		
+		tests.add( new MMR(
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				BM25_kernel  /* sim */,
+				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+		
+		tests.add( new MMR(
+				0.0d /* lambda: 0d is **all weight** on query sim */, 
+				BM25_kernel  /* sim */,
+				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+
+		tests.add( new MMR(
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				LDA_kernel /* sim */,
+				LDA_kernel /* div */ ));
+
+		tests.add( new MMR(
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				PLSR_kernel /* sim */,
+				PLSR_kernel /* div */ ));
+
 		
 		// Evaluate results of different query processing algorithms
-
+		Evaluator.doEval(Arrays.asList(TREC_QUERIES), docs, 
+						 queries, aspects, loss_functions, tests, NUM_RESULTS);
 	}
 
+	///////////////////////////////////////////////////////////////////////////////
+	//                              Helper Functions
+	///////////////////////////////////////////////////////////////////////////////
+	
 	public enum FilePos { NOTHING, NUMBER, TITLE, DESC, OTHER };
 
 	// Note: the TREC Query files have a rather non-standard format
@@ -99,7 +175,7 @@ public class TestTREC {
 						case NOTHING: 
 							break;
 						case NUMBER:
-							cur_query._name += " " + line;
+							cur_query._name = line; // Should only be one line
 							break;
 						case TITLE:
 							cur_query._title += " " + line;
