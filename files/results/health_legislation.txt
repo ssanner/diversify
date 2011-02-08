@@ -69,11 +69,11 @@
 // ===
 // Data source: files/data/Healthcare
 // ===
-// Sim representation of query: {legislation=1.0, health=1.0}
+// Sim representation of query: 
 // ===
-// Div representation of query: {legislation=2.1400661634962708, health=1.0414538748281612}
+// Div representation of query: 
 // ===
-// Result list: MMR (lambda=0.0) -- sim: BM25 (k1=0.5, k3=0.5, b=0.5) -- div: TFIDF (reweighted_sim=true)
+// Result list: ScoreRanker -- score: BM25 (k1=0.5, k3=0.5, b=0.5)
 // ===
 1	Judges_ruling_a_setback_to_healthcare_plan__Wednesday_15_December_2010_120000_AM_EST
 2	Test_lets_genome_out_of_the_bottle__Saturday_8_January_2011_120000_AM_EST
@@ -91,102 +91,20 @@
 // ===
 // Data source: files/data/Healthcare
 // ===
-// Sim representation of query: 
-// - 0.467: [health, services, mental, care, hospital]
-// - 0: [us, last, past, against, three]
-// - 0: [clinic, hiv, gay, staff, industry]
-// - 0.531: [health, women, australia, policy, australian]
-// - 0: [house, obama, president, republicans, republican]
-// - 0: [samsung, year, group, won, global]
-// - 0: [years, healthcare, like, first, time]
-// - 0: [government, nsw, electricity, state, market]
-// - 0: [per, cent, points, index, rose]
-// - 0: [giffords, loughner, political, arizona, shooting]
-// - 0: [insurance, such, person, cases, very]
-// - 0: [world, public, still, children, parkinson]
-// - 0: [next, told, make, ms, labor]
-// - 0: [cents, ltd, australian, million, company]
-// - 0: [says, sudan, southern, south, north]
+// Sim representation of query: {legislation=1.0, health=1.0}
 // ===
-// Div representation of query: 
-// - 0.467: [health, services, mental, care, hospital]
-// - 0: [us, last, past, against, three]
-// - 0: [clinic, hiv, gay, staff, industry]
-// - 0.531: [health, women, australia, policy, australian]
-// - 0: [house, obama, president, republicans, republican]
-// - 0: [samsung, year, group, won, global]
-// - 0: [years, healthcare, like, first, time]
-// - 0: [government, nsw, electricity, state, market]
-// - 0: [per, cent, points, index, rose]
-// - 0: [giffords, loughner, political, arizona, shooting]
-// - 0: [insurance, such, person, cases, very]
-// - 0: [world, public, still, children, parkinson]
-// - 0: [next, told, make, ms, labor]
-// - 0: [cents, ltd, australian, million, company]
-// - 0: [says, sudan, southern, south, north]
+// Div representation of query: {legislation=2.1400661634962708, health=1.0414538748281612}
 // ===
-// Result list: MMR (lambda=0.5) -- sim: LDAKernel: reweighted_sim=true, #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=true -- div: LDAKernel: reweighted_sim=true, #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=true
+// Result list: MMR (lambda=0.0) -- sim: BM25 (k1=0.5, k3=0.5, b=0.5) -- div: TFIDF (reweighted_sim=true)
 // ===
-1	Women_critical_of_new_government_health_policy__Thursday_30_December_2010_120000_AM_EST
-2	Families_experts_meet_on_mental_health__Wednesday_8_December_2010_120000_AM_EST
-3	Top_medical_research_centre_for_Sydney__Wednesday_29_December_2010_120400_AM_EST
-4	Patients_pick_up_a_bigger_share_of_the_health_tab__Wednesday_15_December_2010_120000_AM_EST
-5	Website_will_divulge_the_number_of_infections_caught_in_hospitals__Tuesday_14_December_2010_120000_AM_EST
-6	Australia_tops_cancer_survival_list__Thursday_23_December_2010_120000_AM_EST
-7	Men_too_often_suffer_persistent_back_pain__Thursday_2_December_2010_060500_AM_EST
-8	Dying_want_their_final_wishes_respected__Tuesday_7_December_2010_120000_AM_EST
-9	NSW_gets_value_for_health_spend_report__Wednesday_15_December_2010_120400_AM_EST
-10	Hundreds_pregnant_in_UK_despite_contraceptive_implant__Thursday_6_January_2011_010900_AM_EST
-
-
-// Query: 'health legislation'
-// ===
-// Data source: files/data/Healthcare
-// ===
-// Sim representation of query: 
-// - 0.467: [health, services, mental, care, hospital]
-// - 0: [us, last, past, against, three]
-// - 0: [clinic, hiv, gay, staff, industry]
-// - 0.531: [health, women, australia, policy, australian]
-// - 0: [house, obama, president, republicans, republican]
-// - 0: [samsung, year, group, won, global]
-// - 0: [years, healthcare, like, first, time]
-// - 0: [government, nsw, electricity, state, market]
-// - 0: [per, cent, points, index, rose]
-// - 0: [giffords, loughner, political, arizona, shooting]
-// - 0: [insurance, such, person, cases, very]
-// - 0: [world, public, still, children, parkinson]
-// - 0: [next, told, make, ms, labor]
-// - 0: [cents, ltd, australian, million, company]
-// - 0: [says, sudan, southern, south, north]
-// ===
-// Div representation of query: 
-// - 0.467: [health, services, mental, care, hospital]
-// - 0: [us, last, past, against, three]
-// - 0: [clinic, hiv, gay, staff, industry]
-// - 0.531: [health, women, australia, policy, australian]
-// - 0: [house, obama, president, republicans, republican]
-// - 0: [samsung, year, group, won, global]
-// - 0: [years, healthcare, like, first, time]
-// - 0: [government, nsw, electricity, state, market]
-// - 0: [per, cent, points, index, rose]
-// - 0: [giffords, loughner, political, arizona, shooting]
-// - 0: [insurance, such, person, cases, very]
-// - 0: [world, public, still, children, parkinson]
-// - 0: [next, told, make, ms, labor]
-// - 0: [cents, ltd, australian, million, company]
-// - 0: [says, sudan, southern, south, north]
-// ===
-// Result list: MMR (lambda=0.5) -- sim: PLSRKernel: #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=false -- div: PLSRKernel: #topics=15, alpha=3.3333333333333335, beta=0.01, spherical=false
-// ===
-1	Women_critical_of_new_government_health_policy__Thursday_30_December_2010_120000_AM_EST
-2	Families_experts_meet_on_mental_health__Wednesday_8_December_2010_120000_AM_EST
-3	Australia_tops_cancer_survival_list__Thursday_23_December_2010_120000_AM_EST
-4	Floods_will_swamp_health_system_AMA__Monday_10_January_2011_120000_AM_EST
-5	Top_medical_research_centre_for_Sydney__Wednesday_29_December_2010_120400_AM_EST
-6	Dying_want_their_final_wishes_respected__Tuesday_7_December_2010_120000_AM_EST
+1	Judges_ruling_a_setback_to_healthcare_plan__Wednesday_15_December_2010_120000_AM_EST
+2	Test_lets_genome_out_of_the_bottle__Saturday_8_January_2011_120000_AM_EST
+3	Obama_to_celebrate_preChristmas_wins__Wednesday_22_December_2010_085900_PM_EST
+4	Australian_stocks_reverse_early_losses__Monday_29_November_2010_120000_AM_EST
+5	Diplomat_hints_at_challenge_to_Obama__Tuesday_4_January_2011_120000_AM_EST
+6	Women_critical_of_new_government_health_policy__Thursday_30_December_2010_120000_AM_EST
 7	Patients_pick_up_a_bigger_share_of_the_health_tab__Wednesday_15_December_2010_120000_AM_EST
-8	Website_will_divulge_the_number_of_infections_caught_in_hospitals__Tuesday_14_December_2010_120000_AM_EST
-9	Men_too_often_suffer_persistent_back_pain__Thursday_2_December_2010_060500_AM_EST
-10	We_have_waited_much_too_long_for_adequate_mental_healthcare__Thursday_6_January_2011_120000_AM_EST
+8	Floods_will_swamp_health_system_AMA__Monday_10_January_2011_120000_AM_EST
+9	Families_experts_meet_on_mental_health__Wednesday_8_December_2010_120000_AM_EST
+10	NSW_gets_value_for_health_spend_report__Wednesday_15_December_2010_120400_AM_EST
 

@@ -17,6 +17,7 @@ import util.DocUtils;
 
 import diversity.MMR;
 import diversity.ResultListSelector;
+import diversity.ScoreRanker;
 import diversity.kernel.BM25Kernel;
 import diversity.kernel.LDAKernel;
 import diversity.kernel.PLSRKernel;
@@ -96,20 +97,22 @@ public class TestDiversity {
 				BM25_kernel  /* sim */,
 				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 		
+		tests.add( new ScoreRanker( BM25_kernel ));
+
 		tests.add( new MMR(
 				0.0d /* lambda: 0d is **all weight** on query sim */, 
 				BM25_kernel  /* sim */,
 				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 
-		tests.add( new MMR(
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				LDA_kernel /* sim */,
-				LDA_kernel /* div */ ));
-
-		tests.add( new MMR(
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				PLSR_kernel /* sim */,
-				PLSR_kernel /* div */ ));
+//		tests.add( new MMR(
+//				0.5d /* lambda: 0d is all weight on query sim */, 
+//				LDA_kernel /* sim */,
+//				LDA_kernel /* div */ ));
+//
+//		tests.add( new MMR(
+//				0.5d /* lambda: 0d is all weight on query sim */, 
+//				PLSR_kernel /* sim */,
+//				PLSR_kernel /* div */ ));
 
 		// This method adds documents to each test in tests
 		AddDocs(tests, data_src);
@@ -134,11 +137,10 @@ public class TestDiversity {
 			File[] files = dir.listFiles();
 			for (File file : files) {
 				String content = DocUtils.ReadFile(file);
-				if (content == null) {
+				if (content == null) 
 					System.out.println("Could not read content for: " + file.getName() + "... skipping");
-					System.exit(1);
-				}
-				test.addDoc(file.getName(), content);
+				else
+					test.addDoc(file.getName(), content);
 			}
 		}
 	}
@@ -152,12 +154,16 @@ public class TestDiversity {
 		for (PrintStream ps : printstreams) {
 			ps.println("\n// Query: '" + query + "'");
 			ps.println("// ===\n// Data source: " + data_src);
-			Object query_sim_rep = ((MMR)d)._sim.getObjectRepresentation(query); 
-			String query_sim_str = ((MMR)d)._sim.getObjectStringDescription(query_sim_rep);
-			query_sim_str = query_sim_str.replace("\n", "\n// ");
-			Object query_div_rep = ((MMR)d)._div.getObjectRepresentation(query); 
-			String query_div_str = ((MMR)d)._div.getObjectStringDescription(query_div_rep);
-			query_div_str = query_div_str.replace("\n", "\n// ");
+			String query_sim_str = "";
+			String query_div_str = "";
+			if (d instanceof MMR) {
+				Object query_sim_rep = ((MMR)d)._sim.getObjectRepresentation(query); 
+				query_sim_str = ((MMR)d)._sim.getObjectStringDescription(query_sim_rep);
+				query_sim_str = query_sim_str.replace("\n", "\n// ");
+				Object query_div_rep = ((MMR)d)._div.getObjectRepresentation(query); 
+				query_div_str = ((MMR)d)._div.getObjectStringDescription(query_div_rep);
+				query_div_str = query_div_str.replace("\n", "\n// ");
+			}
 			ps.println("// ===\n// Sim representation of query: " + query_sim_str);
 			ps.println("// ===\n// Div representation of query: " + query_div_str);
 			ps.println("// ===\n// Result list: " + d.getDescription() + "\n// ===");
