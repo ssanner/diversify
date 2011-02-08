@@ -1,4 +1,5 @@
-/** MMR Shell Algorithm (requires similarity and diversity kernels)
+/** Algorithm for ranking documents similarity score with query
+ *  (requires a similarity kernel)
  * 
  * @author Scott Sanner (ssanner@gmail.com)
  */
