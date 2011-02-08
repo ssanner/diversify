@@ -9,10 +9,15 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import diversity.ResultListSelector;
+import diversity.ScoreRanker;
+import diversity.kernel.BM25Kernel;
+import diversity.kernel.Kernel;
 
 import trec.evaldiv.doc.Doc;
 import trec.evaldiv.loss.AllUSLoss;
@@ -26,7 +31,9 @@ public class Evaluator {
 	
 	// TODO: If use all docs need to do a BM25 query
 	// TODO: Need to optimize number of topics
-	public static final boolean USE_ALL_DOCS = false;
+	// TODO: Verify consistency of rankers when used with clearDocs
+	public static final boolean USE_ALL_DOCS = true;
+	public static final int     NUM_TOP_DOCS = 50;
 
 	public static final boolean DEBUG = true;
 	
@@ -65,6 +72,9 @@ public class Evaluator {
 			double[] usl_vs_rank = new double[num_results];
 			double[] wsl_vs_rank = new double[num_results];
 			
+			// Build a cache for reuse of top-docs
+			HashMap<String, HashSet<String>> top_docs = new HashMap<String, HashSet<String>>();
+			
 			int query_num = 0;
 			for (String query : query_names) {
 
@@ -77,14 +87,32 @@ public class Evaluator {
 					System.out.println("- Query details: " + q);
 					//System.out.println("- Query aspects: " + qa);
 				}
-				
+
+				// Get top docs if needed
+				if (USE_ALL_DOCS && !top_docs.containsKey(query)) {
+					
+					ScoreRanker s = new ScoreRanker( new BM25Kernel(
+							0.5d /* k1 - doc TF */, 
+							0.5d /* k3 - query TF */,
+							0.5d /* b - doc length penalty */ ));
+					
+					// Add all available docs to ScoreRanker
+					for (Doc d : docs.values()) 
+						s.addDoc(d._name, d.getDocContent());
+					
+					top_docs.put(query, new HashSet<String>( 
+						s.getResultList(q.getQueryContent(), NUM_TOP_DOCS) ));
+					
+				} 
+								
 				// Add docs for query to test
 				t.clearDocs();
 				Set<String> relevant_docs = null;
-				if (USE_ALL_DOCS)
-					relevant_docs = docs.keySet();
+				if (USE_ALL_DOCS)		
+					relevant_docs = top_docs.get(query);
 				else 
 					relevant_docs = qa.getRelevantDocs();
+				
 				for (String doc_name : relevant_docs) {
 					Doc d = docs.get(doc_name);
 					if (d == null)
