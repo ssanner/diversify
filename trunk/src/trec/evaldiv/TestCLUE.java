@@ -12,6 +12,7 @@ import java.util.*;
 
 import diversity.MMR;
 import diversity.ResultListSelector;
+import diversity.ScoreRanker;
 import diversity.kernel.BM25Kernel;
 import diversity.kernel.Kernel;
 import diversity.kernel.LDAKernel;
@@ -110,35 +111,36 @@ public class TestCLUE {
 				0.5d /* b - doc length penalty */ );
 		
 		// Add all MMR test variants (vary lambda and kernels)
+		tests.add( new ScoreRanker( TF_kernel ));
+
 		tests.add( new MMR(
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				TF_kernel /* sim */,
 				TF_kernel /* div */ ));
 		
+		tests.add( new ScoreRanker( TFIDF_kernel ));
+
 		tests.add( new MMR(
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				TFIDF_kernel /* sim */,
 				TFIDF_kernel /* div */ ));
 		
+		tests.add( new ScoreRanker( BM25_kernel ));
+		
 		tests.add( new MMR(
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				BM25_kernel  /* sim */,
 				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
-		
-		tests.add( new MMR(
-				0.0d /* lambda: 0d is **all weight** on query sim */, 
-				BM25_kernel  /* sim */,
-				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 
-//		tests.add( new MMR(
-//				0.5d /* lambda: 0d is all weight on query sim */, 
-//				LDA_kernel /* sim */,
-//				LDA_kernel /* div */ ));
-//
-//		tests.add( new MMR(
-//				0.5d /* lambda: 0d is all weight on query sim */, 
-//				PLSR_kernel /* sim */,
-//				PLSR_kernel /* div */ ));
+		tests.add( new MMR(
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				LDA_kernel /* sim */,
+				LDA_kernel /* div */ ));
+
+		tests.add( new MMR(
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				PLSR_kernel /* sim */,
+				PLSR_kernel /* div */ ));
 
 		
 		// Evaluate results of different query processing algorithms
