@@ -22,9 +22,12 @@ import util.VectorUtils;
 
 public class Evaluator {
 
-	public static final boolean USE_ALL_DOCS = true;
+	public final static String PATH_PREFIX = "files/trec/RESULTS/";
+	
+	// TODO: If use all docs need to do a BM25 query
+	// TODO: Need to optimize number of topics
+	public static final boolean USE_ALL_DOCS = false;
 
-	public static final String OUTPUT_FILENAME = "files/trec/RESULTS/trec6-8avg.txt";
 	public static final boolean DEBUG = true;
 	
 	public static void doEval(
@@ -34,10 +37,16 @@ public class Evaluator {
 			HashMap<String,QueryAspects> query_aspects,
 			List<AspectLoss> loss_functions,
 			List<ResultListSelector> tests,
-			int num_results) throws Exception {
+			int num_results,
+			String output_filename) throws Exception {
 		
-		PrintStream ps = new PrintStream(new FileOutputStream(OUTPUT_FILENAME));
+		if (USE_ALL_DOCS)
+			output_filename += "_alldocs";
 		
+		PrintStream ps  = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + ".txt"));
+		PrintStream ps2 = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + ".avg.txt"));
+		PrintStream err = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + ".errors.txt"));
+	
 		// Loop:
 		// - go through each test t (a variant of MMR)
 		//     - go through all queries q
@@ -56,9 +65,11 @@ public class Evaluator {
 			double[] usl_vs_rank = new double[num_results];
 			double[] wsl_vs_rank = new double[num_results];
 			
+			int query_num = 0;
 			for (String query : query_names) {
 
 				// Get query relevant info
+				++query_num;
 				Query q = query_content.get(query);
 				QueryAspects qa = query_aspects.get(query);
 				if (DEBUG) {
@@ -76,7 +87,10 @@ public class Evaluator {
 					relevant_docs = qa.getRelevantDocs();
 				for (String doc_name : relevant_docs) {
 					Doc d = docs.get(doc_name);
-					t.addDoc(doc_name, d.getDocContent());
+					if (d == null)
+						err.println("ERROR: '" + doc_name + "' not found for '" + query + "'");
+					else
+						t.addDoc(doc_name, d.getDocContent());
 					//if (DEBUG)
 					//	System.out.println("- Adding " + doc_name + " -> " + d.getDocContent());
 				}
@@ -104,10 +118,14 @@ public class Evaluator {
 					System.out.println("Evaluation: " + loss_result_str);
 					
 					// Maintain averages
-					if (loss instanceof AllUSLoss)
+					if (loss instanceof AllUSLoss) {
 						usl_vs_rank = VectorUtils.Sum(usl_vs_rank, (double[])o);
-					if (loss instanceof AllWSLoss)
+						export(ps, query_num, test_num, 1, (double[])o);
+					}
+					if (loss instanceof AllWSLoss) {
 						wsl_vs_rank = VectorUtils.Sum(wsl_vs_rank, (double[])o);
+						export(ps, query_num, test_num, 2, (double[])o);
+					}
 				}
 			}
 			t.clearDocs();
@@ -116,17 +134,22 @@ public class Evaluator {
 			wsl_vs_rank = VectorUtils.ScalarMultiply(wsl_vs_rank, 1d/query_names.size());
 			
 			System.out.println("==================================================");
-			++test_num;
-			System.out.println("Exporting " + test_num + ": " + t.getDescription());
-			ps.print("" + test_num);
-			for (int i = 0; i < usl_vs_rank.length; i++)
-				ps.print("\t" + usl_vs_rank[i]);
-			for (int i = 0; i < wsl_vs_rank.length; i++)
-				ps.print("\t" + wsl_vs_rank[i]);
-			ps.println();
+			System.out.println("Exporting " + ++test_num + ": " + t.getDescription());
+			export(ps2, -1, test_num, 1, usl_vs_rank);
+			export(ps2, -1, test_num, 2, wsl_vs_rank);
 		}
 		
 		ps.close();
+		ps2.close();
+		err.close();
+	}
+	
+	public static void export(PrintStream ps, int query_num, int test_num, int loss_num, double[] v) {
+		
+		ps.print(query_num + "\t" + test_num + "\t" + loss_num);
+		for (int i = 0; i < v.length; i++)
+			ps.print("\t" + v[i]);
+		ps.println();		
 	}
 	
 }

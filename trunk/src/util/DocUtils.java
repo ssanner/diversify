@@ -31,7 +31,7 @@ public class DocUtils {
 			java.io.BufferedReader br = new BufferedReader(new FileReader(f));
 			String line = null;
 			while ((line = br.readLine()) != null)
-				sb.append(line + (sb.length()> 0 ? " " : ""));
+				sb.append((sb.length()> 0 ? " " : "") + line);
 			return sb.toString();
 		} catch (Exception e) {
 			System.out.println("ERROR: " + e);

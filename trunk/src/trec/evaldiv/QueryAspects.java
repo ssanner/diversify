@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import trec.evaldiv.doc.Doc;
 
@@ -30,6 +31,26 @@ public class QueryAspects {
 		return _aspects.keySet();
 	}
 	
+	public void addAllAspects(HashMap<String,TreeSet<Integer>> doc2aspects, int max_aspect) {
+
+		_numAspects = max_aspect;
+		for (Map.Entry<String,TreeSet<Integer>> e : doc2aspects.entrySet()) {
+
+			String doc = e.getKey();
+			TreeSet<Integer> aspects = e.getValue();
+			boolean[] b_aspects = null;
+			
+			if (aspects != null && aspects.size() > 0) {			
+				b_aspects = new boolean[_numAspects];
+				for (Integer i : aspects) // aspects are never 0
+					b_aspects[i-1] = true;
+			}
+			
+			// Can be null
+			_aspects.put(doc, b_aspects);
+		}
+	}
+	
 	public void addAspect(String doc, String aspect_str) {
 		if (_numAspects < 0)
 			_numAspects = aspect_str.length();
@@ -43,15 +64,18 @@ public class QueryAspects {
 		
 		if (aspect_count > 0)
 			_aspects.put(doc, b_aspects);
+		else
+			_aspects.put(doc, null);
 	}
 	
 	public void calcAspectStats() {
 		_freq    = new double[_numAspects];
 		_weights = new double[_numAspects];
 		for (boolean[] aspects : _aspects.values()) {
-			for (int i = 0; i < _numAspects; i++)
-				if (aspects[i])
-					_freq[i]++;
+			if (aspects != null)
+				for (int i = 0; i < _numAspects; i++)
+					if (aspects[i])
+						_freq[i]++;
 		}
 
 		int total = 0;
@@ -80,6 +104,9 @@ public class QueryAspects {
 	}
 	
 	public static String getAspectsAsStr(boolean[] b) {
+		
+		if (b == null)
+			return "null";
 		
 		StringBuilder sb = new StringBuilder(" ");
 		for (int i = 0; i < b.length; i++)
