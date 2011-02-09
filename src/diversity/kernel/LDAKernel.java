@@ -7,6 +7,7 @@ package diversity.kernel;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 import util.DocUtils;
@@ -25,13 +26,15 @@ public class LDAKernel extends Kernel {
 	public boolean _bSpherical = false;
 	public boolean _bReweightedSimilarity = false;
 	
-	public Map<String, String> _mPrevInit = null;
+	public Set<String> _mPrevInit = null;
 	public Map<String, double[]> _doc2topicVector = null;
 	public Map<Integer,Integer> _hmHashCode2DocID = null;
 	public LDAInterface _lda = new LDAInterface();
 	
 	// Now automatically set: double alpha, double beta,
-	public LDAKernel(int num_topics, boolean spherical, boolean weighted_similarity) {
+	public LDAKernel(HashMap<String,String> docs, 
+			int num_topics, boolean spherical, boolean weighted_similarity) {
+		super(docs);
 		_nTopics = num_topics;
 		_dAlpha  = 50.0d/num_topics;
 		_dBeta   = 0.01d;
@@ -48,7 +51,7 @@ public class LDAKernel extends Kernel {
 	}
 
 	@Override
-	public Object getObjectRepresentation(String content) {
+	public Object getNoncachedObjectRepresentation(String content) {
 		
 		double[] topic_vector = null;
 		
@@ -84,16 +87,17 @@ public class LDAKernel extends Kernel {
 	// matrix.  There is a small chance of a hashcode collision, but we'll
 	// accept this small chance of error in favor of not having to do
 	// a String equality test on the entire document.
-	public void init(Map<String, String> docs) {
+	public void init(Set<String> docs) {
 		
 		if (docs == _mPrevInit)
 			return; // Already initialized
 		_mPrevInit = docs;
 
 		_hmHashCode2DocID = new HashMap<Integer, Integer>();
-		for (Map.Entry<String, String> e : docs.entrySet()) {
-			int doc_id = _lda.addDocument(DocUtils.Tokenize(e.getValue()));
-			int hash_code = e.getValue().hashCode();
+		for (String doc : docs) {
+			String content = _docs.get(doc);
+			int doc_id = _lda.addDocument(DocUtils.Tokenize(content));
+			int hash_code = content.hashCode(); // TODO: This is horrible, should be name ref!
 			_hmHashCode2DocID.put(hash_code, doc_id);
 		}
 		//_lda.infer(_nTopics, _dAlpha, _dBeta, RAND_SEED);

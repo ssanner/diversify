@@ -15,12 +15,13 @@ public class ScoreRanker extends ResultListSelector {
 	public Kernel _sim;
 	
 	// Constructor
-	public ScoreRanker(Kernel sim) { 
+	public ScoreRanker(HashMap<String, String> docs, Kernel sim) { 
+		super(docs);
 		_sim = sim;
 	}
 	
-	public void addDoc(String doc_name, String content) {
-		_docOrig.put(doc_name, content);
+	public void addDoc(String doc_name) {
+		_docOrig.add(doc_name);
 	}
 	
 	public void clearDocs() {
@@ -36,9 +37,14 @@ public class ScoreRanker extends ResultListSelector {
 		
 		// Store local representation for later use with kernels
 		// (should we let _sim handle everything and just interact with keys?)
-		for (Map.Entry<String, String> e : _docOrig.entrySet()) {
-			Object repr = _sim.getObjectRepresentation(e.getValue());
-			_docRepr.put(e.getKey(), repr);
+		int i = 0;
+		for (String doc : _docOrig) {
+			Object repr = _sim.getObjectRepresentation(doc);
+			_docRepr.put(doc, repr);
+			if (++i % 10 == 0) {
+				System.out.println("- Converted " + i + " documents"); 
+				System.out.flush();
+			}
 		}
 	}
 	
@@ -51,7 +57,7 @@ public class ScoreRanker extends ResultListSelector {
 		initDocs();
 		
 		// Get representation for query
-		Object query_repr = _sim.getObjectRepresentation(query);
+		Object query_repr = _sim.getNoncachedObjectRepresentation(query);
 
 		// Initialize the set of all sentences minus
 		// the selected sentences

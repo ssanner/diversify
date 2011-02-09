@@ -40,7 +40,7 @@ public class Evaluator {
 	
 	public static void doEval(
 			List<String> query_names, 
-			HashMap<String,Doc> docs, 
+			HashMap<String,String> docs, 
 			HashMap<String,Query> query_content, 
 			HashMap<String,QueryAspects> query_aspects,
 			List<AspectLoss> loss_functions,
@@ -92,15 +92,16 @@ public class Evaluator {
 				// Get top docs if needed
 				if (USE_ALL_DOCS && !top_docs.containsKey(query)) {
 					
-					ScoreRanker s = new ScoreRanker( new BM25Kernel(
+					ScoreRanker s = new ScoreRanker( docs, new BM25Kernel( docs, 
 							0.5d /* k1 - doc TF */, 
 							0.5d /* k3 - query TF */,
 							0.5d /* b - doc length penalty */ ));
 					
 					// Add all available docs to ScoreRanker
-					for (Doc d : docs.values()) 
-						s.addDoc(d._name, d.getDocContent());
+					for (String doc : docs.keySet()) 
+						s.addDoc(doc);
 					
+					System.out.println("- Done adding docs, now querying");
 					top_docs.put(query, new HashSet<String>( 
 						s.getResultList(q.getQueryContent(), NUM_TOP_DOCS) ));
 					
@@ -118,11 +119,10 @@ public class Evaluator {
 					System.out.println("- Evaluating with " + relevant_docs.size() + " docs");
 				
 				for (String doc_name : relevant_docs) {
-					Doc d = docs.get(doc_name);
-					if (d == null)
+					if (!docs.containsKey(doc_name))
 						err.println("ERROR: '" + doc_name + "' not found for '" + query + "'");
 					else
-						t.addDoc(doc_name, d.getDocContent());
+						t.addDoc(doc_name);
 					//if (DEBUG)
 					//	System.out.println("- Adding " + doc_name + " -> " + d.getDocContent());
 				}

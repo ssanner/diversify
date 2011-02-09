@@ -7,11 +7,14 @@ package diversity.kernel;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 import util.DocUtils;
 import util.VectorUtils;
 
+// TODO: Kernel should really get whole content store, then just references to doc names
+//       MMR, etc., should not have to pass around kernel representation
 public class BM25Kernel extends Kernel {
 
 	public final static boolean DEBUG = false;
@@ -28,9 +31,11 @@ public class BM25Kernel extends Kernel {
 	public double  _dDefaultIDF = -1d;
 	public double  _dAvgDocLength = -1d;
 	public Map<Object, Double> _hmKey2IDF = null;
-	public Map<String, String> _mPrevInit = null;
+	public Set<String> _mPrevInit = null;
 	
-	public BM25Kernel(double k1, double k3, double b) {
+	public BM25Kernel(HashMap<String,String> docs, 
+			double k1, double k3, double b) {
+		super(docs);
 		_k1 = k1;
 		_k3 = k3;
 		_b  = b;
@@ -43,15 +48,14 @@ public class BM25Kernel extends Kernel {
 		_mPrevInit = null;	
 	}
 	
-	public void init(Map<String, String> docs) {
+	public void init(Set<String> docs) {
 		if (docs == _mPrevInit)
 			return; // Already initialized
 		_mPrevInit = docs;
 		_hmKey2IDF = new HashMap<Object,Double>();
 		double total_doc_length = 0d;
-		for (Map.Entry<String, String> e : docs.entrySet()) {
-			String content = e.getValue();
-			Map<Object,Double> features = DocUtils.ConvertToFeatureMap(content);
+		for (String doc : docs) {
+			Map<Object,Double> features = (Map<Object,Double>)getObjectRepresentation(doc);
 			features = VectorUtils.ConvertToBoolean(features);
 			total_doc_length += VectorUtils.L1Norm(features);
 			_hmKey2IDF = VectorUtils.Sum(_hmKey2IDF, features);
@@ -70,7 +74,7 @@ public class BM25Kernel extends Kernel {
 		}
 	}
 
-	public Object getObjectRepresentation(String content) {
+	public Object getNoncachedObjectRepresentation(String content) {
 		Map<Object,Double> features = DocUtils.ConvertToFeatureMap(content);
 		return features;
 	}
