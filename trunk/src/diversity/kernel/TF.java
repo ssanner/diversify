@@ -7,6 +7,7 @@ package diversity.kernel;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 import util.DocUtils;
@@ -16,7 +17,8 @@ public class TF extends Kernel {
 
 	public boolean _bReweightedSimilarity = false;
 	
-	public TF(boolean weighted_similarity) {
+	public TF(HashMap<String,String> docs, boolean weighted_similarity) {
+		super(docs);
 		_bReweightedSimilarity = weighted_similarity;
 	}
 	
@@ -24,11 +26,11 @@ public class TF extends Kernel {
 		// Nothing to clear
 	}
 
-	public void init(Map<String, String> docs) {
+	public void init(Set<String> docs) {
 		// Nothing to init
 	}
 
-	public Object getObjectRepresentation(String content) {
+	public Object getNoncachedObjectRepresentation(String content) {
 		Map<Object, Double> features = DocUtils.ConvertToFeatureMap(content);
 		return features;
 	}

@@ -25,22 +25,22 @@
 // ===
 // Data source: files/data/Healthcare
 // ===
-// Sim representation of query: {legislation=2.1400661634962708, health=1.0414538748281612}
+// Sim representation of query: {legislation=3.9318256327243257, health=3.9318256327243257}
 // ===
-// Div representation of query: {legislation=2.1400661634962708, health=1.0414538748281612}
+// Div representation of query: {legislation=3.9318256327243257, health=3.9318256327243257}
 // ===
 // Result list: MMR (lambda=0.5) -- sim: TFIDF (reweighted_sim=true) -- div: TFIDF (reweighted_sim=true)
 // ===
-1	Women_critical_of_new_government_health_policy__Thursday_30_December_2010_120000_AM_EST
-2	Judges_ruling_a_setback_to_healthcare_plan__Wednesday_15_December_2010_120000_AM_EST
-3	Patients_pick_up_a_bigger_share_of_the_health_tab__Wednesday_15_December_2010_120000_AM_EST
-4	Floods_will_swamp_health_system_AMA__Monday_10_January_2011_120000_AM_EST
-5	Test_lets_genome_out_of_the_bottle__Saturday_8_January_2011_120000_AM_EST
-6	Top_medical_research_centre_for_Sydney__Wednesday_29_December_2010_120400_AM_EST
-7	Patients_to_sue_deadly_weight_loss_drug_creator__Friday_26_November_2010_120000_AM_EST
-8	Australian_stocks_reverse_early_losses__Monday_29_November_2010_120000_AM_EST
-9	Locally_produced_petrol_blamed_for_Tehran_smog_crisis__Saturday_11_December_2010_120000_AM_EST
-10	New_device_silences_shriek_of_dental_drill__Tuesday_11_January_2011_120000_AM_EST
+1	ASX_receives_negative_overseas_leads__Tuesday_30_November_2010_064900_AM_EST
+2	Failed_sex_companys_costly_ads__Sunday_26_December_2010_120000_AM_EST
+3	Retail_housing_data_extend_US_stock_rally__Friday_3_December_2010_062400_AM_EST
+4	Loughner_makes_his_first_public_appearance_after_being_charged_over_Tucson_rampage__Tuesday_11_January_2011_125900_PM_EST
+5	Patients_to_sue_deadly_weight_loss_drug_creator__Friday_26_November_2010_120000_AM_EST
+6	Anxious_wait_to_become_a_nation__Saturday_18_December_2010_120000_AM_EST
+7	Men_too_often_suffer_persistent_back_pain__Thursday_2_December_2010_060500_AM_EST
+8	Social_media_increasing_stress_levels__Monday_29_November_2010_101400_PM_EST
+9	Australian_stocks_lower_at_noon__Friday_17_December_2010_011400_PM_EST
+10	HIVpositive_porn_actor_airs_industrys_dirty_laundry__Friday_10_December_2010_120000_AM_EST
 
 
 // Query: 'health legislation'
@@ -49,7 +49,7 @@
 // ===
 // Sim representation of query: {legislation=1.0, health=1.0}
 // ===
-// Div representation of query: {legislation=2.1400661634962708, health=1.0414538748281612}
+// Div representation of query: {legislation=3.2386784521643803, health=3.2386784521643803}
 // ===
 // Result list: MMR (lambda=0.5) -- sim: BM25 (k1=0.5, k3=0.5, b=0.5) -- div: TFIDF (reweighted_sim=true)
 // ===
@@ -93,7 +93,7 @@
 // ===
 // Sim representation of query: {legislation=1.0, health=1.0}
 // ===
-// Div representation of query: {legislation=2.1400661634962708, health=1.0414538748281612}
+// Div representation of query: {legislation=3.2386784521643803, health=3.2386784521643803}
 // ===
 // Result list: MMR (lambda=0.0) -- sim: BM25 (k1=0.5, k3=0.5, b=0.5) -- div: TFIDF (reweighted_sim=true)
 // ===

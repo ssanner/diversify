@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.text.DecimalFormat;
 
 import util.DocUtils;
@@ -66,56 +67,63 @@ public class TestDiversity {
 			query = args[2];
 		}
 		
+		// Get docs
+		HashMap<String,String> docs = GetDocs(data_src);
+		
 		// Build a new result list selectors... all use the greedy MMR approach,
 		// each simply selects a different similarity metric
 		ArrayList<ResultListSelector> tests = new ArrayList<ResultListSelector>();
 		
 		// Instantiate all the kernels that we will use with the algorithms below
-		Kernel TF_kernel    = new TF(true /* query-relevant diversity */);
-		Kernel TFIDF_kernel = new TFIDF(true /* query-relevant diversity */);
-		Kernel LDA_kernel   = new LDAKernel(15 /* NUM TOPICS - suggest 15 */, true /* spherical */, true /* query-relevant diversity */);
-		Kernel PLSR_kernel  = new PLSRKernel(15 /* NUM TOPICS - suggest 15 */, false /* spherical */);
+		Kernel TF_kernel    = new TF(docs, true /* query-relevant diversity */);
+		Kernel TFIDF_kernel = new TFIDF(docs, true /* query-relevant diversity */);
+		Kernel LDA_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, true /* spherical */, true /* query-relevant diversity */);
+		Kernel PLSR_kernel  = new PLSRKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */);
 		Kernel BM25_kernel  = 
-			new BM25Kernel( /* 0 for any disables effect */
+			new BM25Kernel(docs, 
+				/* 0 for any disables effect */
 				0.5d /* k1 - doc TF */, 
 				0.5d /* k3 - query TF */,
 				0.5d /* b - doc length penalty */ );
 		
 		// Add all MMR test variants (vary lambda and kernels)
-		tests.add( new MMR(
+		tests.add( new MMR(docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				TF_kernel /* sim */,
 				TF_kernel /* div */ ));
 		
-		tests.add( new MMR(
+		tests.add( new MMR(docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				TFIDF_kernel /* sim */,
 				TFIDF_kernel /* div */ ));
 		
-		tests.add( new MMR(
+		tests.add( new MMR(docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				BM25_kernel  /* sim */,
 				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 		
-		tests.add( new ScoreRanker( BM25_kernel ));
+		tests.add( new ScoreRanker( docs, BM25_kernel ));
 
-		tests.add( new MMR(
+		tests.add( new MMR(docs, 
 				0.0d /* lambda: 0d is **all weight** on query sim */, 
 				BM25_kernel  /* sim */,
 				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 
-//		tests.add( new MMR(
+//		tests.add( new MMR(docs, 
 //				0.5d /* lambda: 0d is all weight on query sim */, 
 //				LDA_kernel /* sim */,
 //				LDA_kernel /* div */ ));
 //
-//		tests.add( new MMR(
+//		tests.add( new MMR(docs, 
 //				0.5d /* lambda: 0d is all weight on query sim */, 
 //				PLSR_kernel /* sim */,
 //				PLSR_kernel /* div */ ));
 
-		// This method adds documents to each test in tests
-		AddDocs(tests, data_src);
+		// Add documents to each test in tests
+		for (ResultListSelector test : tests) {
+			for (String doc : docs.keySet())
+				test.addDoc(doc);
+		}
 		
 		// For each test in tests, build a ranked result list w.r.t. query 
 		// and display results (both on stdout and exported to a file)
@@ -129,20 +137,23 @@ public class TestDiversity {
 	//                           Support Code
 	//////////////////////////////////////////////////////////////////
 	
-	public static void AddDocs(ArrayList<ResultListSelector> tests, String file_dir) {
-	
-		for (ResultListSelector test : tests) {
-			// Load docs from a directory
-			File dir = new File(file_dir);
-			File[] files = dir.listFiles();
-			for (File file : files) {
-				String content = DocUtils.ReadFile(file);
-				if (content == null) 
-					System.out.println("Could not read content for: " + file.getName() + "... skipping");
-				else
-					test.addDoc(file.getName(), content);
+	public static HashMap<String,String> GetDocs(String file_dir) {
+		
+		HashMap<String,String> docs = new HashMap<String,String>();
+		
+		// Load docs from a directory
+		File dir = new File(file_dir);
+		File[] files = dir.listFiles();
+		for (File file : files) {
+			String content = DocUtils.ReadFile(file);
+			if (content == null) 
+				System.out.println("Could not read content for: " + file.getName() + "... skipping");
+			else {
+				docs.put(file.getName(), content);
 			}
 		}
+		
+		return docs;
 	}
 
 	public static void ShowQueryResults(PrintStream ps2, ResultListSelector d, String data_src, String query, int result_sz) {
@@ -157,10 +168,10 @@ public class TestDiversity {
 			String query_sim_str = "";
 			String query_div_str = "";
 			if (d instanceof MMR) {
-				Object query_sim_rep = ((MMR)d)._sim.getObjectRepresentation(query); 
+				Object query_sim_rep = ((MMR)d)._sim.getNoncachedObjectRepresentation(query); 
 				query_sim_str = ((MMR)d)._sim.getObjectStringDescription(query_sim_rep);
 				query_sim_str = query_sim_str.replace("\n", "\n// ");
-				Object query_div_rep = ((MMR)d)._div.getObjectRepresentation(query); 
+				Object query_div_rep = ((MMR)d)._div.getNoncachedObjectRepresentation(query); 
 				query_div_str = ((MMR)d)._div.getObjectStringDescription(query_div_rep);
 				query_div_str = query_div_str.replace("\n", "\n// ");
 			}
@@ -168,7 +179,7 @@ public class TestDiversity {
 			ps.println("// ===\n// Div representation of query: " + query_div_str);
 			ps.println("// ===\n// Result list: " + d.getDescription() + "\n// ===");
 			for (int i = 0; i < result_list.size(); i++) {
-				String content = d._docOrig.get(result_list.get(i));
+				String content =   d._docs.get(result_list.get(i));
 				if (content.length() > MAX_LINE_LENGTH)
 					content = content.substring(0,MAX_LINE_LENGTH);
 				ps.println((i+1) + "\t" + result_list.get(i)/* + "\t" + content*/);

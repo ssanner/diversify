@@ -56,11 +56,11 @@ public class TestTREC {
 	public static void main(String[] args) throws Exception {
 
 		// Build FT Document map
-		HashMap<String,Doc> docs = new HashMap<String,Doc>();
+		HashMap<String,String> docs = new HashMap<String,String>();
 		ArrayList<File> files = FileFinder.GetAllFiles(TREC_DOC_DIR, "", true);
 		for (File f : files) {
 			Doc d = new TRECDoc(f);
-			docs.put(d._name, d);
+			docs.put(d._name, d.getDocContent());
 			if (DEBUG) 
 				System.out.println("TRECDoc: " + f + " -> " + d + "\n - content: " + d.getDocContent());
 		}
@@ -97,44 +97,45 @@ public class TestTREC {
 		ArrayList<ResultListSelector> tests = new ArrayList<ResultListSelector>();
 		
 		// Instantiate all the kernels that we will use with the algorithms below
-		Kernel TF_kernel    = new TF(true /* query-relevant diversity */);
-		Kernel TFIDF_kernel = new TFIDF(true /* query-relevant diversity */);
-		Kernel LDA_kernel   = new LDAKernel(15 /* NUM TOPICS - suggest 15 */, true /* spherical */, true /* query-relevant diversity */);
-		Kernel PLSR_kernel  = new PLSRKernel(15 /* NUM TOPICS - suggest 15 */, false /* spherical */);
+		Kernel TF_kernel    = new TF(docs, true /* query-relevant diversity */);
+		Kernel TFIDF_kernel = new TFIDF(docs, true /* query-relevant diversity */);
+		Kernel LDA_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, true /* spherical */, true /* query-relevant diversity */);
+		Kernel PLSR_kernel  = new PLSRKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */);
 		Kernel BM25_kernel  = 
-			new BM25Kernel( /* 0 for any disables effect */
+			new BM25Kernel(docs, 
+				/* 0 for any disables effect */
 				0.5d /* k1 - doc TF */, 
 				0.5d /* k3 - query TF */,
 				0.5d /* b - doc length penalty */ );
 		
 		// Add all MMR test variants (vary lambda and kernels)
-//		tests.add( new ScoreRanker( TF_kernel ));
+//		tests.add( new ScoreRanker( docs, TF_kernel ));
 //
-//		tests.add( new MMR(
+//		tests.add( new MMR( docs, 
 //				0.5d /* lambda: 0d is all weight on query sim */, 
 //				TF_kernel /* sim */,
 //				TF_kernel /* div */ ));
 		
-		tests.add( new ScoreRanker( TFIDF_kernel ));
+		tests.add( new ScoreRanker( docs, TFIDF_kernel ));
 
-		tests.add( new MMR(
+		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				TFIDF_kernel /* sim */,
 				TFIDF_kernel /* div */ ));
 		
-		tests.add( new ScoreRanker( BM25_kernel ));
+		tests.add( new ScoreRanker( docs, BM25_kernel ));
 		
-		tests.add( new MMR(
+		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				BM25_kernel  /* sim */,
 				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 
-		tests.add( new MMR(
+		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				LDA_kernel /* sim */,
 				LDA_kernel /* div */ ));
 
-		tests.add( new MMR(
+		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				PLSR_kernel /* sim */,
 				PLSR_kernel /* div */ ));

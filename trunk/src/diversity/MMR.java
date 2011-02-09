@@ -24,7 +24,8 @@ public class MMR extends ResultListSelector {
 	public HashMap<Triple,Double> _divCache;
 	
 	// Constructor
-	public MMR(double lambda, Kernel sim, Kernel div) { 
+	public MMR(HashMap<String, String> docs, double lambda, Kernel sim, Kernel div) { 
+		super(docs);
 		_dLambda = lambda;
 		_sim = sim;
 		_div = div;
@@ -32,8 +33,8 @@ public class MMR extends ResultListSelector {
 		_divCache = new HashMap<Triple,Double>();
 	}
 	
-	public void addDoc(String doc_name, String content) {
-		_docOrig.put(doc_name, content);
+	public void addDoc(String doc_name) {
+		_docOrig.add(doc_name);
 	}
 	
 	public void clearDocs() {
@@ -53,9 +54,9 @@ public class MMR extends ResultListSelector {
 		
 		// Store local representation for later use with kernels
 		// (should we let _sim handle everything and just interact with keys?)
-		for (Map.Entry<String, String> e : _docOrig.entrySet()) {
-			Object repr = _sim.getObjectRepresentation(e.getValue());
-			_docRepr.put(e.getKey(), repr);
+		for (String doc : _docOrig) {
+			Object repr = _sim.getObjectRepresentation(doc);
+			_docRepr.put(doc, repr);
 		}
 	}
 	
@@ -128,7 +129,7 @@ public class MMR extends ResultListSelector {
 		initDocs();
 		
 		// Get representation for query
-		Object query_repr = _sim.getObjectRepresentation(query);
+		Object query_repr = _sim.getNoncachedObjectRepresentation(query);
 
 		// Initialize the set of all sentences minus
 		// the selected sentences

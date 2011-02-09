@@ -15,12 +15,17 @@ public abstract class ResultListSelector {
 
 	public static boolean SHOW_DEBUG = false;
 
+	public Map<String, String> _docs    = new HashMap<String, String>();
 	public Map<String, Object> _docRepr = new HashMap<String, Object>();
-	public Map<String, String> _docOrig = new HashMap<String, String>();
+	public Set<String>         _docOrig = new HashSet<String>();
+
+	public ResultListSelector(HashMap<String, String> docs) {
+		_docs = docs;
+	}
 	
 	public abstract ArrayList<String> getResultList(String query, int list_size);
 
-	public abstract void addDoc(String doc_name, String orig_content);
+	public abstract void addDoc(String doc_name);
 
 	public abstract void initDocs();
 
@@ -29,6 +34,6 @@ public abstract class ResultListSelector {
 	public abstract String getDescription();
 	
 	public String getDoc(String doc_name) {
-		return _docOrig.get(doc_name);
+		return _docs.get(doc_name);
 	}
 }

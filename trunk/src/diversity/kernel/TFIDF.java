@@ -7,6 +7,7 @@ package diversity.kernel;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 import util.DocUtils;
@@ -19,9 +20,10 @@ public class TFIDF extends Kernel {
 	public boolean _bReweightedSimilarity = false;
 	public double  _dDefaultIDF = -1d;
 	public Map<Object, Double> _hmKey2IDF = null;
-	public Map<String, String> _mPrevInit = null;
+	public Set<String>         _mPrevInit = null;
 	
-	public TFIDF(boolean weighted_similarity) {
+	public TFIDF(HashMap<String,String> docs, boolean weighted_similarity) {
+		super(docs);
 		_bReweightedSimilarity = weighted_similarity;
 	}
 
@@ -33,14 +35,13 @@ public class TFIDF extends Kernel {
 		_mPrevInit = null;	
 	}
 	
-	public void init(Map<String, String> docs) {
+	public void init(Set<String> docs) {
 		if (docs == _mPrevInit)
 			return; // Already initialized
 		_mPrevInit = docs;
 		_hmKey2IDF = new HashMap<Object,Double>();
-		for (Map.Entry<String, String> e : docs.entrySet()) {
-			String content = e.getValue();
-			Map<Object,Double> features = DocUtils.ConvertToFeatureMap(content);
+		for (String doc : docs) {
+			Map<Object,Double> features = (Map<Object,Double>)getObjectRepresentation(doc);
 			features = VectorUtils.ConvertToBoolean(features);
 			_hmKey2IDF = VectorUtils.Sum(_hmKey2IDF, features);
 		}
@@ -53,7 +54,7 @@ public class TFIDF extends Kernel {
 			System.out.println("IDF after log: " + _hmKey2IDF);
 	}
 
-	public Object getObjectRepresentation(String content) {
+	public Object getNoncachedObjectRepresentation(String content) {
 		Map<Object,Double> features = DocUtils.ConvertToFeatureMap(content);
 		for (Object key : features.keySet())
 			if (!_hmKey2IDF.containsKey(key))
