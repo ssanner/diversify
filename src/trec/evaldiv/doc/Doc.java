@@ -26,6 +26,7 @@ public abstract class Doc {
 	public String _name;
 	public String _title;
 	public String _content;
+	public String _docContent;
 
 	public String toString() {
 		String content = _content;
@@ -35,6 +36,9 @@ public abstract class Doc {
 	}
 	
 	public String getDocContent() {
+		if (_docContent != null)
+			return _docContent;
+		
 		StringBuilder sb = new StringBuilder();
 		if (USE_TITLE) {
 			sb.append(_title);
@@ -42,8 +46,8 @@ public abstract class Doc {
 		if (USE_CONTENT) {
 			sb.append((sb.length() > 0 ? " " : "") + _content);			
 		}
-		return sb.toString();
-
+		_docContent = sb.toString();
+		return _docContent;
 	}
 	
 	/**

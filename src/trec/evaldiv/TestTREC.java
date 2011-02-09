@@ -108,12 +108,12 @@ public class TestTREC {
 				0.5d /* b - doc length penalty */ );
 		
 		// Add all MMR test variants (vary lambda and kernels)
-		tests.add( new ScoreRanker( TF_kernel ));
-
-		tests.add( new MMR(
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				TF_kernel /* sim */,
-				TF_kernel /* div */ ));
+//		tests.add( new ScoreRanker( TF_kernel ));
+//
+//		tests.add( new MMR(
+//				0.5d /* lambda: 0d is all weight on query sim */, 
+//				TF_kernel /* sim */,
+//				TF_kernel /* div */ ));
 		
 		tests.add( new ScoreRanker( TFIDF_kernel ));
 
@@ -139,7 +139,6 @@ public class TestTREC {
 				PLSR_kernel /* sim */,
 				PLSR_kernel /* div */ ));
 
-		
 		// Evaluate results of different query processing algorithms
 		Evaluator.doEval(Arrays.asList(TREC_QUERIES), docs, 
 						 queries, aspects, loss_functions, tests, NUM_RESULTS, "trec68");

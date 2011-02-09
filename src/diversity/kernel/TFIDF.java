@@ -25,6 +25,8 @@ public class TFIDF extends Kernel {
 		_bReweightedSimilarity = weighted_similarity;
 	}
 
+	// Kernels are reused by different MMR invocations
+	// TODO: Is it OK to continue caching this information?
 	public void clear() {
 		_dDefaultIDF = -1d;
 		_hmKey2IDF = null;

@@ -23,17 +23,18 @@ import trec.evaldiv.doc.Doc;
 import trec.evaldiv.loss.AllUSLoss;
 import trec.evaldiv.loss.AllWSLoss;
 import trec.evaldiv.loss.AspectLoss;
+import util.DevNullPrintStream;
 import util.VectorUtils;
 
 public class Evaluator {
 
 	public final static String PATH_PREFIX = "files/trec/RESULTS/";
 	
-	// TODO: If use all docs need to do a BM25 query
 	// TODO: Need to optimize number of topics
-	// TODO: Verify consistency of rankers when used with clearDocs
-	public static final boolean USE_ALL_DOCS = true;
-	public static final int     NUM_TOP_DOCS = 50;
+	// TODO: Verify consistency of rankers when used multiple times with clearDocs
+	// TODO: Need to do code profiling, can improve code with caching (e.g., similarity metrics, LDA)
+	public static boolean USE_ALL_DOCS = false;
+	public static int     NUM_TOP_DOCS = 50;
 
 	public static final boolean DEBUG = true;
 	
@@ -52,7 +53,7 @@ public class Evaluator {
 		
 		PrintStream ps  = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + ".txt"));
 		PrintStream ps2 = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + ".avg.txt"));
-		PrintStream err = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + ".errors.txt"));
+		PrintStream err = new DevNullPrintStream(); //new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + ".errors.txt"));
 	
 		// Loop:
 		// - go through each test t (a variant of MMR)
@@ -112,6 +113,9 @@ public class Evaluator {
 					relevant_docs = top_docs.get(query);
 				else 
 					relevant_docs = qa.getRelevantDocs();
+
+				if (DEBUG)
+					System.out.println("- Evaluating with " + relevant_docs.size() + " docs");
 				
 				for (String doc_name : relevant_docs) {
 					Doc d = docs.get(doc_name);
@@ -124,6 +128,8 @@ public class Evaluator {
 				}
 				
 				// Get the results
+				if (DEBUG)
+					System.out.println("- Running alg: " + t.getDescription());
 				ArrayList<String> result_list = t.getResultList(q.getQueryContent(), num_results);
 				if (DEBUG)
 					System.out.println("- Result list: " + result_list);
