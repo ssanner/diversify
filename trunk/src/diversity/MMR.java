@@ -7,19 +7,29 @@ package diversity;
 
 import java.util.*;
 
+import util.Pair;
+import util.Triple;
+
 import diversity.kernel.Kernel;
 
+// TODO: Refactor addDoc so that it takes a doc repository and a doc name...
+//       doc repository must track representations for kernels and provide
+//       these on demand.
 public class MMR extends ResultListSelector {
 	
 	public double _dLambda;
 	public Kernel _sim;
 	public Kernel _div;
+	public HashMap<Pair,Double>   _simCache;
+	public HashMap<Triple,Double> _divCache;
 	
 	// Constructor
 	public MMR(double lambda, Kernel sim, Kernel div) { 
 		_dLambda = lambda;
 		_sim = sim;
 		_div = div;
+		_simCache = new HashMap<Pair,Double>();
+		_divCache = new HashMap<Triple,Double>();
 	}
 	
 	public void addDoc(String doc_name, String content) {
@@ -31,6 +41,8 @@ public class MMR extends ResultListSelector {
 		_docOrig.clear();
 		_sim.clear();
 		_div.clear();
+		// No need to clear sim and div caches, these are local and conditioned
+		// on query and we expect that the sim and div kernels will not change.
 	}
 	
 	public void initDocs() {
@@ -50,10 +62,17 @@ public class MMR extends ResultListSelector {
 	// Compute the MMR of a sentence
 	// MMR = argmax_s Sim(s,q) - max_s' Sim(s,s')
 	public double computeMMRScore(String doc_name, Set<String> S, Object query) {
-		
+
+		String query_key = query.toString();
+
 		Object features = _docRepr.get(doc_name);
-		double sim_score = _sim.sim(features, query);
-		double sim_other = -1d;
+		Double sim_score = null;
+		Pair sim_key = new Pair(doc_name, query_key);
+		if ((sim_score = _simCache.get(sim_key)) == null) {
+			sim_score = _sim.sim(features, query);
+			_simCache.put(sim_key, sim_score);
+		}
+		Double sim_other = null;
 		
 		if (_div.supportsSetSim()) {
 			
@@ -61,14 +80,26 @@ public class MMR extends ResultListSelector {
 			Set<Object> other_feature_set = new HashSet<Object>();
 			for (Object other : S)
 				other_feature_set.add(_docRepr.get(other));
-			sim_other = _div.setSim(features, other_feature_set, query);
 			
+			Triple div_key = new Triple(doc_name, other_feature_set.hashCode(), query_key);
+			if ((sim_other = _divCache.get(div_key)) == null) {
+				sim_other = _div.setSim(features, other_feature_set, query);
+				_divCache.put(div_key, sim_other);
+			}
+
 		} else {
 			
 			// Take max over all other doc similarities
+			sim_other = -1d;
 			for (String other : S) {
 				Object other_features = _docRepr.get(other);
-				double cur_sim_other = _div.sim(features, other_features, query);
+				Double cur_sim_other = null;
+				Triple div_key = new Triple(doc_name, other, query_key);
+				if ((cur_sim_other = _divCache.get(div_key)) == null) {
+					cur_sim_other = _div.sim(features, other_features, query);
+					_divCache.put(div_key, cur_sim_other);
+				}
+				
 				if (cur_sim_other > sim_other)
 					sim_other = cur_sim_other;
 			}

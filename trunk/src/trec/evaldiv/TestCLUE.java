@@ -46,10 +46,15 @@ public class TestCLUE {
 	public final static String QUERY_FILE   = "files/trec/wt09.topics.queries-only";
 	public final static String ASPECT_FILE  = "files/trec/qrels.diversity";
 	
-	public final static String[] CLUE_QUERIES = new String[50];
+	public static String[] CLUE_QUERIES = null;
 	static {
-		for (int i = 1; i <= 50; i++)
-			CLUE_QUERIES[i-1] = "wt09-" + i;
+		ArrayList<String> queries = new ArrayList<String>();
+		for (int i = 1; i <= 50; i++) {
+			if (i != 6 && i != 7 && i != 19)
+				queries.add("wt09-" + i);
+		}
+		CLUE_QUERIES = new String[queries.size()];
+		CLUE_QUERIES = queries.toArray(CLUE_QUERIES);
 	}	
 	
 	/**
@@ -111,12 +116,12 @@ public class TestCLUE {
 				0.5d /* b - doc length penalty */ );
 		
 		// Add all MMR test variants (vary lambda and kernels)
-		tests.add( new ScoreRanker( TF_kernel ));
-
-		tests.add( new MMR(
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				TF_kernel /* sim */,
-				TF_kernel /* div */ ));
+//		tests.add( new ScoreRanker( TF_kernel ));
+//
+//		tests.add( new MMR(
+//				0.5d /* lambda: 0d is all weight on query sim */, 
+//				TF_kernel /* sim */,
+//				TF_kernel /* div */ ));
 		
 		tests.add( new ScoreRanker( TFIDF_kernel ));
 
@@ -142,7 +147,6 @@ public class TestCLUE {
 				PLSR_kernel /* sim */,
 				PLSR_kernel /* div */ ));
 
-		
 		// Evaluate results of different query processing algorithms
 		Evaluator.doEval(Arrays.asList(CLUE_QUERIES), docs, 
 						 queries, aspects, loss_functions, tests, NUM_RESULTS, "clueweb");

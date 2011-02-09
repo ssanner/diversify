@@ -8,8 +8,14 @@ package trec.evaldiv;
 public class TestAll {
 
 	public static void main(String[] args) throws Exception {
+		
+		Evaluator.USE_ALL_DOCS = false;
+		//TestTREC.main(null);
 		TestCLUE.main(null);
-		TestTREC.main(null);
+		
+		Evaluator.USE_ALL_DOCS = true;
+		//TestTREC.main(null);
+		//TestCLUE.main(null);
 	}
 
 }

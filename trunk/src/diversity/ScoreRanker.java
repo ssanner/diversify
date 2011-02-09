@@ -1,5 +1,5 @@
 /** Algorithm for ranking documents similarity score with query
- *  (requires a similarity kernel)
+ *  (requires a similarity kernel)	
  * 
  * @author Scott Sanner (ssanner@gmail.com)
  */
@@ -62,7 +62,7 @@ public class ScoreRanker extends ResultListSelector {
 			
 		// Sort and return
 		Arrays.sort(ds);
-		for (i = 0; i < list_size; i++) {
+		for (i = 0; i < list_size && i < ds.length; i++) {
 			//System.out.println(i + ": " + ds[i]);
 			result_list.add(ds[i]._doc);
 		}
