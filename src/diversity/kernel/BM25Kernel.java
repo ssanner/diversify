@@ -54,11 +54,18 @@ public class BM25Kernel extends Kernel {
 		_mPrevInit = docs;
 		_hmKey2IDF = new HashMap<Object,Double>();
 		double total_doc_length = 0d;
+		int i = 0;
+		
+		// Have to go through all documents to compute term IDF
 		for (String doc : docs) {
 			Map<Object,Double> features = (Map<Object,Double>)getObjectRepresentation(doc);
 			features = VectorUtils.ConvertToBoolean(features);
 			total_doc_length += VectorUtils.L1Norm(features);
 			_hmKey2IDF = VectorUtils.Sum(_hmKey2IDF, features);
+			if (false && ++i % 100 == 0) {
+				System.out.println("- Converted " + i + " documents to internal representation"); 
+				System.out.flush();
+			}
 		}
 		_dAvgDocLength = total_doc_length / (double)docs.size();
 		

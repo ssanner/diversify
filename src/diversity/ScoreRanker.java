@@ -37,14 +37,9 @@ public class ScoreRanker extends ResultListSelector {
 		
 		// Store local representation for later use with kernels
 		// (should we let _sim handle everything and just interact with keys?)
-		int i = 0;
 		for (String doc : _docOrig) {
 			Object repr = _sim.getObjectRepresentation(doc);
 			_docRepr.put(doc, repr);
-			if (++i % 10 == 0) {
-				System.out.println("- Converted " + i + " documents"); 
-				System.out.flush();
-			}
 		}
 	}
 	

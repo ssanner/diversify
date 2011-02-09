@@ -18,6 +18,7 @@ import diversity.ResultListSelector;
 import diversity.ScoreRanker;
 import diversity.kernel.BM25Kernel;
 import diversity.kernel.Kernel;
+import diversity.kernel.TF;
 
 import trec.evaldiv.doc.Doc;
 import trec.evaldiv.loss.AllUSLoss;
@@ -92,10 +93,10 @@ public class Evaluator {
 				// Get top docs if needed
 				if (USE_ALL_DOCS && !top_docs.containsKey(query)) {
 					
-					ScoreRanker s = new ScoreRanker( docs, new BM25Kernel( docs, 
-							0.5d /* k1 - doc TF */, 
-							0.5d /* k3 - query TF */,
-							0.5d /* b - doc length penalty */ ));
+					ScoreRanker s = new ScoreRanker( docs, new /*BM25Kernel*/TF( docs, false) );
+							//0.5d /* k1 - doc TF */, 
+							//0.5d /* k3 - query TF */,
+							//0.5d /* b - doc length penalty */ ));
 					
 					// Add all available docs to ScoreRanker
 					for (String doc : docs.keySet()) 
