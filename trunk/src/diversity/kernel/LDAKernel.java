@@ -104,6 +104,14 @@ public class LDAKernel extends Kernel {
 		_lda.infer(_nTopics, _dAlpha, _dBeta, RAND_SEED);
 		//if (DEBUG)
 		//	System.out.println("LEARNED TOPICS:\n===============\n" + _lda);
+		
+		// TODO: Replace cache contents since it changes with every run of LDA
+		//       (different document set)... MMR should always just reference
+		//       by doc name.
+		for (String doc : docs) {
+			String content = _docs.get(doc);
+			_reprCache.put(doc, getNoncachedObjectRepresentation(content));
+		}
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class TestAll {
 		//TestCLUE.main(null);
 		
 		Evaluator.USE_ALL_DOCS = true;
-		//TestTREC.main(null);
+		TestTREC.main(null);
 		TestCLUE.main(null);
 	}
 
