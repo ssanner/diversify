@@ -112,6 +112,14 @@ public class PLSRKernel extends Kernel {
 		//if (DEBUG)
 		//	System.out.println("LEARNED TOPICS:\n===============\n" + _lda);
 		
+		// TODO: Replace cache contents since it changes with every run of LDA
+		//       (different document set)... MMR should always just reference
+		//       by doc name.
+		for (String doc : docs) {
+			String content = _docs.get(doc);
+			_reprCache.put(doc, getNoncachedObjectRepresentation(content));
+		}
+		
 		ONE = new double[_nTopics];
 		for (int i = 0; i < _nTopics; i++)
 			ONE[i] = 1d;

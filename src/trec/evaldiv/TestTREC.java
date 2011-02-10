@@ -99,8 +99,12 @@ public class TestTREC {
 		// Instantiate all the kernels that we will use with the algorithms below
 		Kernel TF_kernel    = new TF(docs, true /* query-relevant diversity */);
 		Kernel TFIDF_kernel = new TFIDF(docs, true /* query-relevant diversity */);
-		Kernel LDA_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, true /* spherical */, true /* query-relevant diversity */);
-		Kernel PLSR_kernel  = new PLSRKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */);
+		Kernel LDA10_kernel   = new LDAKernel(docs, 10 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
+		Kernel PLSR10_kernel  = new PLSRKernel(docs, 10 /* NUM TOPICS - suggest 15 */, false /* spherical */);
+		Kernel LDA15_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
+		Kernel PLSR15_kernel  = new PLSRKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */);
+		Kernel LDA20_kernel   = new LDAKernel(docs, 20 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
+		Kernel PLSR20_kernel  = new PLSRKernel(docs, 20 /* NUM TOPICS - suggest 15 */, false /* spherical */);
 		Kernel BM25_kernel  = 
 			new BM25Kernel(docs, 
 				/* 0 for any disables effect */
@@ -132,13 +136,33 @@ public class TestTREC {
 
 		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
-				LDA_kernel /* sim */,
-				LDA_kernel /* div */ ));
+				LDA10_kernel /* sim */,
+				LDA10_kernel /* div */ ));
 
 		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
-				PLSR_kernel /* sim */,
-				PLSR_kernel /* div */ ));
+				LDA15_kernel /* sim */,
+				LDA15_kernel /* div */ ));
+
+		tests.add( new MMR( docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				LDA20_kernel /* sim */,
+				LDA20_kernel /* div */ ));
+
+		tests.add( new MMR( docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				PLSR10_kernel /* sim */,
+				PLSR10_kernel /* div */ ));
+
+		tests.add( new MMR( docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				PLSR15_kernel /* sim */,
+				PLSR15_kernel /* div */ ));
+
+		tests.add( new MMR( docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				PLSR20_kernel /* sim */,
+				PLSR20_kernel /* div */ ));
 
 		// Evaluate results of different query processing algorithms
 		Evaluator.doEval(Arrays.asList(TREC_QUERIES), docs, 
