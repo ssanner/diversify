@@ -15,6 +15,10 @@ public class Pair implements Comparable {
 		_o2 = o2;
 	}
 
+	public String toString() {
+		return "( " + _o1 + ", " + _o2 + " )";
+	}
+	
 	public int hashCode() {
 		return _o1.hashCode() + _o2.hashCode();
 	}
