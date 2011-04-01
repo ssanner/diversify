@@ -30,6 +30,9 @@ party libraries are redistributed:
 
     snowball_stemmber.jar    BSD License: 
                              http://snowball.tartarus.org/license.php
+
+    grappa1_4.jar            CPL (Common Public License): 
+                             http://www.graphviz.org/License.php  
              
     xml-apis.jar,            Apache License 2.0
     xercesImpl.jar           http://www.apache.org/licenses/LICENSE-2.0.txt

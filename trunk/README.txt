@@ -103,3 +103,19 @@ if set to true will printout debug information as the code in that
 class executes.  For the LDAKernel and PLSRKernel, setting DEBUG=true 
 will display the topic models for each document.
 
+
+GraphViz Visualization
+======================
+
+To enable Java Graphviz visualization (e.g., agglomerative clustering):
+
+- Download and install GraphViz on your system:
+ 
+  http://www.graphviz.org/
+
+- Make sure "dot" and "neato" (including ".exe" if running on Windows)
+  are in your PATH, i.e., you can execute them from any home directory
+
+Run graph.Graph.main() and verify that a cleanly formatted Java window
+displaying a graph appears.
+

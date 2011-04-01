@@ -1,0 +1,484 @@
+1	
+Human analysis of text to create structure is more powerful than computer based text analysis.
+Submitted by facilitator (2011-03-23 07:57:16)
+1.1	
+At the very least, human analaysis is slower than computer based.
+Submitted by 18 (2011-03-24 23:14:56)
+1.1.1	
+Yeah, imagine reading 50 reports s using something like clemantine or leximancer
+Submitted by 18 (2011-03-24 23:15:25)
+1.1.1.1	
+But humans are better at interpreting context
+Submitted by 18 (2011-03-24 23:15:45)
+1.2	
+Dawn is a fantastic facilitator
+Submitted by 14 (2011-03-24 23:14:58)
+1.2.1	
+I agree!
+Submitted by facilitator (2011-03-24 23:18:08)
+1.2.2	
+I also agree.
+Submitted by 17 (2011-03-24 23:20:12)
+1.2.3	
+Dawn who?
+Submitted by 11 (2011-03-24 23:22:14)
+1.2.4	
+but wait, this is a stacked room of scientists!
+Submitted by 18 (2011-03-24 23:22:14)
+1.3	
+Computers would be better at pattern recognition
+Submitted by 9 (2011-03-24 23:15:11)
+1.3.1	
+at the very least, it can be used to expore various techniques - and produce options
+Submitted by 18 (2011-03-24 23:18:07)
+1.3.1.1	
+to clarify, could use various clustering such as SOM,DSM, SNA
+Submitted by 18 (2011-03-24 23:23:38)
+1.3.2	
+But where are the pattern boundaries?
+Submitted by 2 (2011-03-24 23:18:59)
+1.3.3	
+Not necessarily. Depends on the problem.
+Submitted by 1 (2011-03-24 23:19:04)
+1.3.4	
+if you know exactly what pattern you are looking for and train a computer with an artificial neural network, computers are much much faster. admittedly the human has to identify what to look for first and the pattern cannot deviate too much for a computer to identify it. but computers will have the benefit of speed
+Submitted by 9 (2011-03-24 23:23:00)
+1.4	
+I agree.
+Submitted by 20 (2011-03-24 23:15:18)
+1.4.1	
++1
+Submitted by 18 (2011-03-24 23:17:13)
+1.5	
+People might be able to derive the tone behind the text better than a computer.
+Submitted by 20 (2011-03-24 23:15:21)
+1.5.1	
+can computers understand sarcasm ?:p
+Submitted by 9 (2011-03-24 23:16:37)
+1.5.2	
+Computers can be used in some cases to get tone, methodically, but not always.
+Submitted by 4 (2011-03-24 23:17:33)
+1.5.3	
+Absolutely, but computers can still do a decent rough sentimental analysis of text.
+Submitted by 5 (2011-03-24 23:24:24)
+1.5.4	
+But humans understand the context better and this is crucial for accurate analysis of emotion / sentiment / tone.
+Submitted by 5 (2011-03-24 23:26:06)
+1.6	
+computers cannot be relied upon in obtaining the tone, mood and atmosphere in a text which humans can do
+Submitted by 19 (2011-03-24 23:16:37)
+1.6.1	
+can identify bias
+Submitted by 18 (2011-03-24 23:18:31)
+1.7	
+Disagree if the amount of text is large. Computers can make (simple structure) out of terabytes of text where humans (without tools) would not be able to even read it all.
+Submitted by 1 (2011-03-24 23:16:53)
+1.7.1	
+Agree.
+Submitted by 5 (2011-03-24 23:26:17)
+1.8	
+Agree.
+Submitted by 20 (2011-03-24 23:17:46)
+1.9	
+For less amount of data, human does has the edge to analysis data. However, for large amount of information, it become problematic when human is the sole analyst.
+Submitted by 17 (2011-03-24 23:17:53)
+1.9.1	
+how does one eliminate the bias from the human
+Submitted by 18 (2011-03-24 23:19:00)
+1.9.2	
+schrodinger's cat
+Submitted by 18 (2011-03-24 23:19:16)
+1.9.3	
+And different people may have varying opinions.
+Submitted by 2 (2011-03-24 23:19:50)
+1.9.4	
+Agree.
+Submitted by 5 (2011-03-24 23:26:54)
+1.10	
+If the task is to select text snippets related to a given topic from a textual document, people are likely to be able to detect topic boundaries and relations better. For example intrecanual pressure and its measurement (values) are related to hemodynamics, consciusness, physical eeriments etc. For compter this might be difficult, in particular if snippets are very short/witth varying lengts
+.
+Submitted by 2 (2011-03-24 23:18:30)
+1.10.1	
+But if there are 4 terabytes of text, then the humans are limited.
+Submitted by 4 (2011-03-24 23:21:59)
+1.10.2	
+Not sure if I agree here... shifts in word usage are typically a good indicator of internal boundaries in text.
+Submitted by 5 (2011-03-24 23:27:45)
+1.11	
+Human analyis can be more relevant to the user than compuer analysis. Computer analsysis can be informative but not necessarily provide deeper insight.
+Submitted by 14 (2011-03-24 23:19:07)
+1.11.1	
++1
+Submitted by 18 (2011-03-24 23:20:04)
+1.11.2	
+how do we know the analyst isn't putting their own interpretation and bias on the data?
+Submitted by 9 (2011-03-24 23:21:19)
+1.11.3	
+It is only true if the data size is manageable. If you got lots and lots of information, it become impossible for human to analysis.
+Submitted by 17 (2011-03-24 23:23:49)
+1.11.4	
+Disagree... some simple automated analyses like topic analysis is certainly relevant to the user and is done by a computer.
+Submitted by 5 (2011-03-24 23:28:29)
+1.12	
+For structure like summaries and highly intepretative output, human analysis is crucial. For a rough topic model (or even better a hierarchical topic model) or term frequency / co-occurrence analysis, these are well-specified problems that computers can do efficiently and accurately. So whether humans or computers do the structure creation task really depends on the structure.
+Submitted by 5 (2011-03-24 23:23:31)
+1.13	
+The complexity of the structure that is created is important too. Humans can interpret the motivations and emotions of characters across a novel whereas computers currently cannot.
+Submitted by 1 (2011-03-24 23:25:01)
+1.14	
+In my opinion, semi-automated approaches should be used; helping people to structure data by suggesting structures.
+Submitted by 2 (2011-03-24 23:27:17)
+1.15	
+Domains of difficulty: volume of text, complexity of concepts, requirement to know context, use of idiosyncratic text (acronym etc.)
+Submitted by 4 (2011-03-24 23:28:25)
+1.15.1	
+To augment this point, difficulty arises from how much interpretation is required, high interpretation tasks like coreference, sentiment, summarization currently require human analysis for high accuracy results.
+Submitted by 5 (2011-03-24 23:30:41)
+1.15.2	
+bad spelling, different words meaning the same thing but used by different organisations
+Submitted by 9 (2011-03-24 23:32:30)
+1.16	
+Computers can be used as an aid: like a magnfiying glass or a robotic exo-skeleton, powertools for the analyst
+Submitted by 4 (2011-03-24 23:30:22)
+1.17	
+How much do we need to refine/correct text to make it useful for analysis in text systems.
+Submitted by 4 (2011-03-24 23:33:15)
+1.17.1	
+word associations
+Submitted by 18 (2011-03-24 23:40:31)
+1.18	
+Agree The computer may be faster but. The human is closer to those who prepared the text - can think (maybe) in a manner similar to the text preparer.
+Submitted by 11 (2011-03-24 23:34:06)
+1.18.1	
+In terms of the understanding of culture (and the lingo derived), both humans and computers can come across unsurmountable problems
+Submitted by 18 (2011-03-24 23:36:32)
+1.19	
+How would an online/interactive spell checker and synonym finder work in the system?
+Submitted by 4 (2011-03-24 23:37:02)
+1.19.1	
+word association
+Submitted by 18 (2011-03-24 23:40:53)
+1.20	
+Given you have grouped the content of each tribe into parts. How would you compare the parts of the Navy tribe with the parts of the Army tribe, and do you need terminological analysis to do so.
+Submitted by 4 (2011-03-24 23:41:58)
+1.21	
+One should think of human analysis as facilitated by computer based analysis as well
+Submitted by 14 (2011-03-25 00:08:07)
+2	
+Unstructured data does not help a decision making process. Quantitive fact-based data is required.
+Submitted by facilitator (2011-03-23 07:56:04)
+2.1	
+Unstructured data would need to be interpreted by the human/comter to be used.
+Submitted by 4 (2011-03-24 23:15:32)
+2.1.1	
+Sometimes we do not have the luxury of dealing with facts, and analysis is more about understanding the positions and motivations of the participants
+Submitted by 18 (2011-03-24 23:43:07)
+2.1.2	
+the problem could be about how the question is posed, let alone whether the response is structure/quantitative or unstructured text
+Submitted by 18 (2011-03-24 23:44:32)
+2.2	
+Unstructured data provide wider range of ideas, and does not limited by the external constraint. However, it is critical to evenutally turn the unstructured data into structure, and quantifythe data.
+Submitted by 17 (2011-03-24 23:15:49)
+2.2.1	
+Sometimes the problem is understanding the problem
+Submitted by 18 (2011-03-24 23:21:12)
+2.2.2	
+There will be much less noise with structured data. if you have a specific question/problem you want an answer to, the data collection MUST be structured to ensure that a) you are collecting the data you actually want and b) you are reducing noise.Extra data may be useful for other questions but hides what you want to know right now
+Submitted by 9 (2011-03-24 23:25:34)
+2.2.3	
+Agree.
+Submitted by 5 (2011-03-24 23:31:44)
+2.2.4	
+I agree with the first sentence but not the second.
+Submitted by 1 (2011-03-24 23:33:42)
+2.3	
+structured data runs the risk of leading to a particular outcome
+Submitted by 18 (2011-03-24 23:16:16)
+2.4	
+statistics can lie
+Submitted by 18 (2011-03-24 23:16:33)
+2.4.1	
+If they are used/selected wrongly
+Submitted by 2 (2011-03-24 23:22:22)
+2.4.2	
+And text can't lie?
+Submitted by 1 (2011-03-24 23:28:04)
+2.4.2.1	
+Text can lie, but in looking for groups of opinion, there isn't really a sense of lies vs. no lies so I don't think this is a problem.
+Submitted by 5 (2011-03-24 23:33:24)
+2.4.3	
+Well sure if they are misused and those reading them don't understand the meaning but simply accept the claim "statistically significant" without deeper analysis.
+Submitted by 5 (2011-03-24 23:32:24)
+2.4.4	
+the role of the human analyst might be to rmove biases and therefore I can't see how Stats can lie
+Submitted by 19 (2011-03-24 23:37:15)
+2.4.5	
+One wonders if the more extreme comments will produce more responses, which can skew results
+Submitted by 18 (2011-03-24 23:52:21)
+2.5	
+qualitative data is open to misinterpretation based on personal constructs. appropriate constraints allow good quantitative data to be collected
+Submitted by 9 (2011-03-24 23:17:36)
+2.5.1	
+Is not quantitative data open to misinterpretations too?
+Submitted by 2 (2011-03-24 23:29:27)
+2.5.2	
+Approppriate constraints/guidelines are needed for gathering structurd data too
+Submitted by 2 (2011-03-24 23:29:53)
+2.5.3	
+Accuracy is not the same as precision. I can say the value of pi is 4.56534563456 (a precise, quantative statement) but I'd still be very wrong.
+Submitted by 1 (2011-03-24 23:31:50)
+2.5.4	
+Surveys, withquantitative interpretations of qualitative problems are prone to bias (strongly agree, agree, disagree, strongly disagree??)
+Submitted by 18 (2011-03-24 23:32:35)
+2.5.5	
+if i say something is 90% likely to happen, is that not more meaningful than if i were to say something is 'extremely likely' to happen? The point about accuracy is correct, but numerical data is less open to the risk of people having different interpretations of what is means. $10 is always $10, a child might think that makes you rich an adult would not
+Submitted by 9 (2011-03-24 23:37:49)
+2.6	
+Not necessarily true... opinions are hard to quantify and free text unstructured data is one of the best ways to allow arbitrary opinions.
+Submitted by 5 (2011-03-24 23:18:14)
+2.6.1	
+This is not true. In the previous session, it was aggreed that both humans and computers compliment each other.The unstructured data is structured by the human analyst and the computer can carry out the required analysis which will be useful to the decision maker.
+Submitted by 19 (2011-03-24 23:24:36)
+2.6.2	
+This is not true
+Submitted by 19 (2011-03-24 23:25:16)
+2.6.3	
+People can understand free form text better Computers understand structured ta better.
+Submitted by 2 (2011-03-24 23:28:33)
+2.6.3.1	
+people can probably understand structured text better than they can understand free-form text as well
+Submitted by 9 (2011-03-24 23:39:26)
+2.7	
+But unstructured data allows entry of novel issues and problems that might not arise in structured conxexts.
+Submitted by 4 (2011-03-24 23:19:05)
+2.7.1	
+Agree... it is impossible to characterize all topics / opinions that might be discussed in a highly structured way.
+Submitted by 5 (2011-03-24 23:34:20)
+2.7.2	
+Being able to break out of imposed constraints is important. Especially if the topic or questions contains a lot of ambiguity.
+Submitted by 1 (2011-03-24 23:42:59)
+2.8	
+Unstructured data (= free text) is a more natural entry format for people. And it captures decision making process, justifications, speculations, time relations etc. which may be challenging with structured data. However, computer analysis requires structured data. But is structuring made manually or automatically?
+Submitted by 2 (2011-03-24 23:22:00)
+2.9	
+Quantitative data is certainly helpful but is not required. Consider choosing a name for a pet or child.
+Submitted by 1 (2011-03-24 23:22:47)
+2.10	
+I think that to rationalise a persons logic in arriving at a conclusion one needs to strucure the information or data on which the conclusion is arrived at.
+Submitted by 14 (2011-03-24 23:22:54)
+2.11	
+Don't enirely agree. Suggest that unstructured data contains ideas tha do not it into structure.
+Submitted by 11 (2011-03-24 23:30:08)
+2.11.1	
+Well, I think the issue here is more the notion of pre-defined structure. Certainly structure can be applied to anything, but if it is not known beforehand then a tool intended to only capture a certain type of structure simply would not be able to capture non-predefined structures.
+Submitted by 5 (2011-03-24 23:35:21)
+2.11.2	
+It is sort of like the difference between exploratory and confirmatory data analysis. Sometimes you don't have a well defined question in mind.
+Submitted by 1 (2011-03-24 23:36:47)
+2.12	
+How much text treatment does one need to do to get a good analysis output
+Submitted by 14 (2011-03-24 23:33:15)
+2.12.1	
+It depends on the analysis, but in general, the more text, the better.
+Submitted by 5 (2011-03-24 23:35:40)
+2.12.2	
+How long is a piece of string?
+Submitted by 1 (2011-03-24 23:38:01)
+2.13	
+I wonder, unless these questions specifically ask, how are motivations captured
+Submitted by 18 (2011-03-24 23:39:28)
+2.14	
+Can one gt a near real time measure of the congruence of the langauge that each of the particpants is using and the concepts that they represent.
+Submitted by 14 (2011-03-24 23:41:50)
+2.15	
+Depends on the decision.
+Submitted by 11 (2011-03-24 23:42:17)
+2.16	
+Quantitive data is the sort of stuff that Government agencies like for decision making, 'specially when it comes to spending money. Similarly the watchdog agencies, such as Dept of Finance and Administration (DoFA) and Treasury really love the Quantative side of things.
+Submitted by 11 (2011-03-24 23:45:40)
+2.16.1	
+Quantitative data is sometimes valued as it can remove responsibility from the decision making process. "I was forced into this decision, just look at our revenue for the last 2 quarters!"
+Submitted by 1 (2011-03-24 23:51:09)
+3	
+Other industries / organisations outside of Defence might benefit from text analysis. Please comment.
+Submitted by facilitator (2011-03-24 19:20:33)
+3.1	
+News media could benefit from text analysis!
+Submitted by 9 (2011-03-24 23:15:43)
+3.1.1	
+I'm not sure about this. News generates text from facts, they really don't need to interpret other's text.
+Submitted by 5 (2011-03-24 23:36:24)
+3.1.2	
+News media could benefit from analysis. Period.
+Submitted by 1 (2011-03-24 23:39:59)
+3.1.3	
+Wikileaks anyone?
+Submitted by 9 (2011-03-24 23:40:11)
+3.1.4	
+The role of media is moving from reporting facts to analysing facts as Joe Blogger and Jane Tweet are reporting faster than the media can. Making sense of facts is one of the areas where the media's role is moving to so analysis is important. What does the speech by Politician X mean? Programmatic Specificity?
+Submitted by 9 (2011-03-24 23:49:40)
+3.2	
+Decision making in industry is just as critical.
+Submitted by 4 (2011-03-24 23:16:17)
+3.2.1	
+Agree.
+Submitted by 5 (2011-03-24 23:36:31)
+3.3	
+Teachers and students in the classroom
+Submitted by 20 (2011-03-24 23:16:42)
+3.3.1	
+These systems should include speech to text processing and discourse analysis
+Submitted by 2 (2011-03-24 23:25:15)
+3.4	
+This will be pretty usefull for political organisations
+Submitted by 19 (2011-03-24 23:18:13)
+3.5	
+It is partially correct, because data in defence has already filtered by the security constraint. That means data is already limited, and filtered to start with.
+Submitted by 17 (2011-03-24 23:19:18)
+3.5.1	
+I don't understand the relevance of this comment to the question. Can you clarify?
+Submitted by 5 (2011-03-24 23:37:14)
+3.6	
+What about advertisers and all the information on facebook etc?
+Submitted by 9 (2011-03-24 23:19:24)
+3.6.1	
+Sure, but the question is who is going to use this information. But certainly people can use it -- politicians, commercial companies, ...
+Submitted by 5 (2011-03-24 23:37:45)
+3.7	
+Absolutely: the marketing industry, any commercial company that has to make decisions based on human opinions of their products or actions, politicians and political groups.
+Submitted by 5 (2011-03-24 23:20:27)
+3.7.1	
+Healthcare would benefit and is already using text analysis tools
+Submitted by 2 (2011-03-24 23:31:46)
+3.8	
+Marketing companies will benefit greatly. By knowing the what serach comes from where around the world will be useful in designing a product for that region
+Submitted by 19 (2011-03-24 23:20:44)
+3.8.1	
+This is an excellent point, in doing an analysis, geographical influences are extremely useful to extract. Useful for marketing, politicians, etc...
+Submitted by 5 (2011-03-24 23:39:00)
+3.9	
+All industries (including people) benefit from text analysis or human language technologies or natural language processing
+Submitted by 2 (2011-03-24 23:24:34)
+3.10	
+Definitely. Google's billions of dollars of annual profit (95% of which is based on advertising revenue) is based largely on text analysis.
+Submitted by 1 (2011-03-24 23:27:08)
+3.10.1	
+Sure, there is a web full of text with valuable information and this information could be useful to everyone / every company / organization that has to interact with or which affects other people in the world.
+Submitted by 5 (2011-03-24 23:40:41)
+3.11	
+What are we trying to achieve in using text analysis in a JDSC workshop environment?
+Submitted by 14 (2011-03-24 23:28:19)
+3.11.1	
+Good question. Perhaps defining the scope of projects
+Submitted by 9 (2011-03-24 23:46:35)
+3.11.2	
+We need to understand opinions from different stakeholder groups, we need to understand the different aspects and subtopics on a given topic.
+Submitted by 5 (2011-03-24 23:51:19)
+3.11.3	
+We need to make it easier for the human analysts to provide more comprehensive information and analysis to the decision makers. We need to build better tools for human use, as opposed to simply requiring humans to read and memorize hundreds of pages of opinion documentation.
+Submitted by 5 (2011-03-24 23:52:16)
+3.12	
+Find trends in committee meetings over time
+Submitted by 18 (2011-03-24 23:29:49)
+3.13	
+The element of competativeness, and the evolution aspect of the improvement is not there with the computer based text analysis.
+Submitted by 17 (2011-03-24 23:29:55)
+3.14	
+To know the major idea in the responses
+Submitted by 19 (2011-03-24 23:32:48)
+3.15	
+I've worked for a few Government agencies (Federal and state) and I suggest that any or all of em would benefit from text analysis and an outstanding failitor like Dawn.
+Submitted by 11 (2011-03-24 23:35:51)
+3.15.1	
+They definitely need someone like Dawn!
+Submitted by facilitator (2011-03-24 23:38:36)
+3.16	
+This kind of tool only useful in a democratic society, when people want to trace the source of decision coming from. In an autocractic community, all these opinions are not important to contribute to the final decision.
+Submitted by 17 (2011-03-24 23:36:36)
+3.16.1	
+On a smaller scale, this is true of institutions too. CEOs tend to be autocratic in which case the opinions don't have to be made open.
+Submitted by 1 (2011-03-24 23:47:14)
+3.17	
+confidence (consumer/public)
+Submitted by 18 (2011-03-24 23:46:47)
+3.18	
+narrative theory, particularly in the generation of propaganda
+Submitted by 18 (2011-03-24 23:47:30)
+3.18.1	
+Getting computers to understand the various resonances of words and understanding narrative would be "AI-complete": solving this problem is likely as hard as building a human-level artificial intelligence.
+Submitted by 1 (2011-03-24 23:55:34)
+3.19	
+Marketing are huge users already, and they also have very specific modes of use.
+Submitted by 4 (2011-03-24 23:47:31)
+3.20	
+Pharmacovigilance is another area -- determining side effects of drugs via blog posts and other public comments on pharmaceuticals.
+Submitted by 5 (2011-03-24 23:48:51)
+3.21	
+The medical field in general has huge volumes of text and studies and tools are needed to search and present the contents of all this text. It is way too much for a single human to process.
+Submitted by 5 (2011-03-24 23:54:01)
+3.22	
+Military has done a more thorough job of standardising language, because ot needs precision. Industry usually doesn't.
+Submitted by 4 (2011-03-24 23:59:33)
+3.22.1	
+I guess the point here being that it may be easier to do text analysis for the military than other domains.
+Submitted by 5 (2011-03-25 00:03:22)
+3.23	
+Basic knowledge has to be embedded in the analysis system first, so that one doesn't start producing results that are "obvious" to the analysts. For instance, a tool should not discover that army and navy use different language.
+Submitted by 4 (2011-03-25 00:02:12)
+3.24	
+Not just trends or discovery, but also to improve communication
+Submitted by 18 (2011-03-25 00:03:37)
+3.25	
+JDSC does decision support, not decision making. Industry use is probably similar, since big shots like to make their own decisions.
+Submitted by 4 (2011-03-25 00:04:54)
+4	
+The application of text analysis to real-time facilitation. Comments?
+Submitted by facilitator (2011-03-24 23:40:18)
+4.1	
+Real-time support to the facilitator is critical, because you don't want the overall discussion divert too far away from the main topic.
+Submitted by 17 (2011-03-24 23:42:08)
+4.2	
+Not quite sure exactly what's being asked here, but certainly it seems that real-time analysis for facilitation is important for improving and focusing the text. For example, if there is a point of high contention that is arising in the text, then the facilitator could focus the discussion and text generation on that topic.
+Submitted by 5 (2011-03-24 23:43:16)
+4.3	
+One could develop constellations of ideas based on the text analysed then get the participants to converge on the language being used.
+Submitted by 14 (2011-03-24 23:43:56)
+4.4	
+The main problem here is that you are talking about building an entirely new software tool and validating its UI and effectiveness... this is certainly useful, will take a great deal of effort and integration with the grouputer software.
+Submitted by 5 (2011-03-24 23:44:24)
+4.5	
+can be useful
+Submitted by 18 (2011-03-24 23:46:02)
+4.6	
+A group review of a constellation of issues could be used to develop a more representative schema being used by a subgroup.
+Submitted by 14 (2011-03-24 23:46:22)
+4.7	
+text is a represenatatio of the cognitive schema (a represeantation of the thought processes) of an individual
+Submitted by 14 (2011-03-24 23:49:28)
+4.8	
+Could be used to keep discussions relevant and to keep activities running to schedule.
+Submitted by 11 (2011-03-24 23:50:03)
+4.9	
+One needs to determine the degree of similarity/disimilarity between participants in an activity
+Submitted by 14 (2011-03-24 23:50:58)
+4.10	
+Summarisation and a tight feedback loop seems crucial.
+Submitted by 1 (2011-03-24 23:52:52)
+4.11	
+this is much better way of obtaining data than conducting online surveys
+Submitted by 19 (2011-03-24 23:53:06)
+4.12	
+the facilitator must be able to pick out the major interests during the workshop as I can't see the possibility of an online text analysis tool
+Submitted by 19 (2011-03-24 23:54:47)
+4.13	
+The facilitator should be rying to get participants to amplify on issues and converrge on common word usage. Therefore there is a need to be able to view the real time use of words and query the use.
+Submitted by 14 (2011-03-24 23:55:12)
+4.14	
+The military takes great paines to develop a common use of language across operators in its training.
+Submitted by 14 (2011-03-24 23:56:33)
+4.15	
+Being able to highlight certain important keywords for the purposes of the discussion may allow the facilitator to quickly find pertinent comments.
+Submitted by 1 (2011-03-25 00:00:52)
+4.16	
+CDG has asked if we can provide a context peice that can be used to briefs a committee that frames the decison that the committee is there to address. One aspect of is is to develop a commion language and schema for individuals to interpret the purpose of the meeting.
+Submitted by 14 (2011-03-25 00:03:02)

@@ -26,12 +26,18 @@ public class DocUtils {
 	public final static DecimalFormat DF3 = new DecimalFormat("#.###");
 
 	public static String ReadFile(File f) {
+		return ReadFile(f, false);
+	}
+	
+	public static String ReadFile(File f, boolean keep_newline) {
 		try {
 			StringBuilder sb = new StringBuilder();
 			java.io.BufferedReader br = new BufferedReader(new FileReader(f));
 			String line = null;
-			while ((line = br.readLine()) != null)
-				sb.append((sb.length()> 0 ? " " : "") + line);
+			while ((line = br.readLine()) != null) {
+				//System.out.println(line);
+				sb.append((sb.length()> 0 ? (keep_newline ? "\n" : " ") : "") + line);
+			}
 			return sb.toString();
 		} catch (Exception e) {
 			System.out.println("ERROR: " + e);
