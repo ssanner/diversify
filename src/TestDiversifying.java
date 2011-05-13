@@ -2,6 +2,7 @@
  *  candidate data sets.
  * 
  * @author Scott Sanner (ssanner@gmail.com)
+ * Modified by Sadeq to do experiment for CIKM 2011 
  */
 
 import java.io.File;
