@@ -27,9 +27,10 @@ import diversity.kernel.Kernel;
 import diversity.kernel.TF;
 import diversity.kernel.TFIDF;
 
-public class TestDiversity {
+public class TestDiversifying {
 
 	public final static int MAX_LINE_LENGTH = 80;
+	public final static int CUT_OFF=30;
 	
 	//////////////////////////////////////////////////////////////////
 	//                          Test Code
@@ -129,7 +130,7 @@ public class TestDiversity {
 		// For each test in tests, build a ranked result list w.r.t. query 
 		// and display results (both on stdout and exported to a file)
 		for (ResultListSelector test : tests) {
-			ShowQueryResults(ps, test, data_src, query, 10);
+			ShowQueryResults(ps, test, data_src, query, CUT_OFF);
 		}
 		ps.close();
 	}
