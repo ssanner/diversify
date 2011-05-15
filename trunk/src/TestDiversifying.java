@@ -79,8 +79,14 @@ public class TestDiversifying {
 		// Instantiate all the kernels that we will use with the algorithms below
 		Kernel TF_kernel    = new TF(docs, true /* query-relevant diversity */);
 		Kernel TFIDF_kernel = new TFIDF(docs, true /* query-relevant diversity */);
-		Kernel LDA_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, true /* spherical */, true /* query-relevant diversity */);
+		Kernel LDA_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
+		Kernel LDA10_kernel   = new LDAKernel(docs, 10 /* NUM TOPICS - suggest 15 */, true /* spherical */, true /* query-relevant diversity */);
+		Kernel LDA15_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
+		Kernel LDA20_kernel   = new LDAKernel(docs, 20 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
+		Kernel PLSR10_kernel  = new PLSRKernel(docs, 10 /* NUM TOPICS - suggest 15 */, false /* spherical */);
 		Kernel PLSR_kernel  = new PLSRKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */);
+		Kernel PLSR20_kernel  = new PLSRKernel(docs, 20 /* NUM TOPICS - suggest 15 */, false /* spherical */);
+		
 		Kernel BM25_kernel  = 
 			new BM25Kernel(docs, 
 				/* 0 for any disables effect */
@@ -111,15 +117,45 @@ public class TestDiversifying {
 				BM25_kernel  /* sim */,
 				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 
-//		tests.add( new MMR(docs, 
-//				0.5d /* lambda: 0d is all weight on query sim */, 
-//				LDA_kernel /* sim */,
-//				LDA_kernel /* div */ ));
-//
-//		tests.add( new MMR(docs, 
-//				0.5d /* lambda: 0d is all weight on query sim */, 
-//				PLSR_kernel /* sim */,
-//				PLSR_kernel /* div */ ));
+		tests.add( new MMR(docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				LDA_kernel /* sim */,
+				LDA_kernel /* div */ ));
+
+		tests.add( new MMR(docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				PLSR_kernel /* sim */,
+				PLSR_kernel /* div */ ));
+		
+		//These kernels added by sadegh
+		tests.add( new MMR(docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				PLSR10_kernel /* sim */,
+				PLSR10_kernel /* div */ ));
+		
+		tests.add( new MMR(docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				PLSR20_kernel /* sim */,
+				PLSR20_kernel /* div */ ));
+		
+		tests.add( new MMR(docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				LDA10_kernel /* sim */,
+				LDA10_kernel /* div */ ));
+		
+		tests.add( new MMR(docs, 
+
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				LDA15_kernel /* sim */,
+				LDA15_kernel /* div */ ));
+		
+		tests.add( new MMR(docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				LDA20_kernel /* sim */,
+				LDA20_kernel /* div */ ));
+		
+		
+		
 
 		// Add documents to each test in tests
 		for (ResultListSelector test : tests) {
@@ -184,7 +220,7 @@ public class TestDiversifying {
 				String content =   d._docs.get(result_list.get(i));
 				if (content.length() > MAX_LINE_LENGTH)
 					content = content.substring(0,MAX_LINE_LENGTH);
-				ps.println((i+1) + "\t" + result_list.get(i)/* + "\t" + content*/);
+				ps.println((i+1) + "\t" +"Q0"+"\t" + result_list.get(i) +"\t"+(i+1)+"\t"+"1"+"\t"+"Diversity-RUN"/* + "\t" + content*/);
 			}
 			ps.println();
 		}
