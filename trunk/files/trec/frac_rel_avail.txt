@@ -1,3 +1,4 @@
+query, qrel recall percentage, num baseline retrieved docs in qrels, num docs in qrels
 wt09-1	0.166	75	453
 wt09-2	0.169	64	379
 wt09-3	0.073	43	591
