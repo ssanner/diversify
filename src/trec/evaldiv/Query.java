@@ -5,7 +5,7 @@
 
 package trec.evaldiv;
 
-public class Query {
+public class Query implements Comparable {
 
 	// Constants
 	public static final boolean INCLUDE_QUERY_TITLE       = true;
@@ -44,6 +44,12 @@ public class Query {
 		}
 		return sb.toString();
 	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return toString().compareTo(o.toString());
+	}	
 	
 	/**
 	 * @param args
@@ -52,5 +58,4 @@ public class Query {
 		// TODO Auto-generated method stub
 
 	}
-
 }
