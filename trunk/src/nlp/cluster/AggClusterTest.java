@@ -35,7 +35,7 @@ import diversity.kernel.TFIDF;
 public class AggClusterTest {
 
 	public final static String DOC_NAME = "files/group/gt2.txt";
-	public final static String HEADING_FILTER = "2";
+	public final static String HEADING_FILTER = "1";
 	
 	public final static int MAX_LINE_LENGTH = 80;
 	

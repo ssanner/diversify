@@ -5,8 +5,10 @@
 
 package trec.evaldiv;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,20 +17,41 @@ import java.util.TreeSet;
 import trec.evaldiv.doc.Doc;
 
 // An inner class data structure to store aspects for a doc
-public class QueryAspects {
+public class QueryAspects implements Comparable {
+	public int _queryID = -1; 
 	public String _queryName = null;
 	public int _numAspects = -1;
 	public HashMap<String, boolean[]> _aspects = null;
+	public Set<String> _availableDocs = null;
 	public double[] _freq = null;
 	public double[] _weights = null;
 	
 	public QueryAspects(String query_name) {
+		this(query_name, -1, null);
+	}
+	
+	public QueryAspects(String query_name, int id, String doc_source) {
 		_queryName = query_name;
+		_queryID = id;
 		_aspects = new HashMap<String,boolean[]>();
+		_availableDocs = new HashSet<String>();
+		if (doc_source != null) {
+			File dir = new File(doc_source + File.separator + id);
+			//System.out.println("Trying dir: " + doc_source + query_parts[1]);
+			String[] available_docs = dir.list();
+			for (String s : available_docs) {
+				_availableDocs.add(s);
+				//System.out.println(s);
+			}
+		}
 	}
 	
 	public Set<String> getRelevantDocs() {
 		return _aspects.keySet();
+	}
+	
+	public Set<String> getAvailableDocs() {
+		return _availableDocs;
 	}
 	
 	public void addAllAspects(HashMap<String,TreeSet<Integer>> doc2aspects, int max_aspect) {
@@ -155,4 +178,9 @@ public class QueryAspects {
 
 		return weight;
 	}
+	
+	@Override
+	public int compareTo(Object o) {
+		return _queryName.compareTo(((QueryAspects)o)._queryName);
+	}	
 }
