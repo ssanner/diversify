@@ -39,6 +39,7 @@ public class MMR extends ResultListSelector {
 	
 	public void clearDocs() {
 		_docRepr.clear();
+		_docRepr2.clear();
 		_docOrig.clear();
 		_sim.clear();
 		_div.clear();
@@ -57,6 +58,10 @@ public class MMR extends ResultListSelector {
 		for (String doc : _docOrig) {
 			Object repr = _sim.getObjectRepresentation(doc);
 			_docRepr.put(doc, repr);
+			if (_sim != _div) {
+				Object repr2 = _div.getObjectRepresentation(doc);
+				_docRepr2.put(doc, repr2);			
+			}
 		}
 	}
 	
@@ -67,12 +72,15 @@ public class MMR extends ResultListSelector {
 		String query_key = query.toString();
 
 		Object features = _docRepr.get(doc_name);
+		Object features2;
 		Double sim_score = null;
 		Pair sim_key = new Pair(doc_name, query_key);
 		if ((sim_score = _simCache.get(sim_key)) == null) {
 			sim_score = _sim.sim(features, query);
 			_simCache.put(sim_key, sim_score);
 		}
+		features2 = (_sim != _div ? _docRepr2 : _docRepr).get(doc_name);
+
 		Double sim_other = null;
 		
 		if (_div.supportsSetSim()) {
@@ -80,11 +88,11 @@ public class MMR extends ResultListSelector {
 			// Compute set similarity all in one
 			Set<Object> other_feature_set = new HashSet<Object>();
 			for (Object other : S)
-				other_feature_set.add(_docRepr.get(other));
+				other_feature_set.add((_sim != _div ? _docRepr2 : _docRepr).get(other));
 			
 			Triple div_key = new Triple(doc_name, other_feature_set.hashCode(), query_key);
 			if ((sim_other = _divCache.get(div_key)) == null) {
-				sim_other = _div.setSim(features, other_feature_set, query);
+				sim_other = _div.setSim(features2, other_feature_set, query);
 				_divCache.put(div_key, sim_other);
 			}
 
@@ -93,11 +101,11 @@ public class MMR extends ResultListSelector {
 			// Take max over all other doc similarities
 			sim_other = -1d;
 			for (String other : S) {
-				Object other_features = _docRepr.get(other);
+				Object other_features = (_sim != _div ? _docRepr2 : _docRepr).get(other);
 				Double cur_sim_other = null;
 				Triple div_key = new Triple(doc_name, other, query_key);
 				if ((cur_sim_other = _divCache.get(div_key)) == null) {
-					cur_sim_other = _div.sim(features, other_features, query);
+					cur_sim_other = _div.sim(features2, other_features, query);
 					_divCache.put(div_key, cur_sim_other);
 				}
 				

@@ -15,9 +15,10 @@ public abstract class ResultListSelector {
 
 	public static boolean SHOW_DEBUG = false;
 
-	public Map<String, String> _docs    = new HashMap<String, String>();
-	public Map<String, Object> _docRepr = new HashMap<String, Object>();
-	public Set<String>         _docOrig = new HashSet<String>();
+	public Map<String, String> _docs     = new HashMap<String, String>();
+	public Map<String, Object> _docRepr  = new HashMap<String, Object>();
+	public Map<String, Object> _docRepr2 = new HashMap<String, Object>();
+	public Set<String>         _docOrig  = new HashSet<String>();
 
 	public ResultListSelector(HashMap<String, String> docs) {
 		_docs = docs;
