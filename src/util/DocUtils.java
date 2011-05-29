@@ -38,6 +38,7 @@ public class DocUtils {
 				//System.out.println(line);
 				sb.append((sb.length()> 0 ? (keep_newline ? "\n" : " ") : "") + line);
 			}
+			br.close();
 			return sb.toString();
 		} catch (Exception e) {
 			System.out.println("ERROR: " + e);
