@@ -31,7 +31,7 @@ import util.VectorUtils;
 
 public class Evaluator {
 
-	public final static String PATH_PREFIX = "files/trec/RESULTS/";
+	public final static String PATH_PREFIX = "files/trec/RESULTS3/";
 	
 	// TODO: Need to optimize number of topics
 	// TODO: Verify consistency of rankers when used multiple times with clearDocs

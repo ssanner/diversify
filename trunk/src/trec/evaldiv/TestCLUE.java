@@ -183,37 +183,37 @@ public class TestCLUE {
 //		
 //		tests.add( new ScoreRanker( docs, TFIDF_kernel ));
 
-			tests.add( new ScoreRanker( docs, BM25_kernel ));
-	
-			tests.add( new MMR( docs, 
-					0.25d /* lambda: 0d is all weight on query sim */, 
-					TFIDF_kernel /* sim */,
-					TFIDF_kernel /* div */ ));
-			
-			tests.add( new MMR( docs, 
-					0.25d /* lambda: 0d is all weight on query sim */, 
-					BM25_kernel  /* sim */,
-					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
-			
-			tests.add( new MMR( docs, 
-					0.5d /* lambda: 0d is all weight on query sim */, 
-					TFIDF_kernel /* sim */,
-					TFIDF_kernel /* div */ ));
-			
-			tests.add( new MMR( docs, 
-					0.5d /* lambda: 0d is all weight on query sim */, 
-					BM25_kernel  /* sim */,
-					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
-			
-			tests.add( new MMR( docs, 
-					0.75d /* lambda: 0d is all weight on query sim */, 
-					TFIDF_kernel /* sim */,
-					TFIDF_kernel /* div */ ));
-			
-			tests.add( new MMR( docs, 
-					0.75d /* lambda: 0d is all weight on query sim */, 
-					BM25_kernel  /* sim */,
-					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+//			tests.add( new ScoreRanker( docs, BM25_kernel ));
+//	
+//			tests.add( new MMR( docs, 
+//					0.25d /* lambda: 0d is all weight on query sim */, 
+//					TFIDF_kernel /* sim */,
+//					TFIDF_kernel /* div */ ));
+//			
+//			tests.add( new MMR( docs, 
+//					0.25d /* lambda: 0d is all weight on query sim */, 
+//					BM25_kernel  /* sim */,
+//					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+//			
+//			tests.add( new MMR( docs, 
+//					0.5d /* lambda: 0d is all weight on query sim */, 
+//					TFIDF_kernel /* sim */,
+//					TFIDF_kernel /* div */ ));
+//			
+//			tests.add( new MMR( docs, 
+//					0.5d /* lambda: 0d is all weight on query sim */, 
+//					BM25_kernel  /* sim */,
+//					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+//			
+//			tests.add( new MMR( docs, 
+//					0.75d /* lambda: 0d is all weight on query sim */, 
+//					TFIDF_kernel /* sim */,
+//					TFIDF_kernel /* div */ ));
+//			
+//			tests.add( new MMR( docs, 
+//					0.75d /* lambda: 0d is all weight on query sim */, 
+//					BM25_kernel  /* sim */,
+//					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 
 //		tests.add( new MMR( docs, 
 //				0.5d /* lambda: 0d is all weight on query sim */, 
@@ -251,25 +251,25 @@ public class TestCLUE {
 //				PLSR10_kernel /* div */ ));
 //
 		
-			//		tests.add( new MMR( docs, 
-			//				0.5d /* lambda: 0d is all weight on query sim */, 
-			//				BM25_kernel /* sim */,
-			//				LDA15_kernel /* div */ ));
-			//
-			//		tests.add( new MMR( docs, 
-			//				0.5d /* lambda: 0d is all weight on query sim */, 
-			//				BM25_kernel /* sim */,
-			//				PLSR15_kernel /* div */ ));
-			//		
-			//		tests.add( new MMR( docs, 
-			//				0.25d /* lambda: 0d is all weight on query sim */, 
-			//				BM25_kernel /* sim */,
-			//				LDA15_kernel /* div */ ));
-			//		
-			//		tests.add( new MMR( docs, 
-			//				0.25d /* lambda: 0d is all weight on query sim */, 
-			//				BM25_kernel /* sim */,
-			//				PLSR15_kernel /* div */ ));
+//					tests.add( new MMR( docs, 
+//							0.5d /* lambda: 0d is all weight on query sim */, 
+//							BM25_kernel /* sim */,
+//							LDA15_kernel /* div */ ));
+			
+					tests.add( new MMR( docs, 
+							0.5d /* lambda: 0d is all weight on query sim */, 
+							BM25_kernel /* sim */,
+							PLSR15_kernel /* div */ ));
+					
+//					tests.add( new MMR( docs, 
+//							0.25d /* lambda: 0d is all weight on query sim */, 
+//							BM25_kernel /* sim */,
+//							LDA15_kernel /* div */ ));
+					
+					tests.add( new MMR( docs, 
+							0.25d /* lambda: 0d is all weight on query sim */, 
+							BM25_kernel /* sim */,
+							PLSR15_kernel /* div */ ));
 			//
 			//		tests.add( new MMR( docs, 
 			//				0.75d /* lambda: 0d is all weight on query sim */, 
