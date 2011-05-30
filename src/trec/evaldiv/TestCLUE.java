@@ -199,26 +199,26 @@ public class TestCLUE {
 //				0.5d /* lambda: 0d is all weight on query sim */, 
 //				LDA10_kernel /* sim */,
 //				LDA10_kernel /* div */ ));
-//
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				BM25_kernel /* sim */,
-				LDA15_kernel /* div */ ));
 
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				BM25_kernel /* sim */,
-				LDA15_sph_kernel /* div */ ));
+	//		tests.add( new MMR( docs, 
+	//				0.5d /* lambda: 0d is all weight on query sim */, 
+	//				BM25_kernel /* sim */,
+	//				LDA15_kernel /* div */ ));
+	//
+	//		tests.add( new MMR( docs, 
+	//				0.5d /* lambda: 0d is all weight on query sim */, 
+	//				BM25_kernel /* sim */,
+	//				LDA15_sph_kernel /* div */ ));
 
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				BM25_kernel /* sim */,
-				LDA15_qr_kernel /* div */ ));
-
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				BM25_kernel /* sim */,
-				LDA15_qr_sph_kernel /* div */ ));
+	//		tests.add( new MMR( docs, 
+	//				0.5d /* lambda: 0d is all weight on query sim */, 
+	//				BM25_kernel /* sim */,
+	//				LDA15_qr_kernel /* div */ ));
+	//
+	//		tests.add( new MMR( docs, 
+	//				0.5d /* lambda: 0d is all weight on query sim */, 
+	//				BM25_kernel /* sim */,
+	//				LDA15_qr_sph_kernel /* div */ ));
 
 //		tests.add( new MMR( docs, 
 //				0.5d /* lambda: 0d is all weight on query sim */, 
@@ -230,15 +230,41 @@ public class TestCLUE {
 //				PLSR10_kernel /* sim */,
 //				PLSR10_kernel /* div */ ));
 //
+		
 		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				BM25_kernel /* sim */,
-				PLSR15_kernel /* div */ ));
+				LDA15_kernel /* div */ ));
 
 		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				BM25_kernel /* sim */,
-				PLSR15_sph_kernel /* div */ ));
+				PLSR15_kernel /* div */ ));
+		
+		tests.add( new MMR( docs, 
+				0.25d /* lambda: 0d is all weight on query sim */, 
+				BM25_kernel /* sim */,
+				LDA15_kernel /* div */ ));
+		
+		tests.add( new MMR( docs, 
+				0.25d /* lambda: 0d is all weight on query sim */, 
+				BM25_kernel /* sim */,
+				PLSR15_kernel /* div */ ));
+
+		tests.add( new MMR( docs, 
+				0.75d /* lambda: 0d is all weight on query sim */, 
+				BM25_kernel /* sim */,
+				LDA15_kernel /* div */ ));
+
+		tests.add( new MMR( docs, 
+				0.75d /* lambda: 0d is all weight on query sim */, 
+				BM25_kernel /* sim */,
+				PLSR15_kernel /* div */ ));
+
+	//		tests.add( new MMR( docs, 
+	//				0.5d /* lambda: 0d is all weight on query sim */, 
+	//				BM25_kernel /* sim */,
+	//				PLSR15_sph_kernel /* div */ ));
 
 //		tests.add( new MMR( docs, 
 //				0.5d /* lambda: 0d is all weight on query sim */, 

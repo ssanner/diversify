@@ -67,16 +67,17 @@ public class MMR extends ResultListSelector {
 	
 	// Compute the MMR of a sentence
 	// MMR = argmax_s Sim(s,q) - max_s' Sim(s,s')
-	public double computeMMRScore(String doc_name, Set<String> S, Object query) {
+	public double computeMMRScore(String doc_name, Set<String> S, 
+			Object query_sim, Object query_div) {
 
-		String query_key = query.toString();
+		String query_key = query_sim.toString();
 
 		Object features = _docRepr.get(doc_name);
 		Object features2;
 		Double sim_score = null;
 		Pair sim_key = new Pair(doc_name, query_key);
 		if ((sim_score = _simCache.get(sim_key)) == null) {
-			sim_score = _sim.sim(features, query);
+			sim_score = _sim.sim(features, query_sim);
 			_simCache.put(sim_key, sim_score);
 		}
 		features2 = (_sim != _div ? _docRepr2 : _docRepr).get(doc_name);
@@ -92,7 +93,7 @@ public class MMR extends ResultListSelector {
 			
 			Triple div_key = new Triple(doc_name, other_feature_set.hashCode(), query_key);
 			if ((sim_other = _divCache.get(div_key)) == null) {
-				sim_other = _div.setSim(features2, other_feature_set, query);
+				sim_other = _div.setSim(features2, other_feature_set, query_div);
 				_divCache.put(div_key, sim_other);
 			}
 
@@ -105,7 +106,7 @@ public class MMR extends ResultListSelector {
 				Double cur_sim_other = null;
 				Triple div_key = new Triple(doc_name, other, query_key);
 				if ((cur_sim_other = _divCache.get(div_key)) == null) {
-					cur_sim_other = _div.sim(features2, other_features, query);
+					cur_sim_other = _div.sim(features2, other_features, query_div);
 					_divCache.put(div_key, cur_sim_other);
 				}
 				
@@ -115,7 +116,7 @@ public class MMR extends ResultListSelector {
 		}
 		
 		if (SHOW_DEBUG)
-			System.out.println("- Sim: " + sim_score + ", Penalty: " + sim_other + " -- " + doc_name + ": " + features + "; query: " + query);
+			System.out.println("- Sim: " + sim_score + ", Penalty: " + sim_other + " -- " + doc_name + ": " + features + "; query: " + query_sim);
 
 		return (1d - _dLambda)*sim_score - (_dLambda)*sim_other;
 	}
@@ -137,7 +138,8 @@ public class MMR extends ResultListSelector {
 		initDocs();
 		
 		// Get representation for query
-		Object query_repr = _sim.getNoncachedObjectRepresentation(query);
+		Object query_repr_sim = _sim.getNoncachedObjectRepresentation(query);
+		Object query_repr_div = _div.getNoncachedObjectRepresentation(query);
 
 		// Initialize the set of all sentences minus
 		// the selected sentences
@@ -157,7 +159,7 @@ public class MMR extends ResultListSelector {
 			String cur_best_sent = null;
 			for (String key : R_MINUS_S) {
 				// MMR = argmax_s Sim(s,q) - max_s' Sim(s,s') 
-				double score = computeMMRScore(key, S, query_repr);
+				double score = computeMMRScore(key, S, query_repr_sim, query_repr_div);
 				if (score > cur_max_score) {
 					cur_max_score = score;
 					cur_best_sent = key;
