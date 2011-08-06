@@ -14,13 +14,18 @@ public class NDEval10Losses extends AspectLoss {
 
 	public final static String NDEVAL = "src/trec/evaldiv/loss/ndeval10" + 
 		(System.getProperty("os.name").toLowerCase().startsWith("windows") ? ".exe" : "");
-	public final static String NDEVAL_QRELS = "files/trec/qrels.diversity.all";
 	public final static String NDEVAL_TMP = "ndeval_tmp.txt";
-	
+
+	public String NDEVAL_QRELS = null;
+
 	// 51 Q0 clueweb09-en0007-89-20413 1 24.0733 OKAPI-RUN
 	// 51 Q0 clueweb09-en0007-81-08143 2 24.047 OKAPI-RUN
 	// 51 Q0 clueweb09-en0007-17-32780 3 23.8035 OKAPI-RUN
 
+	public NDEval10Losses(String qrels) {
+		NDEVAL_QRELS = qrels;
+	}
+	
 	@Override
 	public String getName() {
 		return "NDEval10";
@@ -43,6 +48,7 @@ public class NDEval10Losses extends AspectLoss {
 			ndeval_tmp.close();
 			
 			// Next call ndeval10 and get the results
+			System.out.println("> " + NDEVAL + " " + NDEVAL_QRELS + " " + NDEVAL_TMP);
 			p = Runtime.getRuntime().exec(NDEVAL + " " + NDEVAL_QRELS + " " + NDEVAL_TMP);
 	        BufferedReader process_out = new BufferedReader(new InputStreamReader(p.getInputStream()));
 	        BufferedReader process_out_err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
@@ -64,6 +70,12 @@ public class NDEval10Losses extends AspectLoss {
 	            if (line.startsWith("ANON_ALG") && !(line.indexOf("amean") >= 0)) {
 	            	String[] split = line.split(",");
 	            	ret_val = new double[split.length - 2];
+	            	if (split.length != 23) {
+	            		System.out.println("Unexpected output length: " + split.length);
+	            		for (int i = 0; i < split.length; i++)
+		            		System.out.println(i + " " + split[i]);
+	            		System.exit(1);
+	            	}
 	            	for (int i = 2; i < split.length; i++)
 	            		ret_val[i - 2] = new Double(split[i]);
 	            }

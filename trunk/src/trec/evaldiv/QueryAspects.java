@@ -22,6 +22,7 @@ public class QueryAspects implements Comparable {
 	public String _queryName = null;
 	public int _numAspects = -1;
 	public HashMap<String, boolean[]> _aspects = null;
+	public HashMap<Integer, Integer> _subtopic2ID = null;
 	public Set<String> _availableDocs = null;
 	public double[] _freq = null;
 	public double[] _weights = null;
@@ -34,12 +35,14 @@ public class QueryAspects implements Comparable {
 		_queryName = query_name;
 		_queryID = id;
 		_aspects = new HashMap<String,boolean[]>();
+		_subtopic2ID = new HashMap<Integer, Integer>();
 		_availableDocs = new HashSet<String>();
 		if (doc_source != null) {
-			File dir = new File(doc_source + File.separator + id);
-			//System.out.println("Trying dir: " + doc_source + query_parts[1]);
+			File dir = new File(doc_source);
+			//System.out.println("Trying dir: " + doc_source);
 			String[] available_docs = dir.list();
 			for (String s : available_docs) {
+				//System.out.println("Adding: " + s);
 				_availableDocs.add(s);
 				//System.out.println(s);
 			}
@@ -105,8 +108,16 @@ public class QueryAspects implements Comparable {
 		for (int i = 0; i < _numAspects; i++)
 			total += _freq[i];
 		
-		for (int i = 0; i < _numAspects; i++)
+		int id = 1;
+		for (int i = 0; i < _numAspects; i++) {
+			if (_freq[i] > 0d)
+				_subtopic2ID.put(i, id++);
 			_weights[i] = _freq[i] / (double)total;
+		}
+	}
+	
+	public Integer getContiguousID(int i) {
+		return _subtopic2ID.get(i);
 	}
 	
 	public String toString() {

@@ -20,11 +20,16 @@ public class CLUEDoc extends Doc {
 		try {
 			_name = f.getName().split("[\\.]")[0];
 			_title = "";
-			_content = DocUtils.ReadFile(f);
-			int first_line_file = _content.indexOf(_name);
-			_content = _content.substring(first_line_file + _name.length() + 1, _content.length());
+			_content = DocUtils.ReadFile(f, true);
+			for (int i = 0; i < 7; i++) { // Discard first 6 lines
+				//System.out.println(_content.indexOf('\n'));
+				_content = _content.substring(_content.indexOf("\n") + 1, _content.length());
+			}
+			//System.out.println("Final: " + _content);
 		} catch (Exception e) {
-			System.out.println(e);			
+			System.out.println(e);		
+			e.printStackTrace();
+			System.exit(1);
 		}
 
 	}
@@ -34,7 +39,7 @@ public class CLUEDoc extends Doc {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		CLUEDoc d = new CLUEDoc(new File("files/trec/CLUE_DATA/Q1/clueweb09-en0001-02-21241.txt.clean"));
+		CLUEDoc d = new CLUEDoc(new File("../../Data/CIKM2011/ClueWeb-CatB/Clean/OKAPI-Result-Clean/1/clueweb09-en0000-06-20977"));
 		System.out.println(d);
 	}
 }

@@ -184,12 +184,10 @@ public class PLSRKernel extends Kernel {
 		//System.out.println("d1: " + VectorUtils.GetString(d1));
 		//System.out.println("d2: " + VectorUtils.GetString(d2));
 		//System.out.println("w:  " + VectorUtils.GetString(w) + "\n");
-		
-		// TODO: not technically correct, but trying out
 		if (_bSpherical)
-			return VectorUtils.CosSim(d1, d2);//VectorUtils.WeightedCosSim(d1, d2, w);
+			return VectorUtils.WeightedCosSim(d1, d2, w); //VectorUtils.CosSim(d1, d2);
 		else
-			return VectorUtils.DotProduct(d1, d2); //VectorUtils.WeightedDotProduct(d1, d2, w);
+			return VectorUtils.WeightedDotProduct(d1, d2, w); //VectorUtils.DotProduct(d1, d2);
 	}
 
 	@Override

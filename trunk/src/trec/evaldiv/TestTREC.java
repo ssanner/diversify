@@ -7,7 +7,9 @@ package trec.evaldiv;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.*;
 
 import diversity.MMR;
@@ -27,6 +29,7 @@ import trec.evaldiv.loss.AllWSLoss;
 import trec.evaldiv.loss.AspectLoss;
 import trec.evaldiv.loss.AvgUSLoss;
 import trec.evaldiv.loss.AvgWSLoss;
+import trec.evaldiv.loss.NDEval10Losses;
 import trec.evaldiv.loss.USLoss;
 import trec.evaldiv.loss.WSLoss;
 import util.FileFinder;
@@ -39,32 +42,24 @@ public class TestTREC {
 
 	public final static boolean DEBUG = false;
 	
-	public final static int NUM_RESULTS = 10;
+	public final static int NUM_RESULTS = 20;
 	
-	public final static String TREC_DOC_DIR = "files/trec/TREC_DATA";
+	public final static String TREC_DOC_DIR = "../../Data/CIKM2011/TREC6-8";
+	public final static String TREC_QRELS   = "files/trec/qrels.trec.all";
 	public final static String QUERY_FILE   = "files/trec/TRECQuery.txt";
 	public final static String ASPECT_FILE  = "files/trec/TRECQueryAspects.txt";
 	
 	public final static String[] TREC_QUERIES = 
-		{ "307i", "322i", "326i", "347i", "352i", "353i", 
-		  "357i", "362i", "366i", "387i", "392i", "408i", 
-		  "414i", "428i", "431i", "438i", "446i" };
+		{ "307", "322", "326", "347", "352", "353", 
+		  "357", "362", "366", "387", "392", "408", 
+		  "414", "428", "431", "438", "446" };
+	
+	static ArrayList<String> ALL_QUERIES = new ArrayList<String>(Arrays.asList(TREC_QUERIES));
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-
-		// Build FT Document map
-		HashMap<String,String> docs = new HashMap<String,String>();
-		ArrayList<File> files = FileFinder.GetAllFiles(TREC_DOC_DIR, "", true);
-		for (File f : files) {
-			Doc d = new TRECDoc(f);
-			docs.put(d._name, d.getDocContent());
-			if (DEBUG) 
-				System.out.println("TRECDoc: " + f + " -> " + d + "\n - content: " + d.getDocContent());
-		}
-		System.out.println("Read " + docs.size() + " documents");
 		
 		// Build Query map
 		HashMap<String,Query> queries = ReadTRECQueries(QUERY_FILE);
@@ -75,12 +70,37 @@ public class TestTREC {
 		System.out.println("Read " + queries.size() + " queries");
 		
 		// Build the DocAspects
-		HashMap<String,QueryAspects> aspects = ReadTRECAspects(ASPECT_FILE);
+		HashMap<String,QueryAspects> aspects = ReadTRECAspects(ASPECT_FILE, TREC_DOC_DIR);
 		System.out.println("Read " + aspects.size() + " query aspects");
 		if (DEBUG) {
 			for (QueryAspects q : aspects.values())
 				System.out.println(q + "\n");
 		}
+		//ExportQRels(aspects, TREC_QRELS); System.exit(1);
+
+		// Build FT Document map
+		HashMap<String,String> docs = new HashMap<String,String>();
+		ArrayList<File> files = FileFinder.GetAllFiles(TREC_DOC_DIR, "", true);
+		for (File f : files) {
+			//System.out.println(f.toString());
+			String[] filename_split = f.toString().split("[\\\\]");
+			String query_num = filename_split[filename_split.length - 2];
+			if (!ALL_QUERIES.contains(query_num)) {
+				//System.out.println("Not in queries, skipping...");
+				continue;
+			}
+			
+			Doc d = new TRECDoc(f);
+			docs.put(d._name, d.getDocContent());
+			if (DEBUG) 
+				System.out.println("TRECDoc: " + f + " -> " + query_num + "/" + d._name/*+ d + "\n - content: " + d.getDocContent()*/);
+		}
+		System.out.println("Read " + docs.size() + " documents");
+		//for (Object key : Doc._queryToDocNames.keySet()) {
+		//	ArrayList al = Doc._queryToDocNames.getValues(key);
+		//	System.out.println(key + " " + al.size() + " : " + al);
+		//}
+		//System.out.println(Doc._queryToDocNames);
 	
 		// Build the Loss functions
 		ArrayList<AspectLoss> loss_functions = new ArrayList<AspectLoss>();
@@ -90,6 +110,7 @@ public class TestTREC {
 		//loss_functions.add(new AvgWSLoss());
 		loss_functions.add(new AllUSLoss());
 		loss_functions.add(new AllWSLoss());
+		loss_functions.add(new NDEval10Losses(TREC_QRELS));
 		
 		// Build the TREC tests
 		// Build a new result list selectors... all use the greedy MMR approach,
@@ -102,7 +123,11 @@ public class TestTREC {
 		Kernel LDA10_kernel   = new LDAKernel(docs, 10 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
 		Kernel PLSR10_kernel  = new PLSRKernel(docs, 10 /* NUM TOPICS - suggest 15 */, false /* spherical */);
 		Kernel LDA15_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
+		Kernel LDA15_sph_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, true /* spherical */, false /* query-relevant diversity */);
+		Kernel LDA15_qr_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */, true /* query-relevant diversity */);
+		Kernel LDA15_qr_sph_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, true /* spherical */, true /* query-relevant diversity */);
 		Kernel PLSR15_kernel  = new PLSRKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */);
+		Kernel PLSR15_sph_kernel  = new PLSRKernel(docs, 15 /* NUM TOPICS - suggest 15 */, true /* spherical */);
 		Kernel LDA20_kernel   = new LDAKernel(docs, 20 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
 		Kernel PLSR20_kernel  = new PLSRKernel(docs, 20 /* NUM TOPICS - suggest 15 */, false /* spherical */);
 		Kernel BM25_kernel  = 
@@ -119,50 +144,115 @@ public class TestTREC {
 //				0.5d /* lambda: 0d is all weight on query sim */, 
 //				TF_kernel /* sim */,
 //				TF_kernel /* div */ ));
-		
-		tests.add( new ScoreRanker( docs, TFIDF_kernel ));
+//		
+//		tests.add( new ScoreRanker( docs, TFIDF_kernel ));
 
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				TFIDF_kernel /* sim */,
-				TFIDF_kernel /* div */ ));
-		
-		tests.add( new ScoreRanker( docs, BM25_kernel ));
-		
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				BM25_kernel  /* sim */,
-				TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+//			tests.add( new ScoreRanker( docs, BM25_kernel ));
+//	
+//			tests.add( new MMR( docs, 
+//					0.25d /* lambda: 0d is all weight on query sim */, 
+//					TFIDF_kernel /* sim */,
+//					TFIDF_kernel /* div */ ));
+//			
+			tests.add( new MMR( docs, 
+					0.5d /* lambda: 0d is all weight on query sim */, 
+					BM25_kernel  /* sim */,
+					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+//			
+//			tests.add( new MMR( docs, 
+//					0.5d /* lambda: 0d is all weight on query sim */, 
+//					TFIDF_kernel /* sim */,
+//					TFIDF_kernel /* div */ ));
+//			
+//			tests.add( new MMR( docs, 
+//					0.5d /* lambda: 0d is all weight on query sim */, 
+//					BM25_kernel  /* sim */,
+//					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+//			
+//			tests.add( new MMR( docs, 
+//					0.75d /* lambda: 0d is all weight on query sim */, 
+//					TFIDF_kernel /* sim */,
+//					TFIDF_kernel /* div */ ));
+//			
+//			tests.add( new MMR( docs, 
+//					0.75d /* lambda: 0d is all weight on query sim */, 
+//					BM25_kernel  /* sim */,
+//					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 
 		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				LDA10_kernel /* sim */,
 				LDA10_kernel /* div */ ));
 
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				LDA15_kernel /* sim */,
-				LDA15_kernel /* div */ ));
+	//		tests.add( new MMR( docs, 
+	//				0.5d /* lambda: 0d is all weight on query sim */, 
+	//				BM25_kernel /* sim */,
+	//				LDA15_kernel /* div */ ));
+	//
+	//		tests.add( new MMR( docs, 
+	//				0.5d /* lambda: 0d is all weight on query sim */, 
+	//				BM25_kernel /* sim */,
+	//				LDA15_sph_kernel /* div */ ));
 
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				LDA20_kernel /* sim */,
-				LDA20_kernel /* div */ ));
+	//		tests.add( new MMR( docs, 
+	//				0.5d /* lambda: 0d is all weight on query sim */, 
+	//				BM25_kernel /* sim */,
+	//				LDA15_qr_kernel /* div */ ));
+	//
+	//		tests.add( new MMR( docs, 
+	//				0.5d /* lambda: 0d is all weight on query sim */, 
+	//				BM25_kernel /* sim */,
+	//				LDA15_qr_sph_kernel /* div */ ));
+
+//		tests.add( new MMR( docs, 
+//				0.5d /* lambda: 0d is all weight on query sim */, 
+//				LDA20_kernel /* sim */,
+//				LDA20_kernel /* div */ ));
 
 		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
 				PLSR10_kernel /* sim */,
 				PLSR10_kernel /* div */ ));
+		
+//					tests.add( new MMR( docs, 
+//							0.5d /* lambda: 0d is all weight on query sim */, 
+//							BM25_kernel /* sim */,
+//							LDA15_kernel /* div */ ));
+			
+//-					tests.add( new MMR( docs, 
+//							0.5d /* lambda: 0d is all weight on query sim */, 
+//							BM25_kernel /* sim */,
+//							PLSR15_kernel /* div */ ));
+					
+//					tests.add( new MMR( docs, 
+//							0.25d /* lambda: 0d is all weight on query sim */, 
+//							BM25_kernel /* sim */,
+//							LDA15_kernel /* div */ ));
+					
+//-					tests.add( new MMR( docs, 
+//							0.25d /* lambda: 0d is all weight on query sim */, 
+//							BM25_kernel /* sim */,
+//							PLSR15_kernel /* div */ ));
+			//
+			//		tests.add( new MMR( docs, 
+			//				0.75d /* lambda: 0d is all weight on query sim */, 
+			//				BM25_kernel /* sim */,
+			//				LDA15_kernel /* div */ ));
+			//
+			//		tests.add( new MMR( docs, 
+			//				0.75d /* lambda: 0d is all weight on query sim */, 
+			//				BM25_kernel /* sim */,
+			//				PLSR15_kernel /* div */ ));
 
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				PLSR15_kernel /* sim */,
-				PLSR15_kernel /* div */ ));
+	//		tests.add( new MMR( docs, 
+	//				0.5d /* lambda: 0d is all weight on query sim */, 
+	//				BM25_kernel /* sim */,
+	//				PLSR15_sph_kernel /* div */ ));
 
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				PLSR20_kernel /* sim */,
-				PLSR20_kernel /* div */ ));
+//		tests.add( new MMR( docs, 
+//				0.5d /* lambda: 0d is all weight on query sim */, 
+//				PLSR20_kernel /* sim */,
+//				PLSR20_kernel /* div */ ));
 
 		// Evaluate results of different query processing algorithms
 		Evaluator.doEval(Arrays.asList(TREC_QUERIES), docs, 
@@ -173,6 +263,35 @@ public class TestTREC {
 	//                              Helper Functions
 	///////////////////////////////////////////////////////////////////////////////
 	
+	public static void ExportQRels(HashMap<String, QueryAspects> aspects2, String filename) {
+		try {
+			TreeMap<String, QueryAspects> aspects = new TreeMap<String, QueryAspects>(aspects2);
+			PrintStream ps = new PrintStream(new FileOutputStream(filename));
+			for (Map.Entry<String, QueryAspects> e : aspects.entrySet()) {
+				String query = e.getKey();
+				QueryAspects qa = e.getValue();
+				qa.calcAspectStats();
+				for (Map.Entry<String, boolean[]> e2 : qa._aspects.entrySet()) {
+					boolean[] aspect_array = e2.getValue();
+					if (aspect_array == null) {
+						ps.println(query + " 0 " + e2.getKey() + " 0");
+						continue;
+					}
+					//System.out.println(query + " " + e2.getKey() + " " + QueryAspects.getAspectsAsStr(aspect_array));
+					for (int i = 0; i < aspect_array.length; i++) {
+						if (aspect_array[i])
+							ps.println(query + " " + qa.getContiguousID(i) + " " + e2.getKey() + " 1");
+					}
+				}
+			}
+			ps.close();
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+			System.exit(1);
+		}
+	}
+
 	public enum FilePos { NOTHING, NUMBER, TITLE, DESC, OTHER };
 
 	// Note: the TREC Query files have a rather non-standard format
@@ -206,7 +325,7 @@ public class TestTREC {
 						case NOTHING: 
 							break;
 						case NUMBER:
-							cur_query._name = line; // Should only be one line
+							cur_query._name = line.substring(0, line.length() - 1); // Should only be one line
 							break;
 						case TITLE:
 							cur_query._title += " " + line;
@@ -234,7 +353,7 @@ public class TestTREC {
 		return queries;
 	}
 
-	public static HashMap<String,QueryAspects> ReadTRECAspects(String aspect_file) {
+	public static HashMap<String,QueryAspects> ReadTRECAspects(String aspect_file, String file_root) {
 		
 		HashMap<String,QueryAspects> aspects = new HashMap<String,QueryAspects>();
 		
@@ -245,12 +364,12 @@ public class TestTREC {
 			while ((line = br.readLine()) != null) {
 				line = line.trim();
 				String[] split = line.split("[\\s]");
-				String query_name = split[0];
+				String query_name = split[0].substring(0, split[0].length() - 1);
 				String doc_name = split[1];
 				String aspect_str = split[split.length-1];
 				QueryAspects qa = aspects.get(query_name);
 				if (qa == null) {
-					qa = new QueryAspects(query_name);
+					qa = new QueryAspects(query_name, new Integer(query_name), file_root + "/" + query_name);
 					aspects.put(query_name, qa);
 				}
 				qa.addAspect(doc_name, aspect_str);

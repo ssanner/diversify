@@ -12,15 +12,18 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import util.MapList;
+
 import javax.xml.xpath.*;
 
 public abstract class Doc {
-
+	
 	public final static boolean USE_TITLE = true;
 	public final static boolean USE_CONTENT = true;
 	
 	public final int DISPLAY_DOCLEN = 100;
-	
+
+	//public static MapList _queryToDocNames = new MapList();
 	public static XPath _xpath = XPathFactory.newInstance().newXPath();
 	
 	public String _name;
