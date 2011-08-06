@@ -486,7 +486,8 @@ computeMAP (struct rList *rl)
 {
   int i,j;
   double count = 0.0, total = 0.0;
-  double *subtopicCount = (double *) alloca (rl->subtopics*sizeof(int));
+  /*BUG: double *subtopicCount = (double *) alloca (rl->subtopics*sizeof(int));*/
+  double *subtopicCount = (double *) alloca (rl->subtopics*sizeof(double));
   double *subtopicTotal = (double *) alloca (rl->subtopics*sizeof(double));
 
   rl->map = rl->mapIA = 0.0;
@@ -1174,13 +1175,17 @@ applyQrels (struct rList *qrl, int qTopics, struct rList *rrl, int rTopics)
 	rrl[j].actualSubtopics = qrl[i].actualSubtopics;
 	rrl[j].nrel = qrl[i].nrel;
 	rrl[j].nrelSub = qrl[i].nrelSub;
+
 	applyJudgments (
 	  qrl[i].list, qrl[i].results, rrl[j].list, rrl[j].results
 	);
+
 	resultSortByRank (rrl[j].list, rrl[j].results);
+
 	computeDCG (rrl + j);
 	computeNRBP (rrl + j);
 	computeERR (rrl + j);
+
 	renormalize (qrl + i, rrl + j);
 	computeSTRecall (rrl + j);
 	computePrecision (rrl + j);

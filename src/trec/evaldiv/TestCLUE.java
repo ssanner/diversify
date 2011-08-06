@@ -45,12 +45,9 @@ public class TestCLUE {
 	
 	public final static int NUM_RESULTS = 20;
 	
-	//public final static String CLUE_DOC_DIR1 = "../../Data/CIKM2011/ClueWeb-CatB/Clean/OKAPI-Result-Clean/1";
-	public final static String CLUE_DOC_DIR  = 
-		System.getProperty("os.name").toLowerCase().startsWith("windows")
-		? "../../Data/CIKM2011/ClueWeb-CatB/Clean/OKAPI-Result-Clean"
-		: "files/CIKM2011/ClueWeb-CatB/Clean/OKAPI-Result-Clean";
+	public final static String CLUE_DOC_DIR  = "../../Data/CIKM2011/ClueWeb-CatB/Clean/OKAPI-Result-Clean";
 	
+	public final static String DIVERSITY_QRELS = "files/trec/qrels.diversity.all";
 	public final static String QUERY_FILE_2009 = "files/trec/wt09.topics.queries-only";
 	public final static String QUERY_FILE_2010 = "files/trec/wt10.topics.queries-only";
 	
@@ -59,7 +56,7 @@ public class TestCLUE {
 	public static String[] CLUE_QUERIES = null;
 	static {
 		ArrayList<String> queries = new ArrayList<String>();
-		for (int i = 1; i <= 100 /*100*/; i++) {
+		for (int i = 1 /*1*/; i <= 50 /*100*/; i++) {
 			queries.add((i <= 50 ? "wt09-" : "wt10-") + i);
 		}
 		
@@ -146,7 +143,7 @@ public class TestCLUE {
 		//loss_functions.add(new AvgWSLoss());
 		loss_functions.add(new AllUSLoss());
 		loss_functions.add(new AllWSLoss());
-		loss_functions.add(new NDEval10Losses());
+		loss_functions.add(new NDEval10Losses(DIVERSITY_QRELS));
 		
 		// Build the TREC tests
 		// Build a new result list selectors... all use the greedy MMR approach,
@@ -200,10 +197,10 @@ public class TestCLUE {
 //					TFIDF_kernel /* sim */,
 //					TFIDF_kernel /* div */ ));
 //			
-//			tests.add( new MMR( docs, 
-//					0.5d /* lambda: 0d is all weight on query sim */, 
-//					BM25_kernel  /* sim */,
-//					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+			tests.add( new MMR( docs, 
+					0.5d /* lambda: 0d is all weight on query sim */, 
+					BM25_kernel  /* sim */,
+					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 //			
 //			tests.add( new MMR( docs, 
 //					0.75d /* lambda: 0d is all weight on query sim */, 
@@ -215,10 +212,10 @@ public class TestCLUE {
 //					BM25_kernel  /* sim */,
 //					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 
-//		tests.add( new MMR( docs, 
-//				0.5d /* lambda: 0d is all weight on query sim */, 
-//				LDA10_kernel /* sim */,
-//				LDA10_kernel /* div */ ));
+		tests.add( new MMR( docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				LDA10_kernel /* sim */,
+				LDA10_kernel /* div */ ));
 
 	//		tests.add( new MMR( docs, 
 	//				0.5d /* lambda: 0d is all weight on query sim */, 
@@ -245,31 +242,31 @@ public class TestCLUE {
 //				LDA20_kernel /* sim */,
 //				LDA20_kernel /* div */ ));
 //
-//		tests.add( new MMR( docs, 
-//				0.5d /* lambda: 0d is all weight on query sim */, 
-//				PLSR10_kernel /* sim */,
-//				PLSR10_kernel /* div */ ));
-//
+		tests.add( new MMR( docs, 
+				0.5d /* lambda: 0d is all weight on query sim */, 
+				PLSR10_kernel /* sim */,
+				PLSR10_kernel /* div */ ));
+
 		
 //					tests.add( new MMR( docs, 
 //							0.5d /* lambda: 0d is all weight on query sim */, 
 //							BM25_kernel /* sim */,
 //							LDA15_kernel /* div */ ));
 			
-					tests.add( new MMR( docs, 
-							0.5d /* lambda: 0d is all weight on query sim */, 
-							BM25_kernel /* sim */,
-							PLSR15_kernel /* div */ ));
+//-					tests.add( new MMR( docs, 
+//							0.5d /* lambda: 0d is all weight on query sim */, 
+//							BM25_kernel /* sim */,
+//							PLSR15_kernel /* div */ ));
 					
 //					tests.add( new MMR( docs, 
 //							0.25d /* lambda: 0d is all weight on query sim */, 
 //							BM25_kernel /* sim */,
 //							LDA15_kernel /* div */ ));
 					
-					tests.add( new MMR( docs, 
-							0.25d /* lambda: 0d is all weight on query sim */, 
-							BM25_kernel /* sim */,
-							PLSR15_kernel /* div */ ));
+//-					tests.add( new MMR( docs, 
+//							0.25d /* lambda: 0d is all weight on query sim */, 
+//							BM25_kernel /* sim */,
+//							PLSR15_kernel /* div */ ));
 			//
 			//		tests.add( new MMR( docs, 
 			//				0.75d /* lambda: 0d is all weight on query sim */, 
@@ -360,7 +357,7 @@ public class TestCLUE {
 					// Make a new query and rest aspects / max
 					max_aspect = -1;
 					cur_aspects.clear();
-					cur_qa = new QueryAspects((query_id <= 50 ? "wt09-" : "wt10-") + query_id, query_id, file_root);
+					cur_qa = new QueryAspects((query_id <= 50 ? "wt09-" : "wt10-") + query_id, query_id, file_root + "/" + query_id);
 					aspects.put(cur_qa._queryName, cur_qa);
 					ids.remove(query_id);
 				}

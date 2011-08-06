@@ -31,7 +31,7 @@ import util.VectorUtils;
 
 public class Evaluator {
 
-	public final static String PATH_PREFIX = "files/trec/RESULTS3/";
+	public final static String PATH_PREFIX = "files/trec/RESULTS/";
 	
 	// TODO: Need to optimize number of topics
 	// TODO: Verify consistency of rankers when used multiple times with clearDocs
@@ -51,7 +51,7 @@ public class Evaluator {
 		
 		PrintStream ps  = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + ".txt"));
 		PrintStream ps2 = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + ".avg.txt"));
-		PrintStream ps3  = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + "_ndeval.txt"));
+		PrintStream ps3 = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + "_ndeval.txt"));
 		PrintStream ps4 = new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + "_ndeval.avg.txt"));
 		PrintStream err = new DevNullPrintStream(); //new PrintStream(new FileOutputStream(PATH_PREFIX + output_filename + ".errors.txt"));
 	
@@ -104,10 +104,11 @@ public class Evaluator {
 				for (String doc_name : relevant_docs) {
 					if (!docs.containsKey(doc_name))
 						err.println("ERROR: '" + doc_name + "' not found for '" + query + "'");
-					else
+					else {
 						t.addDoc(doc_name);
-					//if (DEBUG)
-					//	System.out.println("- Adding " + doc_name + " -> " + d.getDocContent());
+						//if (DEBUG)
+						//	System.out.println("- [" + query + "] Adding " + doc_name);
+					}
 				}
 				
 				// Get the results
@@ -119,6 +120,8 @@ public class Evaluator {
 				
 				// Evaluate all loss functions on the results
 				for (AspectLoss loss : loss_functions) {
+					String loss_name = loss.getName();
+					System.out.println("Evaluating: " + loss_name);
 					Object o = loss.eval(qa, result_list);
 					String loss_result_str = null;
 					if (o instanceof double[]) {
