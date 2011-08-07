@@ -72,7 +72,7 @@ public class Evaluator {
 			// Maintain average US and WSL vectors
 			double[] usl_vs_rank = new double[num_results];
 			double[] wsl_vs_rank = new double[num_results];
-			double[] ndeval = new double[num_results];
+			double[] ndeval = null;
 			
 			// Build a cache for reuse of top-docs
 			HashMap<String, HashSet<String>> top_docs = new HashMap<String, HashSet<String>>();
@@ -147,6 +147,9 @@ public class Evaluator {
 						export(ps, query_num, test_num, 2, (double[])o);
 					}
 					if (loss instanceof NDEval10Losses) {
+						if (ndeval == null) {
+							ndeval = new double[((double[])o).length];
+						}	
 						ndeval = VectorUtils.Sum(ndeval, (double[])o);
 						export(ps3, query_num, test_num, 3, (double[])o);
 					}

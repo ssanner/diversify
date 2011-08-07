@@ -70,6 +70,11 @@ public class VectorUtils {
 	}
 	
 	public static double[] Sum(double[] d1, double[] d2) {
+		if (d1.length != d2.length) {
+			System.out.println("ERROR: Vector Sum mismatch: " + d1.length + " vs " + d2.length);
+			new Exception().printStackTrace();
+			System.exit(1);
+		}
 		double[] sum = new double[d1.length];
 		for (int k = 0; k < d1.length; k++) {
 			sum[k] += d1[k] + d2[k];
@@ -86,6 +91,11 @@ public class VectorUtils {
 	}
 	
 	public static double DotProduct(double[] d1, double[] d2) {
+		if (d1.length != d2.length) {
+			System.out.println("ERROR: Vector Sum mismatch: " + d1.length + " vs " + d2.length);
+			new Exception().printStackTrace();
+			System.exit(1);
+		}
 		double dot_product = 0d;
 		for (int k = 0; k < d1.length; k++) {
 			dot_product += d1[k]*d2[k];
