@@ -50,9 +50,9 @@ public class TestTREC {
 	public final static String ASPECT_FILE  = "files/trec/TRECQueryAspects.txt";
 	
 	public final static String[] TREC_QUERIES = 
-		{ "307", "322", "326", "347", "352", "353", 
+		{ "307"/*, "322", "326", "347", "352", "353", 
 		  "357", "362", "366", "387", "392", "408", 
-		  "414", "428", "431", "438", "446" };
+		  "414", "428", "431", "438", "446"*/ };
 	
 	static ArrayList<String> ALL_QUERIES = new ArrayList<String>(Arrays.asList(TREC_QUERIES));
 	
@@ -181,8 +181,8 @@ public class TestTREC {
 
 		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
-				LDA10_kernel /* sim */,
-				LDA10_kernel /* div */ ));
+				LDA15_kernel /* sim */,
+				LDA15_kernel /* div */ ));
 
 	//		tests.add( new MMR( docs, 
 	//				0.5d /* lambda: 0d is all weight on query sim */, 
@@ -211,8 +211,8 @@ public class TestTREC {
 
 		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
-				PLSR10_kernel /* sim */,
-				PLSR10_kernel /* div */ ));
+				PLSR15_kernel /* sim */,
+				PLSR15_kernel /* div */ ));
 		
 //					tests.add( new MMR( docs, 
 //							0.5d /* lambda: 0d is all weight on query sim */, 
@@ -256,7 +256,7 @@ public class TestTREC {
 
 		// Evaluate results of different query processing algorithms
 		Evaluator.doEval(Arrays.asList(TREC_QUERIES), docs, 
-						 queries, aspects, loss_functions, tests, NUM_RESULTS, "trec68");
+						 queries, aspects, loss_functions, tests, NUM_RESULTS, "trec68_test");
 	}
 
 	///////////////////////////////////////////////////////////////////////////////

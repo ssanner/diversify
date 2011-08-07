@@ -56,7 +56,7 @@ public class TestCLUE {
 	public static String[] CLUE_QUERIES = null;
 	static {
 		ArrayList<String> queries = new ArrayList<String>();
-		for (int i = 1 /*1*/; i <= 50 /*100*/; i++) {
+		for (int i = 51 /*1*/; i <= 100 /*100*/; i++) {
 			queries.add((i <= 50 ? "wt09-" : "wt10-") + i);
 		}
 		
@@ -214,8 +214,8 @@ public class TestCLUE {
 
 		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
-				LDA10_kernel /* sim */,
-				LDA10_kernel /* div */ ));
+				LDA15_kernel /* sim */,
+				LDA15_kernel /* div */ ));
 
 	//		tests.add( new MMR( docs, 
 	//				0.5d /* lambda: 0d is all weight on query sim */, 
@@ -244,8 +244,8 @@ public class TestCLUE {
 //
 		tests.add( new MMR( docs, 
 				0.5d /* lambda: 0d is all weight on query sim */, 
-				PLSR10_kernel /* sim */,
-				PLSR10_kernel /* div */ ));
+				PLSR15_kernel /* sim */,
+				PLSR15_kernel /* div */ ));
 
 		
 //					tests.add( new MMR( docs, 
@@ -290,7 +290,7 @@ public class TestCLUE {
 
 		// Evaluate results of different query processing algorithms
 		Evaluator.doEval(Arrays.asList(CLUE_QUERIES), docs, 
-						 queries, aspects, loss_functions, tests, NUM_RESULTS, "clueweb");
+						 queries, aspects, loss_functions, tests, NUM_RESULTS, "clueweb2_15");
 	}
 
 	///////////////////////////////////////////////////////////////////////////////

@@ -48,7 +48,7 @@ public class NDEval10Losses extends AspectLoss {
 			ndeval_tmp.close();
 			
 			// Next call ndeval10 and get the results
-			System.out.println("> " + NDEVAL + " " + NDEVAL_QRELS + " " + NDEVAL_TMP);
+			//System.out.println("> " + NDEVAL + " " + NDEVAL_QRELS + " " + NDEVAL_TMP);
 			p = Runtime.getRuntime().exec(NDEVAL + " " + NDEVAL_QRELS + " " + NDEVAL_TMP);
 	        BufferedReader process_out = new BufferedReader(new InputStreamReader(p.getInputStream()));
 	        BufferedReader process_out_err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
@@ -66,7 +66,7 @@ public class NDEval10Losses extends AspectLoss {
 	        //System.out.println("NDEVAL output");
 	        while ((line = process_out.readLine()) != null) {
 	            // process line output by process
-	        	//System.out.println(line);
+	        	//System.out.println("NDEval: " + line);
 	            if (line.startsWith("ANON_ALG") && !(line.indexOf("amean") >= 0)) {
 	            	String[] split = line.split(",");
 	            	ret_val = new double[split.length - 2];
@@ -76,8 +76,10 @@ public class NDEval10Losses extends AspectLoss {
 		            		System.out.println(i + " " + split[i]);
 	            		System.exit(1);
 	            	}
-	            	for (int i = 2; i < split.length; i++)
+	            	for (int i = 2; i < split.length; i++) {
 	            		ret_val[i - 2] = new Double(split[i]);
+	            		//System.out.println((i-2) + " " + ret_val[i - 2]);
+	            	}
 	            }
 	        }
 	        process_out.close();
