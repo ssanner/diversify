@@ -18,6 +18,7 @@ import diversity.kernel.BM25Kernel;
 import diversity.kernel.Kernel;
 import diversity.kernel.LDAKernel;
 import diversity.kernel.PLSRKernel;
+import diversity.kernel.PLSRKernelTFIDF;
 import diversity.kernel.TF;
 import diversity.kernel.TFIDF;
 
@@ -56,7 +57,7 @@ public class TestCLUE {
 	public static String[] CLUE_QUERIES = null;
 	static {
 		ArrayList<String> queries = new ArrayList<String>();
-		for (int i = 51 /*1*/; i <= 100 /*100*/; i++) {
+		for (int i = 51 /*1*/; i <= 52 /*100*/; i++) {
 			queries.add((i <= 50 ? "wt09-" : "wt10-") + i);
 		}
 		
@@ -153,6 +154,8 @@ public class TestCLUE {
 		// Instantiate all the kernels that we will use with the algorithms below
 		Kernel TF_kernel    = new TF(docs, true /* query-relevant diversity */);
 		Kernel TFIDF_kernel = new TFIDF(docs, true /* query-relevant diversity */);
+		Kernel TFIDFn_kernel = new TFIDF(docs, false /* query-relevant diversity */);
+		Kernel PLSR_TFIDF_kernel = new PLSRKernelTFIDF(docs);
 		Kernel LDA10_kernel   = new LDAKernel(docs, 10 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
 		Kernel PLSR10_kernel  = new PLSRKernel(docs, 10 /* NUM TOPICS - suggest 15 */, false /* spherical */);
 		Kernel LDA15_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
@@ -187,20 +190,36 @@ public class TestCLUE {
 //					TFIDF_kernel /* sim */,
 //					TFIDF_kernel /* div */ ));
 //			
-//			tests.add( new MMR( docs, 
-//					0.25d /* lambda: 0d is all weight on query sim */, 
+//*			tests.add( new MMR( docs, 
+//					0.5d /* lambda: 0d is all weight on query sim */, 
 //					BM25_kernel  /* sim */,
 //					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+
+			tests.add( new MMR( docs, 
+					0.5d /* lambda: 0d is all weight on query sim */, 
+					TFIDF_kernel  /* sim */,
+					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+
+			tests.add( new MMR( docs, 
+					0.5d /* lambda: 0d is all weight on query sim */, 
+					BM25_kernel  /* sim */,
+					TFIDFn_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+
+			tests.add( new MMR( docs, 
+					0.5d /* lambda: 0d is all weight on query sim */, 
+					BM25_kernel  /* sim */,
+					PLSR_TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+
 //			
 //			tests.add( new MMR( docs, 
 //					0.5d /* lambda: 0d is all weight on query sim */, 
 //					TFIDF_kernel /* sim */,
 //					TFIDF_kernel /* div */ ));
 //			
-			tests.add( new MMR( docs, 
-					0.5d /* lambda: 0d is all weight on query sim */, 
-					BM25_kernel  /* sim */,
-					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+//			tests.add( new MMR( docs, 
+//					0.5d /* lambda: 0d is all weight on query sim */, 
+//					BM25_kernel  /* sim */,
+//					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 //			
 //			tests.add( new MMR( docs, 
 //					0.75d /* lambda: 0d is all weight on query sim */, 
@@ -212,10 +231,10 @@ public class TestCLUE {
 //					BM25_kernel  /* sim */,
 //					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				LDA15_kernel /* sim */,
-				LDA15_kernel /* div */ ));
+//*		tests.add( new MMR( docs, 
+//				0.5d /* lambda: 0d is all weight on query sim */, 
+//				LDA15_kernel /* sim */,
+//				LDA15_kernel /* div */ ));
 
 	//		tests.add( new MMR( docs, 
 	//				0.5d /* lambda: 0d is all weight on query sim */, 
@@ -241,12 +260,11 @@ public class TestCLUE {
 //				0.5d /* lambda: 0d is all weight on query sim */, 
 //				LDA20_kernel /* sim */,
 //				LDA20_kernel /* div */ ));
-//
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				PLSR15_kernel /* sim */,
-				PLSR15_kernel /* div */ ));
 
+//*		tests.add( new MMR( docs, 
+//				0.5d /* lambda: 0d is all weight on query sim */, 
+//				PLSR15_kernel /* sim */,
+//				PLSR15_kernel /* div */ ));
 		
 //					tests.add( new MMR( docs, 
 //							0.5d /* lambda: 0d is all weight on query sim */, 
@@ -290,7 +308,7 @@ public class TestCLUE {
 
 		// Evaluate results of different query processing algorithms
 		Evaluator.doEval(Arrays.asList(CLUE_QUERIES), docs, 
-						 queries, aspects, loss_functions, tests, NUM_RESULTS, "clueweb2_15");
+						 queries, aspects, loss_functions, tests, NUM_RESULTS, "clueweb_test");
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
