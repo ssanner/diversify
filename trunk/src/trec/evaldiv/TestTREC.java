@@ -19,6 +19,7 @@ import diversity.kernel.BM25Kernel;
 import diversity.kernel.Kernel;
 import diversity.kernel.LDAKernel;
 import diversity.kernel.PLSRKernel;
+import diversity.kernel.PLSRKernelTFIDF;
 import diversity.kernel.TF;
 import diversity.kernel.TFIDF;
 
@@ -50,9 +51,9 @@ public class TestTREC {
 	public final static String ASPECT_FILE  = "files/trec/TRECQueryAspects.txt";
 	
 	public final static String[] TREC_QUERIES = 
-		{ "307"/*, "322", "326", "347", "352", "353", 
+		{ "307", "322", "326", "347", "352", "353", 
 		  "357", "362", "366", "387", "392", "408", 
-		  "414", "428", "431", "438", "446"*/ };
+		  "414", "428", "431", "438", "446" };
 	
 	static ArrayList<String> ALL_QUERIES = new ArrayList<String>(Arrays.asList(TREC_QUERIES));
 	
@@ -120,6 +121,8 @@ public class TestTREC {
 		// Instantiate all the kernels that we will use with the algorithms below
 		Kernel TF_kernel    = new TF(docs, true /* query-relevant diversity */);
 		Kernel TFIDF_kernel = new TFIDF(docs, true /* query-relevant diversity */);
+		Kernel TFIDFn_kernel = new TFIDF(docs, false /* query-relevant diversity */);
+		Kernel PLSR_TFIDF_kernel = new PLSRKernelTFIDF(docs);
 		Kernel LDA10_kernel   = new LDAKernel(docs, 10 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
 		Kernel PLSR10_kernel  = new PLSRKernel(docs, 10 /* NUM TOPICS - suggest 15 */, false /* spherical */);
 		Kernel LDA15_kernel   = new LDAKernel(docs, 15 /* NUM TOPICS - suggest 15 */, false /* spherical */, false /* query-relevant diversity */);
@@ -154,10 +157,26 @@ public class TestTREC {
 //					TFIDF_kernel /* sim */,
 //					TFIDF_kernel /* div */ ));
 //			
+//*			tests.add( new MMR( docs, 
+//					0.5d /* lambda: 0d is all weight on query sim */, 
+//					BM25_kernel  /* sim */,
+//					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+
 			tests.add( new MMR( docs, 
 					0.5d /* lambda: 0d is all weight on query sim */, 
 					BM25_kernel  /* sim */,
 					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+
+			tests.add( new MMR( docs, 
+					0.5d /* lambda: 0d is all weight on query sim */, 
+					BM25_kernel  /* sim */,
+					TFIDFn_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+
+			tests.add( new MMR( docs, 
+					0.5d /* lambda: 0d is all weight on query sim */, 
+					BM25_kernel  /* sim */,
+					PLSR_TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
+
 //			
 //			tests.add( new MMR( docs, 
 //					0.5d /* lambda: 0d is all weight on query sim */, 
@@ -179,10 +198,10 @@ public class TestTREC {
 //					BM25_kernel  /* sim */,
 //					TFIDF_kernel /* div */ )); /* cannot use BM25 for diversity, not symmetric */
 
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				LDA15_kernel /* sim */,
-				LDA15_kernel /* div */ ));
+//*		tests.add( new MMR( docs, 
+//				0.5d /* lambda: 0d is all weight on query sim */, 
+//				LDA15_kernel /* sim */,
+//				LDA15_kernel /* div */ ));
 
 	//		tests.add( new MMR( docs, 
 	//				0.5d /* lambda: 0d is all weight on query sim */, 
@@ -209,10 +228,10 @@ public class TestTREC {
 //				LDA20_kernel /* sim */,
 //				LDA20_kernel /* div */ ));
 
-		tests.add( new MMR( docs, 
-				0.5d /* lambda: 0d is all weight on query sim */, 
-				PLSR15_kernel /* sim */,
-				PLSR15_kernel /* div */ ));
+//*		tests.add( new MMR( docs, 
+//				0.5d /* lambda: 0d is all weight on query sim */, 
+//				PLSR15_kernel /* sim */,
+//				PLSR15_kernel /* div */ ));
 		
 //					tests.add( new MMR( docs, 
 //							0.5d /* lambda: 0d is all weight on query sim */, 
