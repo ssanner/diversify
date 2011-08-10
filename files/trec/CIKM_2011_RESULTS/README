@@ -1,0 +1,59 @@
+This directory outlines results used to produce the tables and plots
+in the following CIKM 11 Poster Paper:
+
+  S. Sanner, S. Guo, T. Graepel, S. Kharazmi, S. Karimi
+  (2011). Diverse Retrieval via Greedy Optimization of Expected 1-call@k
+  in a Latent Subtopic Relevance Model. In Proceedings of the 20th ACM
+  Conference on Information and Knowledge Management 
+  (CIKM-11). Barcelona, Spain.
+
+===
+
+File to test domain mapping:
+
+- TREC 6-8: trec68_15*
+- ClueWeb 2009: clueweb1_15*
+- ClueWeb 2010: clueweb2_15*
+
+The 15 refers to the fact that LDA was trained with 15 latent topics
+(the optimal value among 5, 10, 15, and 20).
+
+===
+
+File types:
+
+(1) [domain].txt: mean subtopic recall vs. rank
+(2) [domain].avg.txt: results from (1) averaged over queries
+(3) [domain]_ndeval.txt: results from ndeval script
+(4) [domain]_ndeval.avg.txt: results from (3) averaged over queries
+
+Column meanings in files:
+
+Column 1: query ID 
+
+Column 2: algorithm ID, here
+
+  1 - MMR (lamdba=.5) BM25/TFIDF
+  2 - MMR (lamdba=.5) using LSI/LDA kernel for similarity / diversity
+  3 - Exp-1-call@k: as defined in the paper cited above
+
+Column 3: evaluation type, here
+
+  1 - Uniform subtopic recall (uniform weighting of topics)
+
+  2 - Weighted subtopic recall (weighting of topics according to
+      proportion in qrels)
+
+  3 - Output measures from ndeval script for ClueWeb diversity track
+
+Columns 4+: specific to column 3, here
+
+  Column 3=1,2: subtopic recall @ k for k=1..20
+
+  Column 3=3:   nedval measures as follows, in order
+     ERR-IA@5,ERR-IA@10,ERR-IA@20,nERR-IA@5,nERR-IA@10,
+     nERR-IA@20,alpha-DCG@5,alpha-DCG@10,alpha-DCG@20,
+     alpha-nDCG@5,alpha-nDCG@10,alpha-nDCG@20,NRBP,nNRBP,
+     MAP-IA,P-IA@5,P-IA@10,P-IA@20,strec@5,strec@10,strec@20
+     (note: the very last column -- strec@20 -- may be missing in 
+      some of the ndeval data)
