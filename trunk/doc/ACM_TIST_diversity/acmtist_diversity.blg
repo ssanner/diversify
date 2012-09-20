@@ -1,0 +1,59 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.4)
+The top-level auxiliary file: acmtist_diversity.aux
+A level-1 auxiliary file: appendix_acm_tist.aux
+The style file: acmsmall.bst
+Database file #1: reference.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--empty address in carbonell98MMR
+Warning--empty address in chen06Less
+Warning--empty address in clarke08Novelty
+Warning--empty address in gollapudi09AnAxiomatic
+Warning--empty address in radlinski08LearningDiverse
+Warning--empty address in salton83Introduction
+Warning--empty address in sanderson08Ambiguous
+Warning--empty publisher in mrr
+Warning--empty address in mrr
+Warning--empty address in yu09368
+Warning--empty address in zhai03Beyond
+You've used 36 entries,
+            3177 wiz_defined-function locations,
+            960 strings with 13075 characters,
+and the built_in function-call counts, 28487 in all, are:
+= -- 2849
+> -- 1360
+< -- 1
++ -- 396
+- -- 510
+* -- 2435
+:= -- 4384
+add.period$ -- 182
+call.type$ -- 36
+change.case$ -- 279
+chr.to.int$ -- 35
+cite$ -- 47
+duplicate$ -- 1047
+empty$ -- 2098
+format.name$ -- 732
+if$ -- 5985
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 65
+newline$ -- 183
+num.names$ -- 358
+pop$ -- 308
+preamble$ -- 1
+purify$ -- 494
+quote$ -- 0
+skip$ -- 984
+stack$ -- 0
+substring$ -- 1734
+swap$ -- 392
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 706
+warning$ -- 11
+while$ -- 319
+width$ -- 0
+write$ -- 553
+(There were 11 warnings)

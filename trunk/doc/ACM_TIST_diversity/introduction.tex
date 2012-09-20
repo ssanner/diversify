@@ -1,0 +1,57 @@
+One of the basic tenets of set-based information retrieval is to
+minimize redundancy, hence maximize diversity, in the result set to
+increase the chance that the results will contain items relevant to
+the user's query~\cite{goffman64OnRelevanceAsAMeasure}.  Hence, \emph{diverse retrieval}
+can be defined as a \emph{set-level} retrieval objective that takes
+into account inter-document relevance dependences when producing a
+result set relevant to a query.
+
+\emph{Subtopic retrieval} --- ``the task of finding documents that
+cover as many \emph{different} subtopics of a general topic as
+possible''~\cite{zhai03Beyond} --- is a
+motivating case for diverse retrieval.  That is, if a query has
+multiple facets that should be covered by a result set, or a query has
+multiple ambiguous interpretations, then a retrieval algorithm should
+try to ``cover'' all of these subtopics in its result set.
+
+One of the most popular result set diversification methods is Maximal
+Marginal Relevance (MMR)~\cite{carbonell98MMR}.  
+Formally, given an \emph{item set} $D$ (e.g., a set of documents) where retrieved items
+are denoted as $s_i \in D$, we aim to select an optimal subset of
+items $S_k^* \subset D$ (where $|S_k^*| = k$ and $k < |D|$)
+\emph{relevant} to a given query $\vec{q}$ (e.g., query terms) with
+some level of \emph{diversity} among the items in $S_k^*$.  MMR
+builds $S_k^*$ in a greedy manner by choosing the next optimal
+selection $s_k^*$ given the set of $k-1$ optimal selections
+$S_{k-1}^* = \{ s_1^*, \ldots, s_{k-1}^* \}$ (recursively defining
+$S_k^* = S_{k-1}^* \cup \{ s_k^* \}$ with $S_0^* = \emptyset$)
+as follows:
+%MMR chooses $s_k^*$
+%greedily according to the following criteria:
+\begin{equation}\label{eq:MMR}
+ s_k^* = \hspace{-.3mm} \argmax_{s_k \in D \setminus S_{k-1}^*} [ \lambda(\Sim_{1}(\vec{q},s_k))\hspace{-.3mm}-\hspace{-.3mm}(1-\lambda)\max_{s_i \in S_{k-1}^*} \Sim_{2}(s_i,s_k) ].
+\end{equation}
+Here, 
+$\lambda \in [0, 1]$, metric $\Sim_{1}$ measures
+query-item relevance, and metric $\Sim_{2}$ measures the similarity
+between two items. In the case of $s_1^*$, the $\max$ term is omitted.
+
+In MMR, we note that the $\lambda$ term explicitly controls the
+trade-off between relevance and diversity. This $\lambda$ term has been traditionally set in an ad-hoc manner or
+in recent work, learned in a query-specific way from data~\cite{santos2010selectively}.  
+
+Presently, little is formally known about how a particular selection
+of $\lambda$ relates to the overall \emph{set-based relevance objective}
+being optimized.  However, it has been previously noted that the
+$n$-call@$k$ set-based relevance metric (which is 1 if at least $n$
+documents in a set of $k$ are relevant, otherwise 0) encourages
+diversity as $n \to 1$~\cite{chen06Less,wang09PortfolioTheory}.
+Indeed, Sanner \emph{et al.} \cite{sanner11}~have shown that optimizing
+\emph{expected $n$-call@$k$} for $n=1$ corresponds to 
+$\lambda = 0.5$ --- we extend
+this derivation to show that $\lambda = \frac{n}{n+1}$ 
+for arbitrary $n \geq 1$ 
+(independent of result set size $k \geq
+n$).  This result precisely formalizes a relationship
+between $n$-call@$k$ and the relevance vs. diversity
+trade-off.

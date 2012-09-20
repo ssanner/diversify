@@ -1,0 +1,154 @@
+\section{Full derivation}
+\subsection{Optimizing objective}
+We want to choose $S_k^*$ that maximizes the objective:
+\begin{align*}
+  \ExpNCall{n}(S_k,\vec{q})
+  = \mathbb{E}[R_k\geq n|s_1,\dots,s_k,\vec{q}]
+\end{align*}
+
+\noindent
+By taking a greedy approach, we select $s_k^*$ given $S_{k-1}^*$:
+\begin{align}
+  s_k^* & = \argmax_{s_k} \mathbb{E}[R_k\geq n|S_{k-1}^*,s_k,\vec{q}] \nonumber\\
+% 
+  & = \argmax_{s_k} P(R_k\geq n|S_{k-1}^*,s_k,\vec{q}) \label{note1}\\
+%
+  & = \argmax_{s_k} \!\sum_{T_k} \Bigl( P(t|\vec{q}) \,P(t_k|s_k) \Bigl( \prod_{i=1}^{k-1} P(t_i|s_i^*) \Bigr) \cdot P(R_k\geq n|T_k,S_{k-1}^*,s_k,\vec{q}) \Bigr) \label{note2}\\
+%
+  & = \argmax_{s_k} \!\sum_{T_k} P(t|\vec{q}) \,P(t_k|s_k) \Bigl( \prod_{i=1}^{k-1} P(t_i|s_i^*) \Bigr) \cdot \Bigl( \mbox{$\underbrace{P(r_k\!\geq\!0|R_{k-\!1}\!\geq\!n,t_k,t)}_{1}$} P(\!R_{k-\!1}\!\geq\!n|\TlessK) \nonumber \\[-1.5mm]
+  & \hspace{55mm} + P(r_k=1|R_{k-1}\!=\!n\!-\!1,t_k,t) P(\!R_{k-\!1}\!=\!n\!-\!1|\TlessK) \Big) \label{note3}\\
+%
+  & = \argmax_{s_k} \Bigg( \sum_{\TlessK} \bigg[ \mbox{$\underbrace{ \!\sum_{t_k} \!\!P(t_k|s_k) }_{1}$} \bigg] P(t|\vec{q}) \Bigl( \prod_{i=1}^{k-1} P(t_i|s_i^*) \Bigr) P(R_{\!k-\!1}\geq\!n|\TlessK) + \nonumber \\[-1.5mm]
+  & \hspace{20mm} \sum_{\TlessK} \bigg[ \sum_{t_k} P(t_k|s_k) P(r_k=1|t_k,t) \bigg] P(t|\vec{q}) \Bigl( \prod_{i=1}^{k-1} P(t_i|s_i^*) \Bigr) P(\!R_{k-\!1}\!=\!n\!-\!1|\TlessK) \Bigg) \nonumber\\
+%
+  & = \argmax_{s_k} \sum_{t} P(t|\vec{q}) P(t_k\!=\!t|s_k) \bigg[ \sum_{t_1, \dots, t_{k-1}}  P(R_{k-\!1}\!=\!n\!-\!1|\TlessK) \prod_{i=1}^{k-1} P(t_i|s_i^*) \bigg] \label{note4}\\
+%
+  & = \argmax_{s_k} \sum_{t} \!P(t|\vec{q}) P(t_k\!=\!t|s_k) P(R_{k-\!1}\!=\!n\!-\!1|S_{k-1}^*) \label{eq.ncall}
+\end{align}
+
+\noindent
+Note: \\
+(1) Since $( R_k \geq n )$ can only be zero or one in probability. \\
+(2) Marginalize out $T_k$. \\
+(3) Split $( R_k \geq n )$ into two disjoint events $(r_k \! \geq \! 0, R_{k\!-\!1}\!\geq \!n)$, $(r_k\!=\!1, R_{k\!-\!1}\!=\!n\!-\!1)$, conditioned on $R_{k-1}$. \\
+(4) Drop the first line as it does not involve $s_k$ and has no influence in determining $s_k^*$. \\
+Note that $\sum_{t_k} \!\! P(t_k|s_k) P(r_k\!\!=\!\!1|t_k,t) = \sum_{t_k} \!\! P(t_k|s_k) \I[t_k\!=\!t] \! = \! P(t_k\!\!=\!\!t|s_k)$, where $t$ is implicitly conditioned and is not explicitly shown here. \\
+(5) This objective is recursively defined. \\
+
+By similar reasoning, the probability needed in~\eqref{eq.ncall} is recursively defined as
+\begin{align*}
+P(R_k=n|S_k,t)=
+\begin{cases}
+n \geq 1, k > 1:  &  \bigl( 1\!-\!P(t_k\!=\!t|s_k) \bigr) P(R_{k-1}\!=\!n|S_{k-1},t) \nonumber \\
+  & \hspace{5mm} + P(t_k\!=\!t|s_k) P(R_{k-\!1}\!=\!n\!-\!1|S_{k-\!1},t) \\
+%%
+n = 0, k > 1:   & \bigl( 1\!-\!P(t_k\!=\!t|s_k) \bigr) P(R_{k-\!1}\!=\!0|S_{k-\!1},t) \\
+%%
+n = 1, k = 1:   & P(t_1\!=\!t|s_1) \\
+n = 0, k = 1:   & 1 - P(t_1\!=\!t|s_1)
+\end{cases}
+%       \bigl 1-P(t_1\!=\!t|s_1) \bigr) = \bigl 1-P(t_1\!=\!t|s_1) \bigr) \\
+%  & \hspace{2mm} P(R_1\!=\!1|S_1,t) = P(t_1\!=\!t|s_1)
+\end{align*}
+
+For expected $n$-call@$k$ where $n \! \leq \! k/2$, by unrolling its recursive definition in \eqref{eq.ncall}, the explicit objective is
+\begin{align}
+  & s_k^* = \argmax_{s_k} \sum_t \Biggl( P(t|\vec{q}) \, P(t_k=t|s_k) \sum_{j_1, \dots, j_{n-\!1}} \hspace{-14mm} \prod_{\hspace{14.5mm} l \in \{j_1, \dots, j_{n-\!1}\}} \hspace{-14mm} P(t_l\!=\!t|s_l^*) \hspace{-13mm} \prod_{\substack{i=1 \\ \hspace{14mm} i \notin \{j_1, \dots, j_{n-\!1}\}}}^{k-1} \hspace{-13mm} \!\bigl( 1 - P(t_i\!=\!t|s_i^*) \bigr) \!\Biggr) \label{eq.ncall.alt}
+\end{align}
+where $j_1, \dots, j_{n-1} \in \{1,\ldots,k-1\}$ satisfy 
+that $j_i < j_{i+1}$ (i.e.,
+an ordered permutation of $n-1$ result set indices). \\
+
+Similarly, for expected $n$-call@$k$ where $n \! > \! k/2$, the explicit objective is
+\begin{align}
+  & s_k^* = \argmax_{s_k} \sum_t \Biggl( P(t|\vec{q}) \, P(t_k=t|s_k) \sum_{j_n, \dots, j_{k-\!1}} \hspace{-14mm} \prod_{\hspace{14.5mm} l \in \{j_n, \dots, j_{k-\!1}\}} \hspace{-14mm} \bigl(1 - P(t_l\!=\!t|s_l^*) \bigr) \hspace{-13mm} \prod_{\substack{i=1 \\ \hspace{14mm} i \notin \{j_n, \dots, j_{k-\!1}\}}}^{k-1} \hspace{-13mm} P(t_i\!=\!t|s_i^*) \!\Biggr) \label{eq.ncall.alt2}
+\end{align}
+where $j_n, \dots, j_{k-1} \in \{1,\ldots,k-1\}$ satisfy 
+that $j_i < j_{i+1}$ (i.e.,
+an ordered permutation of $k-n$ result set indices).
+
+% ===============================================================================
+\subsection{Relation to MMR: expected n-call@k when $n>k/2$}
+
+Assuming that $\forall i \; P(t_i|s_i) \in \{0,1\}$ and $P(t|\vec{q}) \in \{0,1\}$. It is possible to write
+\begin{align*}
+  \hspace{-13mm} \prod_{\hspace{14.5mm} l \in \{j_n, \dots, j_{k-\!1}\}} \hspace{-14mm} \bigl( 1 - \!P(t_l\!=\!t|s_l^*) \bigr) 
+  = 1 - \Biggl( 1 - \hspace{-14mm} \prod_{\hspace{14.5mm} l \in \{j_n, \dots, j_{k-\!1}\}} \hspace{-13mm} \bigl( 1 - P(t_l\!=\!t|s_l^*) \bigr) \Biggr)
+  = 1 - \Bigl( \max_{l \in \{j_n, \dots, j_{k-\!1}\}} P(t_l\!=\!t|s_l^*) \Bigr)
+\end{align*}
+
+This allows us to rewrite~\eqref{eq.ncall.alt2}
+\begin{align}
+ & s_k^* = \, \argmax_{s_k} \sum_t \Biggl( P(t|\vec{q}) P(t_k\!=\!t|s_k)  \sum_{\hspace{-1mm} j_n, \dots, j_{k-\!1}} \hspace{-13.5mm} \prod_{\substack{i=1 \\ \hspace{14mm} i \notin \{j_n, \dots, j_{k-\!1}\}}}^{k-1} \hspace{-13mm} P(t_i\!=\!t|s_i^*) \nonumber \\[-1.5mm]
+ & \hspace{25mm} - \!P(t|\vec{q}) P(t_k\!=\!t|s_k) \sum_{j_n, \dots, j_{k-\!1}} \hspace{-14mm} \prod_{\substack{i=1 \\ \hspace{14mm} i \notin \{j_n, \dots, j_{k-\!1}\}}}^{k-1} \hspace{-13mm} P(t_i\!=\!t|s_i^*) \max_{l \in \{j_n, \dots, j_{k-\!1}\}} P(t_l\!=\!t|s_l^*) \Biggr) \label{eq.ncall.alt3}
+\end{align}
+
+Assuming $m$ relevant documents are already selected in the $k-1$ collection, then the top term (specifically $\prod_i$) is non-zero $\binom{m}{n-1}$ times.  For the
+bottom term, it takes $n-1$ relevant documents to satisfy its
+$\prod_i$, and one additional relevant document to satisfy the
+$\max_l$ making it non-zero $\binom{m}{n}$ times.  Factoring out the
+$\max$ element from the bottom and pushing the $\sum_t$ inwards (all legal
+due to the $\{0,1\}$ subtopic probability assumption),~\eqref{eq.ncall.alt3} becomes
+\begin{align}
+ s_k^* & = \argmax_{s_k} \left[ \sum_t P(t|\vec{q}) P(t_k\!=\!t|s_k) \binom{m}{n-1} \right]
+ - \left[ \sum_t P(t|\vec{q}) P(t_k\!=\!t|s_k) \binom{m}{n} \underbrace{\max_{s_i \in S_{k-1}^*} P(t_i\!=\!t|s_i)}_{1} \right] \nonumber\\
+ & = \argmax_{s_k} \binom{m}{n-1} \underbrace{\sum_t P(t|\vec{q}) P(t_k\!=\!t|s_k)}_{\textrm{relevance}: \; \Sim_1(s_k,\vec{q})}
+ - \binom{m}{n} \max_{s_i \in S_{k-1}^*} \underbrace{\sum_t P(t_i\!=\!t|s_i) \!P(t|\vec{q}) P(t_k\!=\!t|s_k)}_{\textrm{diversity}: \; \Sim_2(s_k,s_i,\vec{q})} \label{note9}\\
+ & = \argmax_{s_k} \!\! \frac{n}{m\!+\!1} \Sim_1(s_k,\vec{q}) - \frac{m\!-\!n\!+\!1}{m+1} \max_{s_i \in S_{k-1}^*} \! \Sim_2(s_k,s_i,\vec{q}) \label{note10}
+\end{align}  
+
+\noindent
+Note: \\
+(9) We can rearrange "$\sum_t P(t|\vec{q}) \max_{s_i} \cdots$" as "$\max_{s_i} \sum_t P(t|\vec{q}) \cdots$" since the $\sum_t P(t|\vec{q})$ 'selects' the only $t$ for which $P(t|\vec{q}) = 1$. \\
+(10) Normalize by dividing the equation by $\binom{m}{n-1} + \binom{m}{n} = \binom{m+1}{n}$ (Pascal's rule). \\
+The result is the same as the case where $n \leq k/2$. \\
+
+The reason that we do not remove the max term in~\eqref{note9} is that this allows us to compare the objective with MMR directly. Also, leaving the max term suggests an approximate form for the case where the subtopic probabilities are non-deterministic (not strictly 0 or 1), and approaches~\eqref{note9} as the probabilities become more deterministic. \\
+
+In practice, under the greedy approach of the expected n-call@k in selecting $S_k^*$, we expect that there are already $n$ relevant documents chosen in the set $S_{k-1}^* = \{s_1^*, \dots, s_{k-1}^*\}$ (where $n << k$). In expectation, $m = n$ and hence the optimizing objective can be thought to be
+\begin{align}
+ s_k^* = \argmax_{s_k} \!\! \frac{n}{n\!+\!1} \Sim_1(s_k,\vec{q}) - \frac{1}{n+1} \max_{s_i \in S_{k-1}^*} \! \Sim_2(s_k,s_i,\vec{q}) \label{eq.ncall.final}
+\end{align} 
+
+From~\eqref{eq.ncall.final}, it is simple to see that the diversification level decreases with $n$.
+
+% ===============================================================================
+\section{Additional derivation}
+\subsection{Alternative derivation for expected 2-call@k}
+
+\begin{align*}
+  s_k^* & = \argmax_{s_k} \mathbb{E} \!\left[ R_k \geq 2 \left| S_{k-1}^*, s_k, \vec{q} \right.\right] \\
+%%  
+  & = \argmax_{s_k} \mathbb{E} \!\Bigg[ (r_1=1 \wedge r_2=1) \vee (r_1=0 \wedge r_2=1 \wedge r_3=1) \vee (r_1=1 \wedge r_2=0 \wedge r_3=1) \,\vee \\
+  & \hspace{21.7mm} (r_1=0 \wedge r_2=0 \wedge r_3=1 \wedge r_4=1) \vee (r_1=0 \wedge r_2=1 \wedge r_3=0 \wedge r_4=1) \,\vee \\
+  & \hspace{21.7mm} (r_1=1 \wedge r_2=0 \wedge r_3=0 \wedge r_4=1) \vee \dots \vee \\
+  & \hspace{21.7mm} (r_1=0 \wedge \dots \wedge r_{k-2}=0 \wedge r_{k-1}=1 \wedge r_k=1) \,\vee \\
+  & \hspace{21.7mm} (r_1=0 \wedge \dots \wedge r_{k-3}=0 \wedge r_{k-2}=1 \wedge r_{k-1} = 0 \wedge r_k=1) \vee \dots \vee \\
+  & \hspace{21.7mm} (r_1=1 \wedge r_2=0 \wedge \dots \wedge r_{k-1}=0 \wedge r_k=1) \Bigg| S_{k-1}^*, s_k, \vec{q} \,\Bigg] \\
+%%  
+  & = \argmax_{s_k} \mathbb{E} \!\Bigg[ (r_1=1 \wedge r_2=1) \vee (r_1=0 \wedge r_2=1 \wedge r_3=1) \vee (r_1=1 \wedge r_2=0 \wedge r_3=1) \,\vee \\
+  & \hspace{21.7mm} (r_1=0 \wedge r_2=0 \wedge r_3=1 \wedge r_4=1) \vee (r_1=0 \wedge r_2=1 \wedge r_3=0 \wedge r_4=1) \,\vee \\
+  & \hspace{21.7mm} (r_1=1 \wedge r_2=0 \wedge r_3=0 \wedge r_4=1) \vee \dots \vee \\
+  & \hspace{21.7mm} \left.\left. \bigvee_{j=1}^{k-1} \left( r_k=1 \wedge \bigwedge_{\substack{i=1 \\ i \neq j}}^{k-1} r_i=0 \wedge r_j=1 \right) \right| S_{k-1}^*, s_k, \vec{q} \,\right] \\
+%%
+  & = \argmax_{s_k} \sum_{j=1}^{k-1} P \!\!\left(\left. r_k=1 \wedge \bigwedge_{\substack{i=1 \\ i \neq j}}^{k-1} r_i=0 \wedge r_j=1 \right| S_{k-1}^*, s_k, \vec{q} \,\right) \\
+  & = \argmax_{s_k} \sum_{j=1}^{k-1} \left( \sum_{t_1, \dots, t_k, t} P(t|\vec{q}) \, P(t_k|s_k) \mathbb{I} [t_k=t] \, P(t_j|s_j^*) \mathbb{I} [t_j=t] \prod_{\substack{i=1 \\ i \neq j}}^{k-1} P(t_i|s_i^*) \mathbb{I} [t_i \neq t] \right) \\
+  & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k=t|s_k) \sum_{j=1}^{k-1} \left( P(t_j=t|s_j^*) \prod_{\substack{i=1 \\ i \neq j}}^{k-1} \left( 1 - P \! \left( t_i=t|s_i^* \right) \right) \right)
+\end{align*}
+
+\noindent
+Assuming that $\forall i \; P(t_i|s_i) \in \{0,1\}$ and $P(t|\vec{q}) \in \{0,1\}$, the objective becomes:
+\begin{align}
+  s_k^* & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} \left( P(t_j=t|s_j^*) \prod_{\substack{i=1 \\ i \neq j}}^{k-1} \left( 1 - P \! \left( t_i=t|s_i^* \right) \right) \right) \nonumber \\
+  & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} \left( P(t_j=t|s_j^*) \left[ 1 - \left( 1 - \prod_{\substack{i=1 \\ i \neq j}}^{k-1} \left( 1 - P \! \left( t_i=t|s_i^* \right) \right) \right) \right] \right) \nonumber \\
+  & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} \left[ P \! \left( t_j=t|s_j^* \right) - P \! \left( t_j=t|s_j^* \right) \left( 1 - \prod_{\substack{i=1 \\ i \neq j}}^{k-1} \left( 1 - P \! \left( t_i=t|s_i^* \right) \right) \right) \right] \nonumber \\
+%%
+  & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} P(t_j=t|s_j^*) \nonumber \\
+  & \hspace{10mm} - \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} P(t_j=t|s_j^*) \max_{\substack{ i \in [1, k-1] \\ i \neq j}} P(t_i=t|s_i^*) \nonumber
+\end{align}
+
+\noindent
+Noting that this is of the same form as~\eqref{eq.ncall.alt3}, albeit much simpler.
+
+
+
