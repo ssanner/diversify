@@ -1,4 +1,4 @@
-This is pdfeTeXk, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.12.23)  20 SEP 2012 16:12
+This is pdfeTeXk, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.12.23)  20 SEP 2012 16:29
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -345,7 +345,7 @@ File: inclusionExclusionPrinciple.pdf Graphic file (type pdf)
 <use inclusionExclusionPrinciple.pdf> [9 <./inclusionExclusionPrinciple.pdf
 Warning: pdflatex (file ./inclusionExclusionPrinciple.pdf): pdf inclusion: Page
  Group detected which pdfTeX can't handle. Ignoring it.
->]) (./conclusion.tex) (./appendix_acm_tist.tex
+>]) (./conclusion.tex) (./appendix.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [10]
@@ -406,8 +406,8 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3661 strings out of 94500
- 43783 string characters out of 1176765
+ 3660 strings out of 94500
+ 43748 string characters out of 1176765
  126881 words of memory out of 1000000
  6746 multiletter control sequences out of 10000+50000
  36257 words of font info for 84 fonts, out of 500000 for 2000
@@ -436,4 +436,4 @@ fb></usr/share/texmf/fonts/type1/urw/ncntrsbk/uncri8a.pfb></usr/share/texmf/fon
 ts/type1/bluesky/cm/cmmi8.pfb></usr/share/texmf/fonts/type1/urw/ncntrsbk/uncr8a
 .pfb></usr/share/texmf/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf/fo
 nts/type1/urw/helvetic/uhvb8a.pfb>
-Output written on acmtist_diversity.pdf (17 pages, 256527 bytes).
+Output written on acmtist_diversity.pdf (17 pages, 256517 bytes).
