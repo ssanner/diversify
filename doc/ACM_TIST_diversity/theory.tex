@@ -1,0 +1,173 @@
+\subsection{Optimizing Expected 1-call@k}
+Before we present the result on optimzing Expected n-call@k, we first introdue the our derivation on optimzing Expected 1-call@k. We first formally define the \emph{expected 1-call@$k$} objective:
+\begin{align}
+\label{eq:setRelevance}
+    \ExpOneCall(S_k,\vec{q}) & = \mathbb{E} \left[\left. \bigvee_{i=1}^{k}r_i=1 \right| s_{1},\dots, s_{k},\vec{q} \right]
+\end{align}
+Since jointly optimizing $\ExpOneCall(S_k,\vec{q})$ is NP-hard, we
+take a greedy approach similar to MMR where we choose the best $s_k^*$
+assuming that $S_{k-1}^*$ is given.  Then following~\cite{chen06Less},
+we can greedily optimize this objective as 
+follows:\footnote{The notation $\{ \cdot \}_C$ refers to 
+a (possibly empty) set of 
+variables (or variable assignments) $\cdot$ that meet constraints $C$.}
+\begin{align}
+& s_k^* = \argmax_{s_k} \; \ExpOneCall(S_{k-1}^* \cup \{ s_k \},\vec{q}) \nonumber \\
+   & = \argmax_{s_k} \mathbb{E}\left[\left. \bigvee_{i=1}^{k} r_i=1 \right| S_{k-1}^*, s_{k},\vec{q}\right] \nonumber \\
+   & = \argmax_{s_k} \mathbb{E}\Bigg[  (r_1=1) \vee (r_2 =1 \wedge r_1=0) \vee \cdots \vee \nonumber \\
+   & \hspace{19mm} \left(r_k=1 \wedge \bigwedge_{i=1}^{k-1} r_i=0 \right) \, \Bigg| \, S_{k-1}^*,s_k,\vec{q} \Bigg] \nonumber \\
+   & = \argmax_{s_k} \sum_{i=1}^{k} P(  r_i=1, \{ r_{j}=0 \}_{j<i} \, | \, \{ s^*_j \}_{j\leq i,j<k},\{ s_{k} \}_{k=i},\vec{q}) \nonumber \\
+   &= \argmax_{s_k} \sum_{i=1}^{k} P(  r_i=1 \, | \, \{ r_{j}=0 \}_{j<i} , \{ s^*_j \}_{j\leq i,j<k},\{ s_k \}_{k=i},\vec{q}) \nonumber\\
+   & \hspace{21.5mm} P(\{ r_{j}=0 \}_{j<i} \, | \, \{ s^*_j \}_{j\leq i,j<k},\{ s_k \}_{k=i}, \vec{q}) \nonumber \\
+   &= \argmax_{s_k} P( r_k=1 \, | \, \{ r_{j}=0 \}_{j<k}, S_{k-1}^*,s_k,\vec{q}) \label{eq:set-objective}
+\end{align}
+Here, we applied a logical equivalence, exploited additivity of
+exclusive events, rewrote the expectation of a binary event as its
+probability, exploited d-separation to remove irrelevant conditions, 
+factorized each joint into a conditional and prior, and
+removed terms and factors independent of $s_k$.  Thus, we 
+need only maximize $s_k$'s probability of relevance
+conditioned on the query and previous selections (assumed irrelevant).
+
+Next we evaluate the final query from~\eqref{eq:set-objective} w.r.t.\
+our graphical model of subtopic relevance from Figure~\ref{fig:gm}:
+\begin{align}
+&\hspace{-.5mm} s_k^* = \argmax_{s_{k}} P( r_k=1 \, | \, \{ r_{j}=0 \}_{j<k}, S_{k-1}^*,s_k,\vec{q}) \nonumber \\
+&\hspace{-.5mm} = \argmax_{s_{k}} \sum_{t_1, \cdots, t_{k}, t} P(t|\vec{q}) P(t_k|s_k) \I[t_k = t] \prod_{i=1}^{k-1} P(t_i|s_i^*) \I[t_i\neq t]\nonumber \\
+&\hspace{-.5mm} = \argmax_{s_{k}} \sum_{t} \hspace{-.5mm} P(t|\vec{q}) \sum_{t_{k}} \hspace{-.5mm} P(t_k|s_k) \I[t_k \hspace{-.3mm} = \hspace{-.3mm} t] \prod_{i=1}^{k-1} \sum_{t_{i}} \hspace{-.5mm} P(t_i|s_i^*) \I[t_i \hspace{-.3mm} \neq \hspace{-.3mm} t]\nonumber \\
+&\hspace{-.5mm} = \argmax_{s_{k}} \sum_{t} P(t|\vec{q}) P(t_k=t|s_k) \fbox{$\prod\limits_{i=1}^{k-1} (1 - P(t_i=t|s_i^*))$} \label{eq:partial_simp}
+\end{align}
+Defining $\tilde{P}(t | S_{k-1}^*) = 1 - \Box = 1 - \prod_{i=1}^{k-1} (1 -
+  P(t_i=t|s_i^*))$, this is the probability that 
+set $S_{k-1}^*$ already \emph{covers} topic $t$ 
+w.r.t.\ a \emph{noisy-or} interpretation.  Substituting
+$(1 - \tilde{P}(t | S_{k-1}^*))$ for $\Box$ since 
+$(1 - \tilde{P}(t | S_{k-1}^*)) = 1 - (1 - \Box) = \Box$, we obtain
+\begin{align}
+s_k^* & = \argmax_{s_{k}} \sum_{t} P(t|\vec{q}) P(t_k=t|s_k) \left( 1 - \tilde{P}(t | S_{k-1}^*) \right) \nonumber \\
+      & = \argmax_{s_{k}} \sum_{t} \underbrace{P(t|\vec{q}) P(t_k=t|s_k)}_{\mbox{\footnotesize query similarity}} \nonumber \\
+& \hspace{15mm} - \sum_{t} \underbrace{P(t|\vec{q}) P(t_k=t|s_k) \tilde{P}(t | S_{k-1}^*)}_{\mbox{\footnotesize query-reweighted diversity}}. \label{eq:1call}
+\end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Optimizing Expected n-call@k}
+Let us now generalize our results in the Expected 1-call@k to the Expected n-call@k. 
+We cast the optimization of $\ExpNCall{n}(S_k,\vec{q})$
+in a form similar to MMR in~\eqref{eq:MMR} to 
+determine the correspondence between $\lambda$ and the
+result of this derivation. Taking MMR's greedy approach, we select $s_k$
+assuming that $S_{k-1}^*$ is already chosen:
+\begin{align}
+  s_k^* & = \argmax_{s_k} \mathbb{E}[R_k\geq n|S_{k-1}^*,s_k,\vec{q}] \nonumber\\[-1mm]
+  & = \argmax_{s_k} P(R_k\geq n|S_{k-1}^*,s_k,\vec{q}) \nonumber 
+\end{align}
+In the second step we have 
+exploited the $\{0,1\}$ nature of $R_k \geq n$ to rewrite $\ExpNCall{n}$
+directly as a probabilistic query.
+This query can be evaluated w.r.t.\ our latent subtopic binary relevance
+model in Figure~\ref{fig:gm} as follows, where we marginalize out
+all non-query, non-evidence variables $T_k$ and define
+$T_k\!=\!\{t,t_1,\dots,t_k\}$ and 
+$\sum_{T_k} \circ = \sum_t \sum_{t_1} \cdots \sum_{t_k} \circ$:
+\begin{align}
+  = & \argmax_{s_k} \!\sum_{T_k} \Bigl( P(t|\vec{q}) \,P(t_k|s_k) \prod_{i=1}^{k-1} P(t_i|s_i^*) \cdot P(R_k\geq n|T_k,S_{k-1}^*,s_k,\vec{q}) \Bigr) \nonumber 
+\end{align}
+
+We split $R_k \geq n$ into two disjoint (additive) events
+$(r_k \! \geq \! 0,\! R_{k\!-\!1}\!\geq \!n)$, $(r_k\!\!=\!\!1,\!R_{k\!-\!1}\!\!=\!\!n\!-\!1)$ where all $r_i$ are D-separated:
+
+\begin{align}
+  = & \argmax_{s_k} \!\sum_{T_k} P(t|\vec{q}) \,P(t_k|s_k) \prod_{i=1}^{k-1} P(t_i|s_i^*) \nonumber \\
+  & \hspace{6mm} \cdot \Bigl( \mbox{$\underbrace{P(r_k\!\geq\!0|R_{k-\!1}\!\geq\!n,t_k,t)}_{1}$} P(\!R_{k-\!1}\!\geq\!n|\TlessK) + P(r_k=1|R_{k-1}\!=\!n\!-\!1,t_k,t) P(\!R_{k-\!1}\!=\!n\!-\!1|\TlessK) \Big) \nonumber 
+\end{align}
+We distribute initial terms over the summands noting that 
+$\sum_{t_k} \!\! P(t_k|s_k) P(r_k\!\!=\!\!1|t_k,t) \! = \!\! \sum_{t_k} \!\! P(t_k|s_k) \I[t_k\!\!=\!\!t] \! = \!\! P(t_k\!\!=\!\!t|s_k)$:
+\begin{align}
+ = & \argmax_{s_k} \!\!\!\Bigg( \!\!\sum_{\TlessK} \!\!\bigg[ \mbox{$\underbrace{ \!\sum_{t_k} \!\!P(t_k|s_k) }_{1}$} \!\bigg] \!\!\!\:P(\!R_{\!k-\!1}\!\!\geq\!n|\TlessK) P(t|\vec{q}) \!\!\prod_{i=1}^{k-1} \!\!\!P(t_i|s_i^*) + \nonumber \\[-3.5mm]
+  & \hspace{1mm} \sum_{t} \!P(t|\vec{q}) P(t_k\!=\!t|s_k) \hspace{-4mm} \sum_{t_1, \dots, t_{k-1}} \hspace{-4mm} P(R_{k-\!1}\!=\!n\!-\!1|\TlessK) \!\prod_{i=1}^{k-1} \!P(t_i|s_i^*) \!\!\Bigg) \nonumber
+\end{align}
+Next we proceed
+to drop the first summand since it is not a function of $s_k$ (i.e.,
+it has no influence in determining $s_k^*$):
+% This give us the
+%simplified optimization objective:
+\begin{align}
+= & \argmax_{s_k} \!\sum_{t} \!P(t|\vec{q}) P(t_k\!=\!t|s_k) P(\!R_{k-\!1}\!\!=\!n\!-\!1|S_{k-1}^*) \label{eq.ncall}
+\end{align}
+By similar reasoning, we can derive that the last probability 
+needed in~\eqref{eq.ncall} is recursively defined as $P(R_k=n|S_k,t)=$
+\begin{align*}
+\begin{cases}
+n \geq 1, k > 1:  &  \bigl( 1\!-\!P(t_k\!=\!t|s_k) \bigr) P(R_{k-1}\!=\!n|S_{k-1},t) \nonumber \\
+  & \hspace{5mm} + P(t_k\!=\!t|s_k) P(R_{k-\!1}\!=\!n\!-\!1|S_{k-\!1},t) \\
+%%
+n = 0, k > 1:   & \bigl( 1\!-\!P(t_k\!=\!t|s_k) \bigr) P(R_{k-\!1}\!=\!0|S_{k-\!1},t) \\
+%%
+n = 1, k = 1:   & P(t_1\!=\!t|s_1) \\
+n = 0, k = 1:   & 1 - P(t_1\!=\!t|s_1)
+\end{cases}
+%       \bigl 1-P(t_1\!=\!t|s_1) \bigr) = \bigl 1-P(t_1\!=\!t|s_1) \bigr) \\
+%  & \hspace{2mm} P(R_1\!=\!1|S_1,t) = P(t_1\!=\!t|s_1)
+\end{align*}
+We can now rewrite~\eqref{eq.ncall} by unrolling its recursive definition.
+For expected $n$-call@$k$ where $n \leq k/2$ %, n \! \neq \! 1$ 
+(a symmetrical result holds for $k/2 < n \leq k$), the explicit unrolled objective is 
+\begin{align}
+  & s_k^* = \argmax_{s_k} \sum_t \Biggl( P(t|\vec{q}) \, P(t_k=t|s_k) \cdot \nonumber \\[-2.5mm]
+  & \hspace{10mm} \sum_{j_1, \dots, j_{n-\!1}} \hspace{-14mm} \prod_{\hspace{14.5mm} l \in \{j_1, \dots, j_{n-\!1}\}} \hspace{-14mm} P(t_l\!=\!t|s_l^*) \hspace{-13mm} \prod_{\substack{i=1 \\ \hspace{14mm} i \notin \{j_1, \dots, j_{n-\!1}\}}}^{k-1} \hspace{-13mm} \!\bigl( 1 - P(t_i\!=\!t|s_i^*) \bigr) \!\Biggr) \label{eq.ncall.alt}
+\end{align}
+where $j_1, \dots, j_{n-1} \in \{1,\ldots,k-1\}$ satisfy 
+that $j_i < j_{i+1}$ (i.e.,
+an ordered permutation of $n-1$ result set indices).
+%A similar objective can be easily obtained for the case $n>k/2$,
+%$n\neq k$ \emph{via} the same process (not shown due to space).
+
+% ===============================================================================
+
+%From here we focus on the last product in~\eqref{eq.ncall.alt}.  We note that
+If we assume each document covers a single subtopic of the query (e.g.,
+a subtopic represents an intent of an ambiguous query) then we can assume that 
+$\forall i \; P(t_i|s_i) \in \{0,1\}$ and $P(t|\vec{q}) \in \{0,1\}$.  This
+allows us to convert a $\prod$ to a $\max$ 
+\begin{align*}
+  \hspace{-13mm} \prod_{\substack{i=1 \\ \hspace{14mm} i \notin \{j_1, \dots, j_{n-\!1}\}}}^{k-1} \hspace{-14mm} \bigl( 1 - \!P(t_i\!=\!t|s_i^*) \bigr) & =
+1 - \Biggl( 1 - \hspace{-14mm} \prod_{\substack{i=1 \\ \hspace{14mm} i \notin \{j_1, \dots, j_{n-\!1}\}}}^{k-1} \hspace{-13mm} \bigl( 1 - P(t_i\!=\!t|s_i^*) \bigr) \Biggr) \\[-2mm]
+  & = 1 - \Bigl( \hspace{-6mm} \max_{\substack{i \in [1,k-1] \\ \hspace{7mm} i \notin \{j_1, \dots, j_{n-1}\}}} \hspace{-6mm} P(t_i\!=\!t|s_i^*) \Bigr)
+\end{align*}
+and by substituting this into~\eqref{eq.ncall.alt} and distributing, we get
+\begin{align}
+=  & \, \argmax_{s_k} \sum_t \Biggl( P(t|\vec{q}) P(t_k\!=\!t|s_k)  \sum_{\hspace{-1mm} j_1, \dots, j_{n-\!1}} \hspace{-13.5mm} \prod_{\hspace{14.5mm} l \in \{j_1, \dots, j_{n-1}\}} \hspace{-14mm} P(t_l\!=\!t|s_l^*) \nonumber \\[-2mm]
+  & \hspace{-1mm} - \!P(t|\vec{q}) P(t_k\!=\!t|s_k) \hspace{-1mm} \sum_{\hspace{-5mm} j_1, \dots, j_{n-\!1}} \hspace{-14mm} \prod_{\hspace{14.5mm} l \in \{j_1, \dots, j_{n-\!1}\}} \hspace{-15mm} P(t_l\!=\!t|s_l^*) \hspace{-11.5mm} \max_{\substack{\hspace{5mm} i \in [1,k-1] \\ \hspace{11.5mm} i \notin \{j_1, \dots, j_{n-\!1}\}}} \hspace{-9.5mm} P(t_i\!=\!t|s_i^*) \!\!\Biggr) . \nonumber %\\[-2mm]
+%  & \hspace{3mm} - \!P(t|\vec{q}) P(t_k\!=\!t|s_k) \hspace{-1mm} \mbox{$\underbrace{\sum_{\hspace{-5mm} j_1, \dots, j_{n-\!1}} \hspace{-14mm} \prod_{\hspace{14.5mm} l=\{j_1, \dots, j_{n-\!1}\}} \hspace{-15mm} P(t_l\!=\!t|s_l^*) \hspace{-11.5mm} \max_{\substack{\hspace{5mm} i=[1,k-1] \\ \hspace{11.5mm} i \notin \{j_1, \dots, j_{n-\!1}\}}} \hspace{-9.5mm} P(t_i\!=\!t|s_i^*)}_{}$} \!\!\Biggr) \nonumber \\[-3.5mm]
+%  & \hspace{40mm} \max_{s_i \in S_{k-1}^*} P(t_i\!=\!t|s_i) \, w_i \nonumber\\
+\end{align}
+Assuming $m$ selected documents $S_{k-1}^*$ are relevant 
+then the top term
+(specifically $\prod_l$) is non-zero $\binom{m}{n-1}$ times.  For the
+bottom term, it takes $n-1$ relevant $S_{k-1}^*$ to satisfy its
+$\prod_l$, and one additional relevant document to satisfy the
+$\max_i$ making it non-zero $\binom{m}{n}$ times.  Factoring out the
+$\max$ element from the bottom and pushing the $\sum_t$ inwards (all legal
+due to the $\{0,1\}$ subtopic probability assumption) we get
+\begin{align}
+=  & \argmax_{s_k} \binom{m}{n-1} \underbrace{\sum_t P(t|\vec{q}) P(t_k\!=\!t|s_k)}_{\textrm{relevance}: \; \Sim_1(s_k,\vec{q})} - \binom{m}{n} \max_{s_i \in S_{k-1}^*} \underbrace{\sum_t P(t_i\!=\!t|s_i) \!P(t|\vec{q}) P(t_k\!=\!t|s_k)}_{\textrm{diversity}: \; \Sim_2(s_k,s_i,\vec{q})} \nonumber .\\[-7mm] \nonumber
+%=  & \argmax_{s_k} \sum_t \Bigg[ \binom{m}{n-1} P(t|\vec{q}) P(t_k\!=\!t|s_k) \nonumber \\[-2mm]
+%  & \hspace{17.5mm} - \binom{m}{n} \max_{s_i \in S_{k-1}^*} P(t_i\!=\!t|s_i) \!P(t|\vec{q}) P(t_k\!=\!t|s_k) \Bigg] \nonumber
+\end{align}  
+From here we can 
+normalize by $\binom{m}{n-1} + \binom{m}{n} = \binom{m+1}{n}$ 
+(Pascal's rule), leading to fortuitous cancellations and the result:
+\begin{align}
+=  & \argmax_{s_k} \!\! \frac{n}{m\!+\!1} \Sim_1(s_k,\vec{q}) - \frac{m\!-\!n\!+\!1}{m+1} \max_{s_i \in S_{k-1}^*} \! \Sim_2(s_k,s_i,\vec{q}) \nonumber \\[-6mm] \nonumber
+\end{align}
+Fortuitously, we note that the $\binom{m+1}{n}$ divisor cancelled with
+the numerators, yielding this elegant and interpretable result.
+Comparing to MMR in~\eqref{eq:MMR}, we can clearly see that $\lambda =
+\frac{n}{m\!+\!1}$.  Assuming $m \approx n$
+since \ExpNCall{n} optimizes for the case where $n$ relevant documents are selected, then $\lambda = \frac{n}{n\!+\!1}$, which achieves our goal of formally expressing the relevance vs. diversity tradeoff as a function of $n$, $k$, and $m$.
+
+As a reality check, we see that this coincides
+with the published result of $\lambda=0.5$ in~\cite{sanner11} for
+$n=1$, $m=1$.  Overall we have achieved our goal and have shown that
+indeed, diversificiation in expected $n$-call@$k$ decreases linearly 
+as $n \to 1$.
