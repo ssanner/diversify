@@ -189,3 +189,93 @@ as $n \to 1$.
 %$n=1$, $m=1$.  Overall we have achieved our goal and have shown that
 %indeed, diversificiation in expected $n$-call@$k$ decreases linearly 
 %as $n \to 1$.
+
+
+\subsection{Discussion}
+
+The result in~\eqref{eq:1call} is strikingly similar to MMR --- it
+contains two terms, one for query similarity and the other for result
+set diversification, where each term represents a similarity kernel
+--- more specifically a \emph{probability product kernel}
+(PPK)~\cite{prodprobkernel} that is an inner product of probability
+vectors (or more generally, functions).  More formally, let
+$\vec{T}'$, $\vec{T}_k$, and $\vec{T}_{S_{k-1}^*}$ be respective topic
+probability vectors $P(t'=t|\vec{q})$, $P(t_k=t|s_k)$ and
+$\tilde{P}(t_k=t | S_{k-1}^*)$ with vector indices for each topic $t
+\in T$.  Then the similarity and diversity terms from~\eqref{eq:1call}
+can be respectively written as
+\begin{align}
+%\Sim_1(\vec{q},s_k) = & \hspace{-3mm}
+\sum_{t \in T} P(t'=t|\vec{q}) P(t_k=t|s_{k}) & \; = \; \langle \vec{T}',\vec{T}_k \rangle \label{eq:sim_term} \; \mbox{and}\\
+%\Sim_2(s_k,S_{k-1}) = & \hspace{-3mm}
+\sum_{t \in T} P(t|\vec{q}) P(t_k=t|s_k) \tilde{P}(t | S_{k-1}^*) & \; = \; \langle \vec{T}_k, \vec{T}_{S_{k-1}^*} \rangle_{\vec{T}'}. \label{eq:div_term}
+\end{align}
+Here, we let $\langle \cdot,\cdot \rangle$ denote an inner product of
+two vectors and $\langle \cdot,\cdot \rangle_\vec{v}$ a
+\emph{$\vec{v}$-reweighted} inner product, defined as
+in~\eqref{eq:div_term}.
+
+While having similarity and diversity terms similar to MMR,
+Exp-$1$-call@$k$ in~\eqref{eq:1call} clearly differs from MMR:
+\begin{enumerate}
+\item While MMR's definition allows for any similarity function, not
+just PPKs, we note that \emph{equating words to subtopics}, popular
+kernels like TF and TFIDF~\cite{salton83Introduction} can be viewed
+directly as PPKs if the TF and TFIDF vectors are $L_1$ normalized to
+represent probability vectors.
+\item MMR uses a maximization term for
+diversity, whereas optimization of Exp-$1$-call@$k$ instead calls for
+a product (noisy-or) diversity term $\tilde{P}(t | S_{k-1}^*)$.
+We note that a noisy-or reduces to a max when the subtopic
+probabilities are deterministic (0 or 1).
+\item While MMR proposes a $\lambda$ term to explicitly
+trade off the similarity and diversity terms, the greedy optimization
+of Exp-$1$-call@$k$ in~\eqref{eq:1call} yields no such trade-off term
+(or alternately, an implicit $\lambda=.5$).  Although it seems a tunable
+$\lambda$ is not needed for maximizing Exp-$1$-call@$k$, it may be
+desirable when maximizing surrogate retrieval objectives (e.g., ranking
+objectives).
+\item Optimizing Exp-$1$-call@$k$ introduces query-specific relevance into
+the diversification term as shown
+by the query topic ($\vec{T}'$) reweighted
+diversity function in~\eqref{eq:div_term}.
+\end{enumerate}
+
+%To verify whether the differences between MMR and Exp-$1$-call@$k$
+%matter empirically, we compare the two algorithms across a number of
+%metrics on three diversity testbeds: the TREC 6-8 Interactive
+%Track\footnotemark[1] (17 queries) and 2009 and 2010 ClueWeb Diversity
+%tasks of the TREC Web Track\footnotemark[2] (50 queries each).  On
+%these testbeds, we evaluate \emph{mean subtopic
+%recall@$k$}~\cite{zhai03Beyond} (fraction of total annotated
+%aspects/subtopics covered by a result set at rank $k$, averaged over
+%queries), which is an appropriate loss function for the
+%\emph{set-level} metric~\eqref{eq:setRelevance}~\cite{chen06Less}.  We
+%also evaluate a variety of more recent \emph{rank-based} diversity evaluation
+%metrics such as intent-aware expected reciprocal rank
+%(ERR-IA@$k$)~\cite{err-ia}, $\alpha$-nDCG@$k$~\cite{clarke08Novelty},
+%and intent-aware mean average precision
+%(MAP-IA)~\cite{agrawal09diversifying}.
+%
+%We use MMR with $\lambda = 0.5$ to match the equal weighting of
+%similarity and diversity in Exp-$1$-call@$k$.  An
+%LDA~\cite{blei03Latent} topic model is trained on the top-100 OKAPI
+%BM25~\cite{bm25} results for each query (on its respective collection)
+%and these subtopic distributions are used for the similarity and
+%diversity kernels in both algorithms: for MMR we choose $\Sim_1$ and
+%$\Sim_2$ kernels as in~\eqref{eq:sim_term} --- effectively LDA
+%variants of latent semantic indexing (LSI)~\cite{deerwester90LSA}
+%kernels; for Exp-$1$-call@$k$, we use the similarity and diversity
+%kernels respectively defined in~\eqref{eq:sim_term}
+%and~\eqref{eq:div_term}.  Both MMR and Exp-$1$-call@$k$ are used to
+%rank the top-20 documents from the top-100 OKAPI BM25 results.
+%
+%Results in Table~\ref{table:different_metrics} and
+%Figure~\ref{fig:mmr_vs_1call} show the performances of MMR and
+%Exp-$1$-call@$k$ on the three diversity testbeds across various
+%diversity measures; although there are minor performance differences,
+%we note that these differences are not statistically significant
+%w.r.t.\ 95\% confidence intervals.  Nonetheless, the results appear to
+%indicate that the structural similarities in the use of MMR and the
+%optimization of Exp-$1$-call@$k$ outweigh the differences in this
+%evaluation.
