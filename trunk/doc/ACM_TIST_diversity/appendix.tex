@@ -1,5 +1,7 @@
 \section{Full derivation}
 \subsection{Optimizing objective}
+\label{appendix.ncall}
+
 We want to choose $S_k^*$ that maximizes the objective:
 \begin{align*}
   \ExpNCall{n}(S_k,\vec{q})
@@ -23,7 +25,7 @@ By taking a greedy approach, we select $s_k^*$ given $S_{k-1}^*$:
 %
   & = \argmax_{s_k} \sum_{t} P(t|\vec{q}) P(t_k\!=\!t|s_k) \bigg[ \sum_{t_1, \dots, t_{k-1}}  P(R_{k-\!1}\!=\!n\!-\!1|\TlessK) \prod_{i=1}^{k-1} P(t_i|s_i^*) \bigg] \label{note4}\\
 %
-  & = \argmax_{s_k} \sum_{t} \!P(t|\vec{q}) P(t_k\!=\!t|s_k) P(R_{k-\!1}\!=\!n\!-\!1|S_{k-1}^*) \label{eq.ncall-repeat}
+  & = \argmax_{s_k} \sum_{t} \!P(t|\vec{q}) P(t_k\!=\!t|s_k) P(R_{k-\!1}\!=\!n\!-\!1|S_{k-1}^*, t) \label{eq.ncall-repeat}
 \end{align}
 
 \noindent
@@ -44,7 +46,8 @@ n \geq 1, k > 1:  &  \bigl( 1\!-\!P(t_k\!=\!t|s_k) \bigr) P(R_{k-1}\!=\!n|S_{k-1
 n = 0, k > 1:   & \bigl( 1\!-\!P(t_k\!=\!t|s_k) \bigr) P(R_{k-\!1}\!=\!0|S_{k-\!1},t) \\
 %%
 n = 1, k = 1:   & P(t_1\!=\!t|s_1) \\
-n = 0, k = 1:   & 1 - P(t_1\!=\!t|s_1)
+n = 0, k = 1:   & 1 - P(t_1\!=\!t|s_1) \\
+n > k:			& 0
 \end{cases}
 %       \bigl 1-P(t_1\!=\!t|s_1) \bigr) = \bigl 1-P(t_1\!=\!t|s_1) \bigr) \\
 %  & \hspace{2mm} P(R_1\!=\!1|S_1,t) = P(t_1\!=\!t|s_1)
@@ -68,6 +71,7 @@ an ordered permutation of $k-n$ result set indices).
 
 % ===============================================================================
 \subsection{Relation to MMR: expected n-call@k when $n>k/2$}
+\label{appendix.2call}
 
 Assuming that $\forall i \; P(t_i|s_i) \in \{0,1\}$ and $P(t|\vec{q}) \in \{0,1\}$. It is possible to write
 \begin{align*}
@@ -139,11 +143,12 @@ From~\eqref{eq.ncall.final}, it is simple to see that the diversification level 
 Assuming that $\forall i \; P(t_i|s_i) \in \{0,1\}$ and $P(t|\vec{q}) \in \{0,1\}$, the objective becomes:
 \begin{align}
   s_k^* & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} \left( P(t_j=t|s_j^*) \prod_{\substack{i=1 \\ i \neq j}}^{k-1} \left( 1 - P \! \left( t_i=t|s_i^* \right) \right) \right) \nonumber \\
-  & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} \left( P(t_j=t|s_j^*) \left[ 1 - \left( 1 - \prod_{\substack{i=1 \\ i \neq j}}^{k-1} \left( 1 - P \! \left( t_i=t|s_i^* \right) \right) \right) \right] \right) \nonumber \\
-  & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} \left[ P \! \left( t_j=t|s_j^* \right) - P \! \left( t_j=t|s_j^* \right) \left( 1 - \prod_{\substack{i=1 \\ i \neq j}}^{k-1} \left( 1 - P \! \left( t_i=t|s_i^* \right) \right) \right) \right] \nonumber \\
+  & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} \left( \!\! P(t_j=t|s_j^*) \! \left[ 1 - \left( \! 1 - \prod_{\substack{i=1 \\ i \neq j}}^{k-1} \left( 1 - P \! \left( t_i=t|s_i^* \right) \right) \!\! \right) \right] \right) \nonumber \\
+  & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \nonumber \\[-2mm]
+  & \hspace{30mm} \sum_{j=1}^{k-1} \left[ P \! \left( t_j=t|s_j^* \right) - P \! \left( t_j=t|s_j^* \right) \left( 1 - \prod_{\substack{i=1 \\ i \neq j}}^{k-1} \left( 1 - P \! \left( t_i=t|s_i^* \right) \right) \right) \right] \nonumber \\
 %%
   & = \argmax_{s_k} \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} P(t_j=t|s_j^*) \nonumber \\
-  & \hspace{10mm} - \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} P(t_j=t|s_j^*) \max_{\substack{ i \in [1, k-1] \\ i \neq j}} P(t_i=t|s_i^*) \nonumber
+  & \hspace{13mm} - \sum_t P(t|\vec{q}) \, P(t_k = t | s_k) \sum_{j=1}^{k-1} P(t_j=t|s_j^*) \max_{\substack{ i \in [1, k-1] \\ i \neq j}} P(t_i=t|s_i^*) \nonumber
 \end{align}
 
 \noindent
