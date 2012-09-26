@@ -112,7 +112,7 @@ of Exp-$1$-call@$k$ and representatives of these alternative
 approaches:
 
 \subsubsection{Diversifying Search Results}
-\cite{agrawal09Diversifying} proposes a set-based objective function
+\cite{agrawal09diversifying} proposes a set-based objective function
 to answer ambiguous web queries in a setting where there exists a predefined taxonomy of information, and that both queries and documents
 may belong to more than one category according to this taxonomy. The proposed set-based objective function aims at maximizing the probability that the average user finds at least one useful resulting document retrieved within the top $k$ results. Mathematically, this objective function is defined below:
 \begin{align}
@@ -121,12 +121,12 @@ may belong to more than one category according to this taxonomy. The proposed se
 \end{align}
 Note first that we have adapted notations in the above equation for consistency, and note also that the taxonomy $P(t|\vec{q})$ and $P(t_i|s_i)$ are not learnt by some unsupervised model, but hand-crafted. 
 
-Now we show that our expected 1-call@$k$ objective in Equation~\eqref{eq:setRelevance} is equivalent to the objective function in Equation \eqref{eq:diversifykObjectiveFunction} by simply writing out the mathematical expectation in terms of the sum over all possible topics (e.g., taxomony in \cite{agrawal09Diversifying}) the weighted relevance where weights are the topic distributions below
+Now we show that our expected 1-call@$k$ objective in Equation~\eqref{eq:setRelevance} is equivalent to the objective function in Equation \eqref{eq:diversifykObjectiveFunction} by simply writing out the mathematical expectation in terms of the sum over all possible topics (e.g., taxomony in \cite{agrawal09diversifying}) the weighted relevance where weights are the topic distributions below
 \begin{align*}
     \ExpOneCall(S_k,\vec{q}) & = \mathbb{E} \left[\left. \bigvee_{i=1}^{k}r_i=1 \right| s_{1},\dots, s_{k},\vec{q} \right], \\
     												 & = \sum_{t\in T} P(t|\vec{q}) \left( 1 - \prod_{i=1}^{k}(1-p(t_i = t| q, s_i))\right) 
 \end{align*}
-Our observation here is that the proposed objective in \cite{agrawal09Diversifying} is equivalent to our objective, however they do not derive this from the expected 1-call@$k$ objective.
+Our observation here is that the proposed objective in \cite{agrawal09diversifying} is equivalent to our objective, however they do not derive this from the expected 1-call@$k$ objective.
 
 \subsubsection{Portfolio Theory}
 \cite{wang09PortfolioTheory} motivates
@@ -264,7 +264,7 @@ Yue \cite{yue081224Predicting}                     &             &$\surd$  & $\s
 Bai \cite{bai08Adapting}                           &             &         & $\surd$ & $\surd$\\
 Sanderson \cite{sanderson08Ambiguous}              &             &         &         & $\surd$\\
 Yu \cite{yu09368}                                  &             &         &         & $\surd$\\
-Agrawal \cite{agrawal09Diversifying}               & $\surd$     & $\surd$ &         & $\surd$\\
+Agrawal \cite{agrawal09diversifying}               & $\surd$     & $\surd$ &         & $\surd$\\
 Gollapudi \cite{gollapudi09AnAxiomatic}            &             &         &         & $\surd$\\
 Clough \cite{clough09734Multiple}                  & $\surd$     &         &         & $\surd$\\
 Song \cite{song09Identification}                   & $\surd$     &         & $\surd$ & \\

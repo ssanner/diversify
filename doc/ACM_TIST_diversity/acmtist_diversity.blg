@@ -1,6 +1,6 @@
-This is BibTeX, Version 0.99c (Web2C 7.5.4)
+This is BibTeX, Version 0.99d (TeX Live 2011/Cygwin)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: acmtist_diversity.aux
-A level-1 auxiliary file: appendix_acm_tist.aux
 The style file: acmsmall.bst
 Database file #1: reference.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
@@ -15,45 +15,45 @@ Warning--empty publisher in mrr
 Warning--empty address in mrr
 Warning--empty address in yu09368
 Warning--empty address in zhai03Beyond
-You've used 36 entries,
+You've used 32 entries,
             3177 wiz_defined-function locations,
-            960 strings with 13075 characters,
-and the built_in function-call counts, 28487 in all, are:
-= -- 2849
-> -- 1360
+            931 strings with 12178 characters,
+and the built_in function-call counts, 25371 in all, are:
+= -- 2543
+> -- 1194
 < -- 1
-+ -- 396
-- -- 510
-* -- 2435
-:= -- 4384
-add.period$ -- 182
-call.type$ -- 36
-change.case$ -- 279
-chr.to.int$ -- 35
-cite$ -- 47
-duplicate$ -- 1047
-empty$ -- 2098
-format.name$ -- 732
-if$ -- 5985
++ -- 347
+- -- 454
+* -- 2138
+:= -- 3900
+add.period$ -- 162
+call.type$ -- 32
+change.case$ -- 245
+chr.to.int$ -- 31
+cite$ -- 43
+duplicate$ -- 947
+empty$ -- 1881
+format.name$ -- 648
+if$ -- 5341
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 65
-newline$ -- 183
-num.names$ -- 358
-pop$ -- 308
+missing$ -- 59
+newline$ -- 163
+num.names$ -- 318
+pop$ -- 280
 preamble$ -- 1
-purify$ -- 494
+purify$ -- 436
 quote$ -- 0
-skip$ -- 984
+skip$ -- 886
 stack$ -- 0
-substring$ -- 1734
-swap$ -- 392
+substring$ -- 1541
+swap$ -- 356
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 706
+type$ -- 626
 warning$ -- 11
-while$ -- 319
+while$ -- 291
 width$ -- 0
-write$ -- 553
+write$ -- 493
 (There were 11 warnings)
