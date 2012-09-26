@@ -125,7 +125,7 @@ Now we show that our expected 1-call@$k$ objective in Equation~\eqref{eq:setRele
     \ExpOneCall(S_k,\vec{q}) & = \mathbb{E} \left[\left. \bigvee_{i=1}^{k}r_i=1 \right| s_{1},\dots, s_{k},\vec{q} \right], \\
     												 & = \sum_{t\in T} P(t|\vec{q}) \left( 1 - \prod_{i=1}^{k}(1-p(t_i = t| q, s_i))\right) 
 \end{align*}
-Our observation here is that our proposed objective is equivalent to the IA-Select proposed \cite{agrawal09Diversifying} when one replaces the likelihood function $V(s|\vec{q}, c)$ by $p(t_i = t| \vec{q}, s_i)$. More recently, Vargas et al~\cite{Vargas:SIGIR2012} propose variants of IA-Select by introducing several interesting formal probabilistic relevance models to instantiate $V(s| q, c)$, which are more appopriate in modeling the relevance in a probabilistic framework. Furthermore, \cite{Vallet:SIGIR2012} propose to introduce a user as an explicit random variable in state of the art diversification methods, thus developing a generalized framework for personalized diversification.
+Our observation here is that our proposed objective is equivalent to the IA-Select proposed in \cite{agrawal09diversifying} when one replaces the likelihood function $V(s|\vec{q}, c)$ by $p(t_i = t| \vec{q}, s_i)$. More recently, Vargas et al~\cite{Vargas:SIGIR2012} propose variants of IA-Select by introducing several interesting formal probabilistic relevance models to instantiate $V(s| q, c)$, which are more appopriate in modeling the relevance in a probabilistic framework. Furthermore, \cite{Vallet:SIGIR2012} propose to introduce a user as an explicit random variable in state of the art diversification methods, thus developing a generalized framework for personalized diversification.
 
 Another recent interesting instantiation of $V(s|q,c)$ is proposed in \cite{Zuccon:ECIR2012} motivated by the facilitation location problem~\cite{Gonzalez:Handbook2007} taken from Operation Research: for a set of customer ``locations" $D$, one aims at choosing a subset $S$ in $D$ to open $k$ ``facilities" that optimize a graph-theoretic objective that depends on the cost of opening a facility at each location and also the distance between each pair of locations. However all of the three described methods do not derive their objective functions from the expected 1-call@$k$ objective as we have achieved. 
 
@@ -217,7 +217,7 @@ extent, Exp-$1$-call@$k$.
 Chen and Karger~\cite{chen06Less}, whose derivation we extended, directly
 optimize $1$-call@$k$, but their intention is not to formalize MMR and
 instead use na\"{i}ve Bayes to directly evaluate
-\eqref{eq.ncall}.  Agrawal et al~\cite{agrawal09Diversifying}
+\eqref{eq.ncall}.  Agrawal et al~\cite{agrawal09diversifying}
 and Santos et al (xQuad)~\cite{santos2010xquad} both specify set-based
 diversity metrics \emph{very} similar to Exp-$1$-call@$k$ but do not provide
 formal derivations as we have done in this work. 
