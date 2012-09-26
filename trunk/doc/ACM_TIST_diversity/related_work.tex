@@ -111,7 +111,25 @@ approaches and here we summarize the relationship between optimization
 of Exp-$1$-call@$k$ and representatives of these alternative
 approaches:
 
-\subfour{\bf Portfolio Theory:} \cite{wang09PortfolioTheory} motivates
+\subsubsection{Diversifying Search Results}
+\cite{agrawal09Diversifying} proposes a set-based objective function
+to answer ambiguous web queries in a setting where there exists a predefined taxonomy of information, and that both queries and documents
+may belong to more than one category according to this taxonomy. The proposed set-based objective function aims at maximizing the probability that the average user finds at least one useful resulting document retrieved within the top $k$ results. Mathematically, this objective function is defined below:
+\begin{align}
+	P(S_k|\vec{q}) = \sum_{t\in T} P(t|\vec{q}) \left( 1 - \prod_{i=1}^{k}(1-p(t_i = t| q, s_i))\right) 
+\label{eq:diversifykObjectiveFunction}
+\end{align}
+Note first that we have adapted notations in the above equation for consistency, and note also that the taxonomy $P(t|\vec{q})$ and $P(t_i|s_i)$ are not learnt by some unsupervised model, but hand-crafted. 
+
+Now we show that our expected 1-call@$k$ objective in Equation~\eqref{eq:setRelevance} is equivalent to the objective function in Equation \eqref{eq:diversifykObjectiveFunction} by simply writing out the mathematical expectation in terms of the sum over all possible topics (e.g., taxomony in \cite{agrawal09Diversifying}) the weighted relevance where weights are the topic distributions below
+\begin{align*}
+    \ExpOneCall(S_k,\vec{q}) & = \mathbb{E} \left[\left. \bigvee_{i=1}^{k}r_i=1 \right| s_{1},\dots, s_{k},\vec{q} \right], \\
+    												 & = \sum_{t\in T} P(t|\vec{q}) \left( 1 - \prod_{i=1}^{k}(1-p(t_i = t| q, s_i))\right) 
+\end{align*}
+Our observation here is that the proposed objective in \cite{agrawal09Diversifying} is equivalent to our objective, however they do not derive this from the expected 1-call@$k$ objective.
+
+\subsubsection{Portfolio Theory}
+\cite{wang09PortfolioTheory} motivates
 diversification in set-based information retrieval by a
 risk-minimizing portfolio selection approach.  Viewing a result set as
 an investment portfolio with the objective to maximize return while
@@ -125,7 +143,7 @@ computing the diversity term via a max (MMR) or product
 (Exp-$1$-call@$k$) the portfolio theory derivation uses a summation
 --- we examine the implications of this next.
 
-\subfourh{\bf Set Covering:}
+\subsubsection{Set Covering:}
 Yue and Joachims~\cite{yue081224Predicting} propose a set covering
 approach for training SVMs to predict diverse result sets for
 information retrieval.  In their work, they equate subtopics with
@@ -185,7 +203,8 @@ indicates the number of sets that share these areas. }
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subfour{\bf Subtopic Relevance Models:} We use a subtopic relevance
+\subsubsection{Subtopic Relevance Models} 
+We use a subtopic relevance
 model that is a simplified version of the model in~\cite{plmmr} with
 fewer dependence assumptions.  In other work, Zhai {\it et
 al}~\cite{zhai03Beyond} present an empirical risk minimization view of
@@ -194,8 +213,8 @@ where they derive a formalization of the
 \emph{greedy} selection step that is similar to MMR and to a lesser
 extent, Exp-$1$-call@$k$.
 
-\subfour{\bf Set-based Relevance Objectives:} Chen and
-Karger~\cite{chen06Less}, whose derivation we extended, directly
+\subsubsection{Set-based Relevance Objectives} 
+Chen and Karger~\cite{chen06Less}, whose derivation we extended, directly
 optimize $1$-call@$k$, but their intention is not to formalize MMR and
 instead use na\"{i}ve Bayes to directly evaluate
 \eqref{eq.ncall}.  Agrawal et al~\cite{agrawal09diversifying}
@@ -203,8 +222,8 @@ and Santos et al (xQuad)~\cite{santos2010xquad} both specify set-based
 diversity metrics \emph{very} similar to Exp-$1$-call@$k$ but do not provide
 formal derivations as we have done in this work.
 
-\subfour{\bf Ranking Based Objectives:} Finally, returning to our
-introductory motivation, Wang and Zhu~\cite{wangzhu10} have shown that
+\subsubsection{Ranking Based Objectives} 
+Finally, returning to our introductory motivation, Wang and Zhu~\cite{wangzhu10} have shown that
 natural forms of result set diversification arise via the optimization
 of average precision~\cite{ap} and reciprocal rank~\cite{mrr}.  Both
 of these methods share the view of directly optimizing a
@@ -218,7 +237,7 @@ this yields a natural rank ordering on the greedy Exp-$1$-call@$k$
 result set.
 
 \subsection{Four Aspects of Diversifying Approaches}
-Furthermore, we identify four key aspects for a diversifying approach, and review existing diversifying approaches against these aspects in this section. As shown in Table~\ref{table:comparisonAlgorithms}, we breakdown the
+As the last part of the related work, we identify four key aspects for a diversifying approach, and review existing diversifying approaches against these aspects in this section. As shown in Table~\ref{table:comparisonAlgorithms}, we breakdown the
 different proposals according to whether they are probabilistic, use
 latent models for determining similarity, use adaptive learning
 techniques, and finally whether they are unsupervised, i.e., they do
@@ -245,7 +264,7 @@ Yue \cite{yue081224Predicting}                     &             &$\surd$  & $\s
 Bai \cite{bai08Adapting}                           &             &         & $\surd$ & $\surd$\\
 Sanderson \cite{sanderson08Ambiguous}              &             &         &         & $\surd$\\
 Yu \cite{yu09368}                                  &             &         &         & $\surd$\\
-Agrawal \cite{agrawal09diversifying}               & $\surd$     & $\surd$ &         & $\surd$\\
+Agrawal \cite{agrawal09Diversifying}               & $\surd$     & $\surd$ &         & $\surd$\\
 Gollapudi \cite{gollapudi09AnAxiomatic}            &             &         &         & $\surd$\\
 Clough \cite{clough09734Multiple}                  & $\surd$     &         &         & $\surd$\\
 Song \cite{song09Identification}                   & $\surd$     &         & $\surd$ & \\
@@ -261,8 +280,8 @@ Our model (this paper)                             & $\surd$     & $\surd$ & $\s
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Temporal Diversification in Recommender Systems}
-Another closely related line of study on diversification applies into recommender systems, thus we discuss these approaches here. 
-\subsubsection{Static Diversification in Recommender Systems}
-
-\subsubsection{Temporal Diversification in Recommender Systems}
+%\subsection{Temporal Diversification in Recommender Systems}
+%Another closely related line of study on diversification applies into recommender systems, thus we discuss these approaches here. 
+%\subsubsection{Static Diversification in Recommender Systems}
+%
+%\subsubsection{Temporal Diversification in Recommender Systems}
