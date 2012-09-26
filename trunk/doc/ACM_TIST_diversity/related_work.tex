@@ -10,8 +10,7 @@ which formalizes a structured SVM loss function based on a set
 covering objective, and~\cite{wang09PortfolioTheory}, which borrows
 concepts from portfolio theory in economics to treat result set
 diversification as optimization of a risk minimization objective.  We
-note that the results as derived in the last section formally motivates these
-last three somewhat ad-hoc diversification approaches and we discuss
+note that the results as derived in the last section formally motivates these and others somewhat ad-hoc diversification approaches and we discuss
 these connections more deeply in the following sections.
 
 
@@ -114,19 +113,21 @@ approaches:
 \subsubsection{Diversifying Search Results}
 \cite{agrawal09diversifying} proposes a set-based objective function
 to answer ambiguous web queries in a setting where there exists a predefined taxonomy of information, and that both queries and documents
-may belong to more than one category according to this taxonomy. The proposed set-based objective function aims at maximizing the probability that the average user finds at least one useful resulting document retrieved within the top $k$ results. Mathematically, this objective function is defined below:
+may belong to more than one category according to this taxonomy. The proposed set-based objective function aims at maximizing the probability that the average user finds at least one useful resulting document retrieved within the top $k$ results. Mathematically, this objective function (a.k.a., IA-Select) is defined below:
 \begin{align}
-	P(S_k|\vec{q}) = \sum_{t\in T} P(t|\vec{q}) \left( 1 - \prod_{i=1}^{k}(1-p(t_i = t| q, s_i))\right) 
+	P(S|\vec{q}) = \sum_{c} P(c|\vec{q}) \left( 1 - \prod_{s\in S}(1-V(s| q, c))\right) 
 \label{eq:diversifykObjectiveFunction}
 \end{align}
-Note first that we have adapted notations in the above equation for consistency, and note also that the taxonomy $P(t|\vec{q})$ and $P(t_i|s_i)$ are not learnt by some unsupervised model, but hand-crafted. 
+where $S$ is a set of documents, and $V(s|q, c)$ broadly defines the likelihood that a document $s$ satisfies the query $\vec{q}$ given the taxonomy (or category) $c$ of the query and the document. Note first that we have slightly adapted notations in the above equation for consistency, and note also that the taxonomy of $c$ given the query and document is not learnt by some unsupervised model, but hand-crafted. 
 
 Now we show that our expected 1-call@$k$ objective in Equation~\eqref{eq:setRelevance} is equivalent to the objective function in Equation \eqref{eq:diversifykObjectiveFunction} by simply writing out the mathematical expectation in terms of the sum over all possible topics (e.g., taxomony in \cite{agrawal09diversifying}) the weighted relevance where weights are the topic distributions below
 \begin{align*}
     \ExpOneCall(S_k,\vec{q}) & = \mathbb{E} \left[\left. \bigvee_{i=1}^{k}r_i=1 \right| s_{1},\dots, s_{k},\vec{q} \right], \\
     												 & = \sum_{t\in T} P(t|\vec{q}) \left( 1 - \prod_{i=1}^{k}(1-p(t_i = t| q, s_i))\right) 
 \end{align*}
-Our observation here is that the proposed objective in \cite{agrawal09diversifying} is equivalent to our objective, however they do not derive this from the expected 1-call@$k$ objective.
+Our observation here is that our proposed objective is equivalent to the IA-Select proposed \cite{agrawal09Diversifying} when one replaces the likelihood function $V(s|\vec{q}, c)$ by $p(t_i = t| \vec{q}, s_i)$. More recently, Vargas et al~\cite{Vargas:SIGIR2012} propose variants of IA-Select by introducing several interesting formal probabilistic relevance models to instantiate $V(s| q, c)$, which are more appopriate in modeling the relevance in a probabilistic framework. Furthermore, \cite{Vallet:SIGIR2012} propose to introduce a user as an explicit random variable in state of the art diversification methods, thus developing a generalized framework for personalized diversification.
+
+Another recent interesting instantiation of $V(s|q,c)$ is proposed in \cite{Zuccon:ECIR2012} motivated by the facilitation location problem~\cite{Gonzalez:Handbook2007} taken from Operation Research: for a set of customer ``locations" $D$, one aims at choosing a subset $S$ in $D$ to open $k$ ``facilities" that optimize a graph-theoretic objective that depends on the cost of opening a facility at each location and also the distance between each pair of locations. However all of the three described methods do not derive their objective functions from the expected 1-call@$k$ objective as we have achieved. 
 
 \subsubsection{Portfolio Theory}
 \cite{wang09PortfolioTheory} motivates
@@ -138,7 +139,7 @@ mimics both MMR and Exp-$1$-call@$k$ in that the similarity term may
 be viewed as \emph{expected portfolio payoff} (relevance) and the
 diversity term may be viewed as \emph{expected portfolio risk}, which
 increases as the correlations between documents in the result set
-increase.  One major difference in this framework is that rather than
+increase. Note that diversification based on portfolio theory is extended in \cite{Shi:SIGIR2012} by introducing latent factors for collaborative filtering tasks. One major difference in the framework~\cite{wang09PortfolioTheory} is that rather than
 computing the diversity term via a max (MMR) or product
 (Exp-$1$-call@$k$) the portfolio theory derivation uses a summation
 --- we examine the implications of this next.
@@ -163,8 +164,7 @@ principle applied to the calculation of probability that topic $t$ is
 covered by $\{ s_1^*,\ldots,s_{k-1}^* \}$:
 \begin{align}
 & \prod_{i=1}^{k-1} \left(1 - P(t_{i}=t|s_{i}^{*})\right) \nonumber \\
-& = 1 - \left[ \sum_{i=1}^{k-1} P(t_{i}= t|s_{i}^{*}) - \sum_{i=1}^{k-1}\sum_{j=1}^{k-1}P(t_{i}= t|s_{i}^{*})P(t_{j}= t|s_{j}^{*}) \right. \nonumber \\
-& \hspace{12mm} \left. + \dots - (-1)^{k-1}\prod_{i=1}^{k-1}P(t_{i}=t|s_{i}^{*})\right] \label{eq:setcover}
+& = 1 - \left[ \sum_{i=1}^{k-1} P(t_{i}= t|s_{i}^{*}) - \sum_{i=1}^{k-1}\sum_{j=1}^{k-1}P(t_{i}= t|s_{i}^{*})P(t_{j}= t|s_{j}^{*}) + \dots - (-1)^{k-1}\prod_{i=1}^{k-1}P(t_{i}=t|s_{i}^{*})\right] \label{eq:setcover}
 \end{align}
 
 This result has a natural interpretation: the first summation term
@@ -217,10 +217,10 @@ extent, Exp-$1$-call@$k$.
 Chen and Karger~\cite{chen06Less}, whose derivation we extended, directly
 optimize $1$-call@$k$, but their intention is not to formalize MMR and
 instead use na\"{i}ve Bayes to directly evaluate
-\eqref{eq.ncall}.  Agrawal et al~\cite{agrawal09diversifying}
+\eqref{eq.ncall}.  Agrawal et al~\cite{agrawal09Diversifying}
 and Santos et al (xQuad)~\cite{santos2010xquad} both specify set-based
 diversity metrics \emph{very} similar to Exp-$1$-call@$k$ but do not provide
-formal derivations as we have done in this work.
+formal derivations as we have done in this work. 
 
 \subsubsection{Ranking Based Objectives} 
 Finally, returning to our introductory motivation, Wang and Zhu~\cite{wangzhu10} have shown that
@@ -246,7 +246,7 @@ proposal (that we are aware of) to combine all four traits in the
 affirmative. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}
+\begin{table}[htbp!]
 \tbl{Dimensions of diversified set-based retrieval
 systems: \emph{Probabilistic}: uses probabilistic models?; \emph{Latent}: use
 latent topic models?; \emph{Learning}: uses some form of learning?;
