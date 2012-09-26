@@ -23,12 +23,6 @@
 \newblock {\em Information Processing and Management\/}~{\em 44,\/}~6,
   1901--1922.
 
-\bibitem[\protect\citeauthoryear{Blei, Ng, and Jordan}{Blei
-  et~al\mbox{.}}{2003}]{blei03Latent}
-{\sc Blei, D.~M.}, {\sc Ng, A.~Y.}, {\sc and} {\sc Jordan, M.~I.} 2003.
-\newblock Latent {D}irichlet allocation.
-\newblock {\em Journal of Machine Learning Research\/}~{\em 3}, 993--1022.
-
 \bibitem[\protect\citeauthoryear{Borodin, Lee, and Ye}{Borodin
   et~al\mbox{.}}{2012}]{Borodin:Database2012}
 {\sc Borodin, A.}, {\sc Lee, H.~C.}, {\sc and} {\sc Ye, Y.} 2012.
@@ -53,14 +47,6 @@
 \newblock In {\em Proceedings of the 21st Annual International ACM SIGIR
   Conference on Research and Development in Information Retrieval}. ACM,
   335--336.
-
-\bibitem[\protect\citeauthoryear{Chapelle, Metlzer, Zhang, and
-  Grinspan}{Chapelle et~al\mbox{.}}{2009}]{err-ia}
-{\sc Chapelle, O.}, {\sc Metlzer, D.}, {\sc Zhang, Y.}, {\sc and} {\sc
-  Grinspan, P.} 2009.
-\newblock Expected reciprocal rank for graded relevance.
-\newblock In {\em Proceedings of the 18th ACM conference on Information and
-  knowledge management}. CIKM '09. ACM, New York, NY, USA, 621--630.
 
 \bibitem[\protect\citeauthoryear{Chen and Karger}{Chen and
   Karger}{2006}]{chen06Less}
@@ -98,16 +84,7 @@
   Research and development in information retrieval}. SIGIR '12. ACM, New York,
   NY, USA, 65--74.
 
-\bibitem[\protect\citeauthoryear{Deerwester, Dumaisand, Furnas, Landauer, and
-  Harshman}{Deerwester et~al\mbox{.}}{1990}]{deerwester90LSA}
-{\sc Deerwester, S.}, {\sc Dumaisand, S.~T.}, {\sc Furnas, G.~W.}, {\sc
-  Landauer, T.~K.}, {\sc and} {\sc Harshman, R.} 1990.
-\newblock Indexing by latent semantic analysis.
-\newblock {\em Journal of the American Society for Information Science\/}~{\em
-  41}, 391--407.
-
-\bibitem[\protect\citeauthoryear{Goffman}{Goffman}{1964}]{goffman64OnRelevance%
-AsAMeasure}
+\bibitem[\protect\citeauthoryear{Goffman}{Goffman}{1964}]{goffman64OnRelevanceAsAMeasure}
 {\sc Goffman, W.} 1964.
 \newblock On relevance as a measure.
 \newblock {\em Information Storage and Retrieval\/}~{\em 2,\/}~3, 201--203.
@@ -162,23 +139,13 @@ AsAMeasure}
 \newblock In {\em Proceedings of the 25th International Conference on Machine
   Learning}. ACM, 784--791.
 
-\bibitem[\protect\citeauthoryear{Robertson and Walker}{Robertson and
-  Walker}{1994}]{bm25}
-{\sc Robertson, S.~E.} {\sc and} {\sc Walker, S.} 1994.
-\newblock Some simple effective approximations to the 2-poisson model for
-  probabilistic weighted retrieval.
-\newblock In {\em Proceedings of the 17th annual international ACM SIGIR
-  conference on Research and development in information retrieval}. SIGIR '94.
-  Springer-Verlag New York, Inc., New York, NY, USA, 232--241.
-
 \bibitem[\protect\citeauthoryear{Salton and McGill}{Salton and
   McGill}{1983}]{salton83Introduction}
 {\sc Salton, G.} {\sc and} {\sc McGill, M.} 1983.
 \newblock {\em Introduction to modern information retrieval}.
 \newblock McGraw-Hill.
 
-\bibitem[\protect\citeauthoryear{Sanderson}{Sanderson}{2008}]{sanderson08Ambig%
-uous}
+\bibitem[\protect\citeauthoryear{Sanderson}{Sanderson}{2008}]{sanderson08Ambiguous}
 {\sc Sanderson, M.} 2008.
 \newblock Ambiguous queries: Test collections need more sense.
 \newblock In {\em Proceedings of the 31st Annual International ACM SIGIR
