@@ -13,7 +13,6 @@ diversification as optimization of a risk minimization objective.  We
 note that the results as derived in the last section formally motivates these and others somewhat ad-hoc diversification approaches and we discuss
 these connections more deeply in the following sections.
 
-
 %\subsection{MMR}
 %
 %The result in~\eqref{eq:1call} is strikingly similar to MMR --- it
@@ -125,7 +124,7 @@ Now we show that our expected 1-call@$k$ objective in Equation~\eqref{eq:setRele
     \ExpOneCall(S_k,\vec{q}) & = \mathbb{E} \left[\left. \bigvee_{i=1}^{k}r_i=1 \right| s_{1},\dots, s_{k},\vec{q} \right], \\
     												 & = \sum_{t\in T} P(t|\vec{q}) \left( 1 - \prod_{i=1}^{k}(1-p(t_i = t| q, s_i))\right) 
 \end{align*}
-Our observation here is that our proposed objective is equivalent to the IA-Select proposed in \cite{agrawal09diversifying} when one replaces the likelihood function $V(s|\vec{q}, c)$ by $p(t_i = t| \vec{q}, s_i)$. More recently, Vargas et al~\cite{Vargas:SIGIR2012} propose variants of IA-Select by introducing several interesting formal probabilistic relevance models to instantiate $V(s| q, c)$, which are more appopriate in modeling the relevance in a probabilistic framework. Furthermore, \cite{Vallet:SIGIR2012} propose to introduce a user as an explicit random variable in state of the art diversification methods, thus developing a generalized framework for personalized diversification.
+Clearly our proposed objective is equivalent to the objective Equation~\eqref{eq:diversifykObjectiveFunction} proposed in \cite{agrawal09diversifying} when one replaces the likelihood function $V(s|\vec{q}, c)$ by $p(t_i = t| \vec{q}, s_i)$. More recently, Vargas et al~\cite{Vargas:SIGIR2012} propose variants of IA-Select by introducing several interesting formal probabilistic relevance models to instantiate $V(s| q, c)$, which are more appopriate in modeling the relevance in a probabilistic framework. Furthermore, \cite{Vallet:SIGIR2012} propose to introduce a user as an explicit random variable in state of the art diversification methods, thus developing a generalized framework for personalized diversification.
 
 Another recent interesting instantiation of $V(s|q,c)$ is proposed in \cite{Zuccon:ECIR2012} motivated by the facilitation location problem~\cite{Gonzalez:Handbook2007} taken from Operation Research: for a set of customer ``locations" $D$, one aims at choosing a subset $S$ in $D$ to open $k$ ``facilities" that optimize a graph-theoretic objective that depends on the cost of opening a facility at each location and also the distance between each pair of locations. However all of the three described methods do not derive their objective functions from the expected 1-call@$k$ objective as we have achieved. 
 
@@ -237,7 +236,7 @@ this yields a natural rank ordering on the greedy Exp-$1$-call@$k$
 result set.
 
 \subsection{Four Aspects of Diversifying Approaches}
-As the last part of the related work, we identify four key aspects for a diversifying approach, and review existing diversifying approaches against these aspects in this section. As shown in Table~\ref{table:comparisonAlgorithms}, we breakdown the
+As the last part of the related work, we identify four key aspects for a diversifying approach and categorize existing approaches against these categories in Table~\ref{table:comparisonAlgorithms}. Specifically, we breakdown the
 different proposals according to whether they are probabilistic, use
 latent models for determining similarity, use adaptive learning
 techniques, and finally whether they are unsupervised, i.e., they do
