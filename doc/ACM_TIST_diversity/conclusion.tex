@@ -1,10 +1,29 @@
-In this paper, we presented a new derivation of diverse retrieval by directly
-optimizing the expected n-call@$k$ set-based retrieval objective
-w.r.t.\ a latent subtopic model of binary relevance.  This result both
-motivates and contrasts with various related diversification
-approaches, providing a new theoretical basis for the investigation
-of diverse retrieval. Empirical results on three real-world data sets reflected our theoretical results. 
+In this article, we made fundamental contributions to the theoretical
+understanding of expected $n$-call@$k$ (guided by simpler 
+derivations for $n=1,2$) and its relationship with
+diversity.  In contrast to a variety of diverse retrieval algorithms
+derived from alternate rank-based relevance criteria such as average
+precision and reciprocal rank, we provided a complementary theoretical
+perspective on the emergence of diversity via optimization of
+$n$-call@$k$ in a latent subtopic model of relevance that focused on
+the subtopic motivation for diverse retrieval.  Further, we
+precisely formalized the mathematical relationship between
+$n$-call@$k$ and diversity and confirmed empirical observations in the
+literature.  Altogether, these theoretical results have provided deep
+connections to the popular MMR diversification algorithm and both
+motivated and contrasted with other diversification
+approaches, hence providing a new theoretical basis for the
+investigation of diverse retrieval algorithms.
 
-Future work includes the study of efficiently optimizing the n-call@$k$ objecive function by possibly exploiting the submodularity \cite{Borodin:Database2012}. Additional, it is also important to study the temporal diveristy as suggested in \cite{lathia10TemporalDiversity} and \cite{Zhao:SIGIR2012}. 
+%% SHENGBO:
+%%
+%% This future work does not follow on clearly from the analysis in this paper...
+%% it's not a good note to end on.  If you're going to include these citations,
+%% you need to find some clear way to put them in the related work section.
+%Future work includes the study of efficiently optimizing the
+%n-call@$k$ objecive function by possibly exploiting the
+%submodularity \cite{Borodin:Database2012}. Additional, it is also
+%important to study the temporal diveristy as suggested
+%in \cite{lathia10TemporalDiversity} and \cite{Zhao:SIGIR2012}.
 
 \appendix

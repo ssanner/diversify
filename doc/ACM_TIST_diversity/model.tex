@@ -36,7 +36,7 @@ selected items $s_i$ are relevant ($r_i=1$).
 The conditional probability tables (CPTs) associated with each node in
 Figure~\ref{fig:gm} are defined as follows: $P(t_i|s_i)$ and
 $P(t|\vec{q})$ respectively represent the subtopic distribution for
-item $s_i$ and query $\vec{q}$.  
+item $s_i$ and query $\vec{q}$.
 %In this article, we are agnostic as
 %to the source of this subtopic distribution for each document and
 %query -- we need only assume they exist.  
@@ -49,6 +49,19 @@ indicator function (1 if $\cdot$ is true), item $s_i$ is deemed
 P(r_{i}=1|t, t_{i}) & \; = \; \I[t_{i} = t]
 \end{align*}
 Here, $\I[\cdot]$ is $1$ when its argument is true and $0$ otherwise.
+
+It is a quite natural at this point to ask (a) how the subtopic set
+$T$ can be chosen automatically, and (b) how the subtopic CPTs
+$P(t|\vec{q})$ and $P(t_i|s_i)$ are specified or learned for the
+subtopics $t \in T$.  However, we defer this question until
+Section~\ref{subsec:mmr_comp} where it will become apparent via the
+mathematical connections to MMR and the ``kernel trick'' how the
+necessary quantities required for optimization can be specified via
+similarity functions commonly used with MMR.  We note this
+is simply one automated option though --- a user is otherwise free to define subtopics
+and specify or learn their probabilities in any way deemed appropriate --- the
+only required property is that $T$ is finite and all subtopic CPTs are proper conditional
+probabilities that sum to $1$ over $t \in T$.
 
 %The \emph{expected 1-call@$k$} objective is defined below: 
 %\begin{align}

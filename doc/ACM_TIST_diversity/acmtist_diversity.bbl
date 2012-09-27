@@ -8,29 +8,6 @@
 \newblock In {\em Proceedings of the 2nd ACM International Conference on Web
   Search and Data Mining}. ACM, New York, NY, USA, 5--14.
 
-\bibitem[\protect\citeauthoryear{Anagnostopoulos, Broder, and
-  Carmel}{Anagnostopoulos et~al\mbox{.}}{2005}]{anagnostopoulos05245Sampling}
-{\sc Anagnostopoulos, A.}, {\sc Broder, A.~Z.}, {\sc and} {\sc Carmel, D.}
-  2005.
-\newblock Sampling search-engine results.
-\newblock In {\em Proceedings of the 14th International Conference on World
-  Wide Web}. ACM, Chiba, Japan, 245--256.
-
-\bibitem[\protect\citeauthoryear{Bai and Nie}{Bai and
-  Nie}{2008}]{bai08Adapting}
-{\sc Bai, J.} {\sc and} {\sc Nie, J.-Y.} 2008.
-\newblock Adapting information retrieval to query contexts.
-\newblock {\em Information Processing and Management\/}~{\em 44,\/}~6,
-  1901--1922.
-
-\bibitem[\protect\citeauthoryear{Borodin, Lee, and Ye}{Borodin
-  et~al\mbox{.}}{2012}]{Borodin:Database2012}
-{\sc Borodin, A.}, {\sc Lee, H.~C.}, {\sc and} {\sc Ye, Y.} 2012.
-\newblock Max-sum diversification, monotone submodular functions and dynamic
-  updates.
-\newblock In {\em Proceedings of the 31st symposium on Principles of Database
-  Systems}. PODS '12. ACM, New York, NY, USA, 155--166.
-
 \bibitem[\protect\citeauthoryear{Buckley and Voorhees}{Buckley and
   Voorhees}{2000}]{ap}
 {\sc Buckley, C.} {\sc and} {\sc Voorhees, E.~M.} 2000.
@@ -57,44 +34,10 @@
   Conference on Research and Development in Information Retrieval}. ACM,
   429--436.
 
-\bibitem[\protect\citeauthoryear{Clarke, Kolla, Cormack, and Vechtomova}{Clarke
-  et~al\mbox{.}}{2008}]{clarke08Novelty}
-{\sc Clarke, C. L.~A.}, {\sc Kolla, M.}, {\sc Cormack, G.~V.}, {\sc and} {\sc
-  Vechtomova, O.} 2008.
-\newblock Novelty and diversity in information retrieval evaluation.
-\newblock In {\em Proceedings of the 31st Annual International ACM SIGIR
-  Conference on Research and Development in Information Retrieval}. ACM,
-  659--666.
-
-\bibitem[\protect\citeauthoryear{Clough, Sanderson, Abouammoh, Navarro, and
-  Paramita}{Clough et~al\mbox{.}}{2009}]{clough09734Multiple}
-{\sc Clough, P.}, {\sc Sanderson, M.}, {\sc Abouammoh, M.}, {\sc Navarro, S.},
-  {\sc and} {\sc Paramita, M.} 2009.
-\newblock Multiple approaches to analysing query diversity.
-\newblock In {\em Proceedings of the 32nd International ACM SIGIR Conference on
-  Research and Development in Information Retrieval}. ACM, New York, NY, USA,
-  734--735.
-
-\bibitem[\protect\citeauthoryear{Dang and Croft}{Dang and
-  Croft}{2012}]{Dang:SIGIR2012}
-{\sc Dang, V.} {\sc and} {\sc Croft, W.~B.} 2012.
-\newblock Diversity by proportionality: an election-based approach to search
-  result diversification.
-\newblock In {\em Proceedings of the 35th international ACM SIGIR conference on
-  Research and development in information retrieval}. SIGIR '12. ACM, New York,
-  NY, USA, 65--74.
-
 \bibitem[\protect\citeauthoryear{Goffman}{Goffman}{1964}]{goffman64OnRelevanceAsAMeasure}
 {\sc Goffman, W.} 1964.
 \newblock On relevance as a measure.
 \newblock {\em Information Storage and Retrieval\/}~{\em 2,\/}~3, 201--203.
-
-\bibitem[\protect\citeauthoryear{Gollapudi and Sharma}{Gollapudi and
-  Sharma}{2009}]{gollapudi09AnAxiomatic}
-{\sc Gollapudi, S.} {\sc and} {\sc Sharma, A.} 2009.
-\newblock An axiomatic approach for result diversification.
-\newblock In {\em Proceedings of the 18th International Conference on World
-  Wide Web}. ACM, 381--390.
 
 \bibitem[\protect\citeauthoryear{Gonzalez}{Gonzalez}{2007}]{Gonzalez:Handbook2007}
 {\sc Gonzalez, T.~F.} 2007.
@@ -121,15 +64,6 @@
 \newblock Probability product kernels.
 \newblock {\em Journal of Machine Learning Research\/}~{\em 5}, 819--844.
 
-\bibitem[\protect\citeauthoryear{Lathia, Hailes, Capra, and Amatriain}{Lathia
-  et~al\mbox{.}}{2010}]{lathia10TemporalDiversity}
-{\sc Lathia, N.}, {\sc Hailes, S.}, {\sc Capra, L.}, {\sc and} {\sc Amatriain,
-  X.} 2010.
-\newblock Temporal diversity in recommender systems.
-\newblock In {\em Proceeding of the 33rd International ACM SIGIR Conference on
-  Research and Development in Information Retrieval}. ACM, New York, NY, USA,
-  210--217.
-
 \bibitem[\protect\citeauthoryear{Lim, Sanner, and Guo}{Lim
   et~al\mbox{.}}{2012}]{LimKarWai:SIGIR2012}
 {\sc Lim, K.~W.}, {\sc Sanner, S.}, {\sc and} {\sc Guo, S.} 2012.
@@ -146,33 +80,11 @@
 \newblock Redundancy, diversity and interdependent document relevance.
 \newblock {\em SIGIR Forum\/}~{\em 43,\/}~2, 46--52.
 
-\bibitem[\protect\citeauthoryear{Radlinski and Dumais}{Radlinski and
-  Dumais}{2006}]{radlinski06691Improving}
-{\sc Radlinski, F.} {\sc and} {\sc Dumais, S.} 2006.
-\newblock Improving personalized web search using result diversification.
-\newblock In {\em Proceedings of the 29th Annual International ACM SIGIR
-  Conference on Research and Development in Information Retrieval}. ACM, New
-  York, NY, USA, 691--692.
-
-\bibitem[\protect\citeauthoryear{Radlinski, Kleinberg, and Joachims}{Radlinski
-  et~al\mbox{.}}{2008}]{radlinski08LearningDiverse}
-{\sc Radlinski, F.}, {\sc Kleinberg, R.}, {\sc and} {\sc Joachims, T.} 2008.
-\newblock Learning diverse rankings with multi-armed bandits.
-\newblock In {\em Proceedings of the 25th International Conference on Machine
-  Learning}. ACM, 784--791.
-
 \bibitem[\protect\citeauthoryear{Salton and McGill}{Salton and
   McGill}{1983}]{salton83Introduction}
 {\sc Salton, G.} {\sc and} {\sc McGill, M.} 1983.
 \newblock {\em Introduction to modern information retrieval}.
 \newblock McGraw-Hill.
-
-\bibitem[\protect\citeauthoryear{Sanderson}{Sanderson}{2008}]{sanderson08Ambiguous}
-{\sc Sanderson, M.} 2008.
-\newblock Ambiguous queries: Test collections need more sense.
-\newblock In {\em Proceedings of the 31st Annual International ACM SIGIR
-  Conference on Research and Development in Information Retrieval}. ACM,
-  499--506.
 
 \bibitem[\protect\citeauthoryear{Sanner, Guo, Graepel, Kharazmi, and
   Karimi}{Sanner et~al\mbox{.}}{2011}]{sanner11}
@@ -207,14 +119,6 @@
 \newblock In {\em Proceedings of the 35th international ACM SIGIR conference on
   Research and development in information retrieval}. SIGIR '12. ACM, New York,
   NY, USA, 175--184.
-
-\bibitem[\protect\citeauthoryear{Song, Luo, Nie, Yu, and Hon}{Song
-  et~al\mbox{.}}{2009}]{song09Identification}
-{\sc Song, R.}, {\sc Luo, Z.}, {\sc Nie, J.-Y.}, {\sc Yu, Y.}, {\sc and} {\sc
-  Hon, H.-W.} 2009.
-\newblock Identification of ambiguous queries in web search.
-\newblock {\em Information Processing and Management\/}~{\em 45,\/}~2,
-  216--229.
 
 \bibitem[\protect\citeauthoryear{Vallet and Castells}{Vallet and
   Castells}{2012}]{Vallet:SIGIR2012}
@@ -253,14 +157,6 @@
   Research and development in information retrieval}. SIGIR '10. ACM, New York,
   NY, USA, 226--233.
 
-\bibitem[\protect\citeauthoryear{Yu, Lakshmanan, and Amer-Yahia}{Yu
-  et~al\mbox{.}}{2009}]{yu09368}
-{\sc Yu, C.}, {\sc Lakshmanan, L.}, {\sc and} {\sc Amer-Yahia, S.} 2009.
-\newblock It takes variety to make a world: diversification in recommender
-  systems.
-\newblock In {\em Proceedings of the 12th International Conference on Extending
-  Database Technology}. Vol. 360. ACM, 368--378.
-
 \bibitem[\protect\citeauthoryear{Yue and Joachims}{Yue and
   Joachims}{2008}]{yue081224Predicting}
 {\sc Yue, Y.} {\sc and} {\sc Joachims, T.} 2008.
@@ -275,14 +171,6 @@
   subtopic retrieval.
 \newblock In {\em Proceedings of the 26th Annual International ACM SIGIR
   Conference on Research and Development In Informaion Retrieval}. ACM, 10--17.
-
-\bibitem[\protect\citeauthoryear{Zhao, Lee, Hsu, and Chen}{Zhao
-  et~al\mbox{.}}{2012}]{Zhao:SIGIR2012}
-{\sc Zhao, G.}, {\sc Lee, M.~L.}, {\sc Hsu, W.}, {\sc and} {\sc Chen, W.} 2012.
-\newblock Increasing temporal diversity with purchase intervals.
-\newblock In {\em Proceedings of the 35th international ACM SIGIR conference on
-  Research and development in information retrieval}. SIGIR '12. ACM, New York,
-  NY, USA, 165--174.
 
 \bibitem[\protect\citeauthoryear{Zuccon, Azzopardi, Zhang, and Wang}{Zuccon
   et~al\mbox{.}}{2012}]{Zuccon:ECIR2012}

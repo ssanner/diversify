@@ -6,55 +6,50 @@ Database file #1: reference.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Warning--empty address in carbonell98MMR
 Warning--empty address in chen06Less
-Warning--empty address in clarke08Novelty
-Warning--empty address in gollapudi09AnAxiomatic
 Warning--empty address in Gonzalez:Handbook2007
-Warning--empty address in radlinski08LearningDiverse
 Warning--empty address in salton83Introduction
-Warning--empty address in sanderson08Ambiguous
 Warning--empty publisher in mrr
 Warning--empty address in mrr
-Warning--empty address in yu09368
 Warning--empty address in zhai03Beyond
-You've used 38 entries,
+You've used 24 entries,
             3177 wiz_defined-function locations,
-            966 strings with 13303 characters,
-and the built_in function-call counts, 29878 in all, are:
-= -- 2975
-> -- 1433
-< -- 1
-+ -- 414
-- -- 535
-* -- 2547
-:= -- 4610
-add.period$ -- 193
-call.type$ -- 38
-change.case$ -- 294
-chr.to.int$ -- 37
-cite$ -- 50
-duplicate$ -- 1109
-empty$ -- 2205
-format.name$ -- 764
-if$ -- 6275
+            882 strings with 10691 characters,
+and the built_in function-call counts, 18415 in all, are:
+= -- 1825
+> -- 888
+< -- 0
++ -- 255
+- -- 343
+* -- 1553
+:= -- 2880
+add.period$ -- 121
+call.type$ -- 24
+change.case$ -- 181
+chr.to.int$ -- 23
+cite$ -- 31
+duplicate$ -- 679
+empty$ -- 1358
+format.name$ -- 481
+if$ -- 3835
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 70
-newline$ -- 193
-num.names$ -- 378
-pop$ -- 331
+missing$ -- 44
+newline$ -- 123
+num.names$ -- 238
+pop$ -- 202
 preamble$ -- 1
-purify$ -- 522
+purify$ -- 325
 quote$ -- 0
-skip$ -- 1036
+skip$ -- 634
 stack$ -- 0
-substring$ -- 1784
-swap$ -- 413
-text.length$ -- 1
+substring$ -- 1074
+swap$ -- 246
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 736
-warning$ -- 12
-while$ -- 334
+type$ -- 456
+warning$ -- 7
+while$ -- 218
 width$ -- 0
-write$ -- 585
-(There were 12 warnings)
+write$ -- 368
+(There were 7 warnings)
