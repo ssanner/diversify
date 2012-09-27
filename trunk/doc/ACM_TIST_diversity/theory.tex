@@ -5,7 +5,7 @@ Before we present the result on optimizing expected n-call@k, we start off from 
 \begin{align}
     \ExpOneCall(S_k,\vec{q}) & = \mathbb{E}[R_k\geq 1|s_1,\dots,s_k,\vec{q}]
 \end{align}
-%\noindent
+
 Since $R_k\geq 1$ is satisfied as long as any one of the $r_i$ is $1$, the objective can be rewritten in term of set notation:
 
 \begin{align}
@@ -35,10 +35,10 @@ s_k^* & = \argmax_{s_k} \mathbb{E}\Bigg[  (r_1=1) \vee (r_2 =1 \wedge r_1=0) \ve
 
 Since these events are binary and disjoint, we can rewrite the expectation as probability.
 This gives us the sum of the probabilities of each individual event.
-We further simplify it (visually) by grouping all $r_j = 0$.\footnote{The notation 
+We further simplify it by grouping all $r_j = 0$.\footnote{The notation 
 $\{ \cdot \}_C$ refers to a (possibly empty) set of 
 variables (or variable assignments) $\cdot$ that meet constraints $C$.}
-We factorized each joint probability into a conditional and prior, and removed terms and factors that are do not contain $s_k$, note that these terms are effectively a constant when we optimize for $s_k$:
+We factorize each joint probability into a conditional and prior, and removed terms and factors that are do not contain $s_k$, note that these terms are only acting as constants when we optimize for $s_k$:
 
 \begin{align}   
 s_k^* & = \argmax_{s_k} \sum_{i=1}^{k} P(  r_i=1, \{ r_{j}=0 \}_{j<i} \, | \, \{ s^*_j \}_{j\leq i,j<k},\{ s_{k} \}_{k=i},\vec{q}) \nonumber \\
