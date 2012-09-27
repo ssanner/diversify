@@ -1,13 +1,13 @@
 \subsection{Optimizing Expected 1-call@k}
-Before we present the result on optimizing expected n-call@k, we start off from the simplest case, expected 1-call@k (where $n=1$):
-
+Before we present the result on optimizing expected $n$-call@$k$ for
+general $n$, we start off from the simplest case, expected 1-call@$k$
+(where $n=1$):
 % Definition of 1-call
 \begin{align}
     \ExpOneCall(S_k,\vec{q}) & = \mathbb{E}[R_k\geq 1|s_1,\dots,s_k,\vec{q}]
 \end{align}
-
-Since $R_k\geq 1$ is satisfied as long as any one of the $r_i$ is $1$, the objective can be rewritten in term of set notation:
-
+Since $R_k\geq 1$ is satisfied as long as any one of the $r_i$ is $1$,
+the objective can be rewritten in terms of set notation:
 \begin{align}
 \label{eq:setRelevance}
     \ExpOneCall(S_k,\vec{q}) & = \mathbb{E} \left[\left. \bigvee_{i=1}^{k}r_i=1 \right| s_{1},\dots, s_{k},\vec{q} \right]
@@ -18,49 +18,40 @@ take a greedy approach similar to MMR where we choose the best $s_k^*$
 assuming that $S_{k-1}^*$ is given.  Then following~\cite{chen06Less},
 we can greedily optimize this objective as 
 follows:
-
 \begin{align}
 s_k^* & = \argmax_{s_k} \; \ExpOneCall(S_{k-1}^* \cup \{ s_k \},\vec{q}) \nonumber \\
-   & = \argmax_{s_k} \mathbb{E}\left[\left. \bigvee_{i=1}^{k} r_i=1 \right| S_{k-1}^*, s_{k},\vec{q}\right] \nonumber \\
+   & = \argmax_{s_k} \mathbb{E}\left[\left. \bigvee_{i=1}^{k} r_i=1 \right| S_{k-1}^*, s_{k},\vec{q}\right] \nonumber
 \end{align}
-
-We then applied a logical equivalence and exploited the additivity of
+Next we can apply a logical equivalence and exploit the additivity of
 mutually exclusive events to split $\bigvee_{i=1}^{k} r_i=1$ into mutually exclusive
 disjoint subsets:
-
 \begin{align}
 s_k^* & = \argmax_{s_k} \mathbb{E}\Bigg[  (r_1=1) \vee (r_2 =1 \wedge r_1=0) \vee (r_3 =1 \wedge r_2=0 \wedge r_1=0) \vee \cdots \vee \nonumber \\
    & \hspace{19mm} \left(r_k=1 \wedge \bigwedge_{i=1}^{k-1} r_i=0 \right) \, \Bigg| \, S_{k-1}^*,s_k,\vec{q} \Bigg] \label{eq:logicalsplit}
 \end{align}
-
 Since these events are binary and disjoint, we can rewrite the expectation as probability.
 This gives us the sum of the probabilities of each individual event.
 We further simplify it by grouping all $r_j = 0$.\footnote{The notation 
 $\{ \cdot \}_C$ refers to a (possibly empty) set of 
 variables (or variable assignments) $\cdot$ that meet constraints $C$.}
-We factorize each joint probability into a conditional and prior, and removed terms and factors that are do not contain $s_k$, note that these terms are only acting as constants when we optimize for $s_k$:
-
+We factorize each joint probability into a conditional and prior, and remove terms and factors that are do not contain $s_k$, noting that these terms only act as constants when optimizing for $s_k$:
 \begin{align}   
 s_k^* & = \argmax_{s_k} \sum_{i=1}^{k} P(  r_i=1, \{ r_{j}=0 \}_{j<i} \, | \, \{ s^*_j \}_{j\leq i,j<k},\{ s_{k} \}_{k=i},\vec{q}) \nonumber \\
    &= \argmax_{s_k} \sum_{i=1}^{k} P(  r_i=1 \, | \, \{ r_{j}=0 \}_{j<i} , \{ s^*_j \}_{j\leq i,j<k},\{ s_k \}_{k=i},\vec{q}) \nonumber\\
    & \hspace{21.5mm} P(\{ r_{j}=0 \}_{j<i} \, | \, \{ s^*_j \}_{j\leq i,j<k}, \vec{q}) \nonumber \\
    &= \argmax_{s_k} P( r_k=1 \, | \, \{ r_{j}=0 \}_{j<k}, S_{k-1}^*,s_k,\vec{q}) \label{eq:set-objective}
 \end{align}
-
 From~\eqref{eq:set-objective}, to optimize for $s_k$, we need only to maximize $s_k$'s probability of relevance conditioned on the previous selections (which are assumed irrelevant, $r_j=0$) and the query.
 
 Next we evaluate the final query from~\eqref{eq:set-objective} w.r.t.\
-our graphical model of subtopic relevance from Figure~\ref{fig:gm}:
-
+our actual graphical model of subtopic relevance from Figure~\ref{fig:gm}:
 \begin{align}
 s_k^* & = \argmax_{s_{k}} P( r_k=1 \, | \, \{ r_{j}=0 \}_{j<k}, S_{k-1}^*,s_k,\vec{q}) \nonumber \\
 & = \argmax_{s_{k}} \sum_{t, t_1, \cdots, t_{k}} P(t|\vec{q}) P(t_k|s_k) \I[t_k = t] \prod_{i=1}^{k-1} P(t_i|s_i^*) \I[t_i\neq t]\nonumber \\
 & = \argmax_{s_{k}} \sum_{t} P(t|\vec{q}) \sum_{t_{k}} P(t_k|s_k) \I[t_k = t] \prod_{i=1}^{k-1} \sum_{t_{i}} P(t_i|s_i^*) \I[t_i \neq t]\nonumber \\
 & = \argmax_{s_{k}} \sum_{t} P(t|\vec{q}) P(t_k=t|s_k) \fbox{$\prod\limits_{i=1}^{k-1} (1 - P(t_i=t|s_i^*))$} \label{eq:partial_simp}
 \end{align}
-
 Here we have used the following equality:
-
 \begin{align*}
 & \sum_{t_{i}} P(t_i|s_i) \I[t_i = t] =  P(t_i=t|s_i) \\
 & \sum_{t_{i}} P(t_i|s_i) \I[t_i \neq t] = 1 - P(t_i=t|s_i)
@@ -72,18 +63,28 @@ set $S_{k-1}^*$ already \emph{covers} topic $t$
 w.r.t.\ a \emph{noisy-or} interpretation.  Substituting
 $(1 - \tilde{P}(t | S_{k-1}^*))$ for $\Box$ since 
 $(1 - \tilde{P}(t | S_{k-1}^*)) = 1 - (1 - \Box) = \Box$, we obtain
-
 \begin{align}
 s_k^* & = \argmax_{s_{k}} \sum_{t} P(t|\vec{q}) P(t_k=t|s_k) \left( 1 - \tilde{P}(t | S_{k-1}^*) \right) \nonumber \\
       & = \argmax_{s_{k}} \sum_{t} \underbrace{P(t|\vec{q}) P(t_k=t|s_k)}_{\mbox{\footnotesize query similarity}} - \sum_{t} \underbrace{P(t|\vec{q}) P(t_k=t|s_k) \tilde{P}(t | S_{k-1}^*)}_{\mbox{\footnotesize query-reweighted diversity}}. \label{eq:1call}
 \end{align}
 
-From~\eqref{eq:1call}, we can see that optimizing expected 1-call@k give us a greedy algorithm that resemblances MMR with $\lambda = 1/2$.
+From~\eqref{eq:1call}, we can see that optimizing expected 1-call@$k$ give us a greedy algorithm that closely resembles MMR with $\lambda = \frac{1}{2}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Optimizing Expected n-call@k}
-Note that it is not straight-forward to use the set-based representation of the expected n-call@k objective for a larger $n$: even for $n=2$, the number of disjoint events that satisfy $R_k \geq 2$ grows by a factor of $(k-1)/2$.\footnote{$\binom{k}{2} / \binom{k}{1} = (k-1)/2$}
-The derivation of optimizing expected 2-call@k (using set notation) is presented in Appendix~\ref{appendix.2call}, which aims to provide an intuitive support to the derivation of optimizing expected n-call@k. 
+
+In contrast to $n=1$, we note that it is not straightforward to use the set-based
+representation of the expected $n$-call@$k$ objective when $n > 1$: even
+for $n=2$, the number of disjoint events that satisfy $R_k \geq 2$
+grows by a factor of $(k-1)/2$.\footnote{$\binom{k}{2} / \binom{k}{1}
+  = (k-1)/2$}
+
+Next we provide our main result on optimizing expected $n$-call@$k$
+for general $n \geq 1$.  For the interested reader, we note that a
+simpler (set-based) derivation for the special case of $n=2$ is
+provided in Appendix~\ref{appendix.2call}, which provides some guiding
+intuitions for the general derivation deveoped in this section.
+ 
 In the following derivation, we adopt a more abstract approach (working with $R_k$ directly) while utilizing the same principle as in expected 1-call@k.
 % We cast the optimization of $\ExpNCall{n}(S_k,\vec{q})$
 % in a form similar to MMR in~\eqref{eq:MMR} to 

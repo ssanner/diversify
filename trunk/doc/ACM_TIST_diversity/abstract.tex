@@ -1,14 +1,23 @@
-It has been previously noted that optimization of the $n$-call@$k$
-relevance objective (i.e., a set-based objective that is 1 if at least
-$n$ documents in a set of $k$ are relevant, otherwise 0) encourages
-more result set diversification for smaller $n$, but this statement
-has never been formally quantified.  In this work, we explicitly
-derive the mathematical relationship between \emph{expected
-$n$-call@$k$} and the \emph{relevance vs. diversity trade-off} ---
-through fortuitous cancellations in the resulting combinatorial
-optimization, we show the trade-off is a simple and intuitive function
-of $n$ (notably independent of the result set size $k \geq n$), where
-diversification increases as $n \to 1$. Empirical results on three
-diversity testbeds including the TREC 6-8 Interactive Track, 2009 and
-2010 ClueWeb Diversity tasks of the TREC Web Track support our
-theoretical derivations.
+In this article, we explore the relationship between result set
+diversification and the optimization of \mbox{$n$-call@$k$} -- a
+set-based relevance objective that is 1 if at least $n$ documents in a
+set of $k$ are relevant, otherwise 0.  First, we formally quantify the
+mathematical relationship between diversity and greedy optimization of
+the \emph{expected} $n$-call@$k$ objective in a latent subtopic model
+of binary relevance.  Second, we relate this result to a variety of
+other diversification approaches proposed in the literature, including
+deep connections with maximal marginal relevance.  The contributions
+of this work are threefold: (1) in contrast to a variety of diverse
+retrieval algorithms derived from alternate rank-based relevance
+criteria such as average precision and reciprocal rank, we provide a
+complementary theoretical perspective on the emergence of diversity
+via optimization of $n$-call@$k$ in a latent subtopic model of
+relevance intended to model both ambiguous and faceted subtopic
+retrieval, (2) we precisely formalize a mathematical relationship
+between $n$-call@$k$ and diversity that confirms empirical
+observations in the literature, and (3) we provide a theoretical
+underpinning and comparison to many other (ad-hoc) diversification
+approaches in the literature.
+
+
+
