@@ -96,6 +96,12 @@
 \newblock In {\em Proceedings of the 18th International Conference on World
   Wide Web}. ACM, 381--390.
 
+\bibitem[\protect\citeauthoryear{Gonzalez}{Gonzalez}{2007}]{Gonzalez:Handbook2007}
+{\sc Gonzalez, T.~F.} 2007.
+\newblock {\em Handbook of Approximation Algorithms and Metaheuristics (Chapman
+  \& Hall/Crc Computer \& Information Science Series)}.
+\newblock Chapman \& Hall/CRC.
+
 \bibitem[\protect\citeauthoryear{Guo and Sanner}{Guo and Sanner}{2010}]{plmmr}
 {\sc Guo, S.} {\sc and} {\sc Sanner, S.} 2010.
 \newblock Probabilistic latent maximal marginal relevance.
@@ -123,6 +129,22 @@
 \newblock In {\em Proceeding of the 33rd International ACM SIGIR Conference on
   Research and Development in Information Retrieval}. ACM, New York, NY, USA,
   210--217.
+
+\bibitem[\protect\citeauthoryear{Lim, Sanner, and Guo}{Lim
+  et~al\mbox{.}}{2012}]{LimKarWai:SIGIR2012}
+{\sc Lim, K.~W.}, {\sc Sanner, S.}, {\sc and} {\sc Guo, S.} 2012.
+\newblock On the mathematical relationship between expected n-call@k and the
+  relevance vs. diversity trade-off.
+\newblock In {\em Proceedings of the 35th international ACM SIGIR conference on
+  Research and development in information retrieval}. SIGIR '12. ACM, New York,
+  NY, USA, 1117--1118.
+
+\bibitem[\protect\citeauthoryear{Radlinski, Bennett, Carterette, , and
+  Joachims}{Radlinski et~al\mbox{.}}{2009}]{diversity_types}
+{\sc Radlinski, F.}, {\sc Bennett, P.~N.}, {\sc Carterette, B.}, {\sc }, {\sc
+  and} {\sc Joachims, T.} 2009.
+\newblock Redundancy, diversity and interdependent document relevance.
+\newblock {\em SIGIR Forum\/}~{\em 43,\/}~2, 46--52.
 
 \bibitem[\protect\citeauthoryear{Radlinski and Dumais}{Radlinski and
   Dumais}{2006}]{radlinski06691Improving}
@@ -176,6 +198,16 @@
 \newblock In {\em Proceedings of the 19th ACM international conference on
   Information and knowledge management}. ACM, New York, NY, USA, 1179--1188.
 
+\bibitem[\protect\citeauthoryear{Shi, Zhao, Wang, Larson, and Hanjalic}{Shi
+  et~al\mbox{.}}{2012}]{Shi:SIGIR2012}
+{\sc Shi, Y.}, {\sc Zhao, X.}, {\sc Wang, J.}, {\sc Larson, M.}, {\sc and} {\sc
+  Hanjalic, A.} 2012.
+\newblock Adaptive diversification of recommendation results via latent factor
+  portfolio.
+\newblock In {\em Proceedings of the 35th international ACM SIGIR conference on
+  Research and development in information retrieval}. SIGIR '12. ACM, New York,
+  NY, USA, 175--184.
+
 \bibitem[\protect\citeauthoryear{Song, Luo, Nie, Yu, and Hon}{Song
   et~al\mbox{.}}{2009}]{song09Identification}
 {\sc Song, R.}, {\sc Luo, Z.}, {\sc Nie, J.-Y.}, {\sc Yu, Y.}, {\sc and} {\sc
@@ -183,6 +215,13 @@
 \newblock Identification of ambiguous queries in web search.
 \newblock {\em Information Processing and Management\/}~{\em 45,\/}~2,
   216--229.
+
+\bibitem[\protect\citeauthoryear{Vallet and Castells}{Vallet and
+  Castells}{2012}]{Vallet:SIGIR2012}
+{\sc Vallet, D.} {\sc and} {\sc Castells, P.} 2012.
+\newblock Personalized diversification of search results.
+\newblock In {\em Proceedings of the 35th international ACM SIGIR conference on
+  Research and development in information retrieval}. ACM, New York, NY, USA.
 
 \bibitem[\protect\citeauthoryear{Vargas, Castells, and Vallet}{Vargas
   et~al\mbox{.}}{2012}]{Vargas:SIGIR2012}
@@ -244,5 +283,14 @@
 \newblock In {\em Proceedings of the 35th international ACM SIGIR conference on
   Research and development in information retrieval}. SIGIR '12. ACM, New York,
   NY, USA, 165--174.
+
+\bibitem[\protect\citeauthoryear{Zuccon, Azzopardi, Zhang, and Wang}{Zuccon
+  et~al\mbox{.}}{2012}]{Zuccon:ECIR2012}
+{\sc Zuccon, G.}, {\sc Azzopardi, L.}, {\sc Zhang, D.}, {\sc and} {\sc Wang,
+  J.} 2012.
+\newblock Top-k retrieval using facility location analysis.
+\newblock In {\em Proceedings of the 34th European conference on Advances in
+  Information Retrieval}. ECIR'12. Springer-Verlag, Berlin, Heidelberg,
+  305--316.
 
 \end{thebibliography}

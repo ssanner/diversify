@@ -8,16 +8,39 @@ result set relevant to a query.
 
 \emph{Subtopic retrieval} --- ``the task of finding documents that
 cover as many \emph{different} subtopics of a general topic as
-possible''~\cite{zhai03Beyond} --- is a
+possible''~\cite{zhai03Beyond} --- has often been noted as a
 motivating case for diverse retrieval.  That is, if a query has
 multiple facets that should be covered by a result set, or a query has
 multiple ambiguous interpretations, then a retrieval algorithm should
-try to ``cover'' all of these subtopics in its result set.
+try to ``cover'' all of these subtopics in its result set.  
 
-One of the most popular result set diversification methods is Maximal
-Marginal Relevance (MMR)~\cite{carbonell98MMR}.  
-Formally, given an \emph{item set} $D$ (e.g., a set of documents) where retrieved items
-are denoted as $s_i \in D$, we aim to select an optimal subset of
+If one wants to optimize a result set to cover all possible query
+subtopics, the question naturally arises as to what set-level
+relevance objective should be optimized?  Wang and
+Zhu~\cite{wangzhu10} have shown that natural forms of diversification
+arise via the optimization of \emph{average precision}~\cite{ap} and
+\emph{reciprocal rank}~\cite{mrr}.  While these results directly
+motivate diverse retrieval via \emph{rank-based} (ordered set)
+relevance criteria, they do not use the subtopic motivation for
+diversity.  We use this alternate subtopic motivation in this article,
+where we define binary relevance via a \emph{latent subtopic model}
+(shown in Figure~\ref{fig:gm} and 
+formally defined in Section~\ref{sec:model}).  With this
+definition of relevance, we then optimize the expectation of
+the \emph{$n$-call@$k$} \emph{set-based} relevance criteria that takes
+the value 1 if at least $n$ of $k$ documents in a result set are
+relevant and 0 otherwise~\cite{chen06Less}.
+
+Mathematically, it turns out that the optimization of expected
+$n$-call@$k$ encourages more diversity as $n \to 1$, which reflects
+previous empirical observations in the literature
+~\cite{wang09PortfolioTheory} (Figure 2c).  However, it turns out
+there are also deep connections between this derivation and one of the
+most popular diversification algorithms in the literature known as
+maximal marginal relevance (MMR)~\cite{carbonell98MMR}.
+
+Formally, MMR takes an \emph{item set} $D$ (e.g., a set of documents) where retrieved items
+are denoted as $s_i \in D$, and aims to select an optimal subset of
 items $S_k^* \subset D$ (where $|S_k^*| = k$ and $k < |D|$)
 \emph{relevant} to a given query $\vec{q}$ (e.g., query terms) with
 some level of \emph{diversity} among the items in $S_k^*$.  MMR
@@ -37,21 +60,17 @@ query-item relevance, and metric $\Sim_{2}$ measures the similarity
 between two items. In the case of $s_1^*$, the $\max$ term is omitted.
 
 In MMR, we note that the $\lambda$ term explicitly controls the
-trade-off between relevance and diversity. This $\lambda$ term has been traditionally set in an ad-hoc manner or
-in recent work, learned in a query-specific way from data~\cite{santos2010selectively}.  
+trade-off between relevance and diversity. This $\lambda$ term has
+been traditionally set in an ad-hoc manner or in recent work, learned
+in a query-specific way from data~\cite{santos2010selectively}.  The
+derivation presented in this article formally demonstrates that greedy
+optimization of expected $n$-call@$k$ precisely corresponds to $\lambda
+= \frac{n}{n+1}$ in MMR.  In addition, we also note deep mathematical
+connections between the optimization of $n$-call@$k$ and a variety of
+other (often ad-hoc) diversification approaches proposed in the
+literature.
 
-Presently, little is formally known about how a particular selection
-of $\lambda$ relates to the overall \emph{set-based relevance objective}
-being optimized.  However, it has been previously noted that the
-$n$-call@$k$ set-based relevance metric (which is 1 if at least $n$
-documents in a set of $k$ are relevant, otherwise 0) encourages
-diversity as $n \to 1$~\cite{chen06Less,wang09PortfolioTheory}.
-Indeed, Sanner \emph{et al.} \cite{sanner11}~have shown that optimizing
-\emph{expected $n$-call@$k$} for $n=1$ corresponds to 
-$\lambda = 0.5$ --- we extend
-this derivation to show that $\lambda = \frac{n}{n+1}$ 
-for arbitrary $n \geq 1$ 
-(independent of result set size $k \geq
-n$).  This result precisely formalizes a relationship
-between $n$-call@$k$ and the relevance vs. diversity
-trade-off.
+This article extends our previous works \cite{plmmr}, \cite{sanner11},
+and~\cite{LimKarWai:SIGIR2012}.
+
+

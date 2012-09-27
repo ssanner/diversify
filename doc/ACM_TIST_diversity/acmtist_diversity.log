@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  26 SEP 2012 19:43
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  27 SEP 2012 22:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -242,9 +242,6 @@ LaTeX Info: Redefining \] on input line 2667.
 
 LaTeX Warning: Label `eq:setRelevance' multiply defined.
 
-
-LaTeX Warning: Label `eq:setRelevance' multiply defined.
-
 )
 \openout1 = `acmtist_diversity.aux'.
 
@@ -324,16 +321,16 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 )) (./abstract.tex
-LaTeX Font Info:    Try loading font information for U+lasy on input line 1.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 2.
 (/usr/share/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 1.
+LaTeX Font Info:    Try loading font information for U+msa on input line 2.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 1.
+LaTeX Font Info:    Try loading font information for U+msb on input line 2.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -363,53 +360,51 @@ Overfull \vbox (72.27pt too high) has occurred while \output is active []
 Non-PDF special ignored!
 
 ]) (./model.tex
-<graphicalModel.pdf, id=20, 229.85875pt x 179.67125pt>
+<graphicalModel.pdf, id=14, 229.85875pt x 179.67125pt>
 File: graphicalModel.pdf Graphic file (type pdf)
 
 <use graphicalModel.pdf>
 Package pdftex.def Info: graphicalModel.pdf used on input line 3.
 (pdftex.def)             Requested size: 183.88722pt x 143.73717pt.
+
+Underfull \vbox (badness 7540) has occurred while \output is active []
+
  [2 <./graphicalModel.pdf>]) (./theory.tex [3]
-Underfull \vbox (badness 3343) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4]
-Underfull \vbox (badness 2213) has occurred while \output is active []
+[5]
+Underfull \vbox (badness 5245) has occurred while \output is active []
 
- [5]
-[6]
+ [6]
 Overfull \hbox (2.51967pt too wide) in paragraph at lines 211--211
 [] 
  []
 
 
-Underfull \vbox (badness 1043) has occurred while \output is active []
+Underfull \vbox (badness 1472) has occurred while \output is active []
 
  [7])
-(./related_work.tex
+(./related_work.tex [8]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 115.
-
-Underfull \vbox (badness 2644) has occurred while \output is active []
-
- [8]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 113.
  [9]
-<inclusionExclusionPrinciple.pdf, id=68, 541.02126pt x 541.02126pt>
+Overfull \hbox (5.9127pt too wide) in paragraph at lines 167--167
+[] 
+ []
+
+[10] <inclusionExclusionPrinciple.pdf, id=71, 541.02126pt x 541.02126pt>
 File: inclusionExclusionPrinciple.pdf Graphic file (type pdf)
 
 <use inclusionExclusionPrinciple.pdf>
-Package pdftex.def Info: inclusionExclusionPrinciple.pdf used on input line 196
+Package pdftex.def Info: inclusionExclusionPrinciple.pdf used on input line 195
 .
 (pdftex.def)             Requested size: 216.40466pt x 216.40466pt.
- [10]
-LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <8> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 278.
-) (./conclusion.tex) (./appendix.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [11 <./inclusionExclusionPrinciple.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <8> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 277.
+) (./conclusion.tex) (./appendix.tex
+Underfull \vbox (badness 1803) has occurred while \output is active []
 
  [12]
 Underfull \hbox (badness 10000) in paragraph at lines 31--38
@@ -429,10 +424,7 @@ Overfull \hbox (30.2974pt too wide) in paragraph at lines 101--101
 [] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
+[14]
 Underfull \hbox (badness 10000) in paragraph at lines 103--108
 
  []
@@ -443,7 +435,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 109--110
  []
 
 
-Overfull \hbox (1.31023pt too wide) in paragraph at lines 140--140
+Overfull \hbox (1.31023pt too wide) in paragraph at lines 142--142
 [] 
  []
 
@@ -464,13 +456,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4232 strings out of 493629
- 53837 string characters out of 3148772
- 146861 words of memory out of 3000000
- 7422 multiletter control sequences out of 15000+200000
+ 4238 strings out of 493629
+ 53948 string characters out of 3148772
+ 147206 words of memory out of 3000000
+ 7428 multiletter control sequences out of 15000+200000
  36931 words of font info for 84 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 38i,20n,24p,548b,266s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,20n,24p,803b,266s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmbx7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
@@ -495,7 +487,7 @@ etic/uhvr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></u
 sr/share/texmf-dist/fonts/type1/urw/ncntrsbk/uncb8a.pfb></usr/share/texmf-dist/
 fonts/type1/urw/ncntrsbk/uncr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/ncnt
 rsbk/uncri8a.pfb>
-Output written on acmtist_diversity.pdf (19 pages, 350807 bytes).
+Output written on acmtist_diversity.pdf (19 pages, 354979 bytes).
 PDF statistics:
  206 PDF objects out of 1000 (max. 8388607)
  145 compressed objects within 2 object streams
