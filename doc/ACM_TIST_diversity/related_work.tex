@@ -48,10 +48,11 @@ for consistency with our previous definitions in this article.}.
 %, and note also that the taxonomy of $c$ given the query
 %and document is not learnt by some unsupervised model, but
 %hand-crafted.
+
 The authors point out that one particular advantage of this set-based objective 
 function is that it is submodular, hence permitting a $\left( 1 - \frac{1}{e} \right)$
 approximation if optimized greedily as shown in~\cite{Nemhauser:MathProg1978}.
-%
+
 Referring back to our results shown in Equation~\ref{eq:partial_simp}~and~\eqref{eq:diversifykObjectiveFunction} from 1-call@$k$, we note that the objective function in Equation \eqref{eq:diversifykObjectiveFunction} is related with ours, but it is unclear if Equation \eqref{eq:diversifykObjectiveFunction} can be derived from the 1-call@$k$ objective, suggesting potential improvements in \cite{agrawal09diversifying}. 
 %writing out the mathematical expectation in terms of the sum over all
 %possible topics (e.g., taxomony in \cite{agrawal09diversifying}) the
@@ -71,6 +72,7 @@ Referring back to our results shown in Equation~\ref{eq:partial_simp}~and~\eqref
 %Equation~\eqref{eq:diversifykObjectiveFunction} proposed
 %in \cite{agrawal09diversifying} when one replaces the likelihood
 %function $V(s|\vec{q}, c)$ by $p(t_i = t| \vec{q}, s_i)$. 
+
 More recently, \cite{Vargas:SIGIR2012} introduce several interesting formal probabilistic
 relevance models to instantiate $V(r_i| \vec{q}, s_i)$, which are more
 appopriate in modeling the relevance in a probabilistic
@@ -117,27 +119,36 @@ the diversity term via a max (MMR) or product (Exp-$1$-call@$k$) the
 portfolio theory derivation uses a summation: 
 \begin{align}
 s_{k}^{*} = \argmax_{s_{k}} \left[ \Sim^{\text{BM25}}(s_k,\vec{q}) \hspace{-.7mm} - \hspace{-.7mm} \lambda \sum_{i=1}^{k-1} \omega_{i} \Sim^{\text{TFIDF}}(s_i,s_k) \right]
+\label{eq:wang09PortfolioTheory}
 \end{align}
 Here, $\lambda$ is a manually tuned weight parameter, $\omega_1,\ldots,\omega_k$
-are the weights of each position in the result set (for lack of more informed
-choice, we chose a uniform weighting),
-$\Sim^{\text{BM25}}(s_k,\vec{q})$ is the BM25~\citep{bm25} probabilistic
+are the weights of each position in the result set,
+$\Sim^{\text{BM25}}(s_k,\vec{q})$ is the BM25~\cite{bm25} probabilistic
 relevance score of document $s_k$ w.r.t.\ query $\vec{q}$ and
-$\Sim^{\text{TFIDF}}(s_i,s_k)$ is a TFIDF~\citep{salton83Introduction}
+$\Sim^{\text{TFIDF}}(s_i,s_k)$ is a TFIDF~\cite{salton83Introduction}
 similarity metric between two documents $s_i$ and $s_k$ represented as term
-frequency vectors.
-
-
-We examine the implications of this next.
+frequency vectors. We examine the implications of using the summation in Equation~\eqref{eq:wang09PortfolioTheory} next.
 
 \subsection{Set Covering}
 Yue and Joachims~\cite{yue081224Predicting} propose a set covering
 approach for training SVMs to predict diverse result sets for
-information retrieval.  In their work, they equate subtopics with
+information retrieval. In their work, they equate subtopics with
 words and build a loss function for SVM training that penalizes result
 sets according to the sum of weights of query-relevant words
-\emph{not} covered by the result set.  While their approach provides a
-``hard'' set-covering view of diversity, we note that an expansion of
+\emph{not} covered by the result set. The proposed loss function is called the weighted subtopic loss $\text{WSL}(S_k,
+\vec{q})$, which is the weighted percentage of distinct
+subtopics in the topic set of query $\vec{q}$ \emph{not} covered by the
+retrieved set $S_k$. Denoted by the set of topics for query
+$\vec{q}$ as $T_{\vec{q}}$ and denote the set of topics in $T_{\vec{q}}$ covered
+by $S_k$ as $T_{S_{k}}$, Yue and Joachims define this loss function below:
+\begin{align}
+    \text{WSL}(S_k, \vec{q}) = \sum_{i \in T_{\vec{q}} \setminus T_{S_{k}}} \frac{n_{i}}{\sum_{i \in T'} n_{i}} \label{eq:wsl}.
+\end{align}
+This loss function function penalizes a result set $S_k$ by the topics
+$T_{\vec{q}} \setminus T_{S_{k}}$ according to the sum of their weights, where topic $i$ is weighted according to the count $n_i$ of documents in $D$
+covered by topic $i$ (normalized by $\sum_i n_i$).
+
+While the approach by Yue and Joachims~\cite{yue081224Predicting} provides a ``hard'' set-covering view of diversity, we note that an expansion of
 $\tilde{P}(t | S_{k-1}^*)$ used in the diversity term
 of~\eqref{eq:1call} provides a ``soft'' latent set-covering
 interpretation; that is, $s_k$ is chosen so as to best cover (in a
@@ -166,8 +177,7 @@ each document's contribution to the diversity metric according to this
 set covering perspective.
 
 The inclusion-exclusion principle calculation provided by the second
-term in Equation~\ref{eq:setcover} is illustrated
-in~Figure~\ref{fig:inclusionExclusionPrinciple}. In words, this term
+term in Equation~\ref{eq:setcover} is illustrated in~Figure~\ref{fig:inclusionExclusionPrinciple}. In words, this term
 is calculating the total topic probability coverage of $t$ by all
 selected items $\{ s_1^*,\ldots,s_{k-1}^* \}$ by properly applying the
 inclusion-exclusion principle to ensure that overlapping probability
@@ -178,7 +188,8 @@ determined by its relevance to the query $\vec{q}$, the item $s_k$,
 and penalized (i.e., due to the $1 - $) by the topic coverage of $t$
 by the set $\{ s_1^*,\ldots,s_{k-1}^* \}$ to naturally encourage
 diversity.  We note that this is a soft probabilistic version of the
-``in or out'' topic coverage approach of WSL.
+``in or out'' topic coverage approach of the weighted subtopic loss function $\text{WSL}(S_k,
+\vec{q})$ (Equation~\eqref{eq:wsl}).
 %% SHENGBO: WSL is not defined!!!
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
