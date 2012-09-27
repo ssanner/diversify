@@ -32,14 +32,14 @@ is defined below:
 %% SHENGBO - don't define new notation, c is really equivalent to topics
 %%           t and you should use notation for S_k, S_k^*, s_i, s_i^* defined previously.
 \begin{align}
-	P(S|\vec{q}) = \sum_{c} P(c|\vec{q}) \left( 1 - \prod_{s\in S}(1-V(s| q, c))\right) 
+	P(S_k|\vec{q}) = \sum_{t\in T} P(t|\vec{q}) \left( 1 - \prod_{s_i\in S}(1-V(r_i| \vec{q}, s_i))\right) 
 \label{eq:diversifykObjectiveFunction}
 \end{align}
-where $S$ is a set of documents, and $V(s|q, c)$ broadly defines the
-likelihood that a document $s$ satisfies the query $\vec{q}$ given the
-taxonomy (or category) $c$ of the query and the document.\footnote{We 
+where $V(r_i| \vec{q}, s_i)$ broadly defines the
+likelihood that a document $s_i$ satisfies the query $\vec{q}$ given the
+topics of the query $\vec{q}$ and the document $s_i$, i.e., $t$ and $t_i$, respectively\footnote{We 
 have slightly adapted notation in the above equation from the original 
-for consistency with our previous definitions in this article.}
+for consistency with our previous definitions in this article.}.
 %% SHENGBO - learning has nothing to do with this paper - LDA in the
 %%           PLMMR paper was inappropriately applied (it is an admixture model,
 %%           not a mixture model) and we have not proposed any learning in
@@ -50,52 +50,49 @@ for consistency with our previous definitions in this article.}
 %hand-crafted.
 The authors point out that one particular advantage of this set-based objective 
 function is that it is submodular, hence permitting a $\left( 1 - \frac{1}{e} \right)$
-approximation if optimized greedily.
-
-Now we show that our expected 1-call@$k$ objective in
-Equation~\eqref{eq:setRelevance} is equivalent to the objective
-function in Equation \eqref{eq:diversifykObjectiveFunction} by simply
-writing out the mathematical expectation in terms of the sum over all
-possible topics (e.g., taxomony in \cite{agrawal09diversifying}) the
-weighted relevance where weights are the topic distributions below
-%% SHENGBO: the following is not correct, look at Eq (7)
-%%          you need P(t_k=t|s_k) and i={1..k-1}
-%%
-%%          This means P(c|q) should be replaced with P(t|\vec{q}) * P(t_k=t|s_k)
-%%          if deriving from 1-call@k... it's not clear whether *their* result
-%%          can be derived from an objective and model and this suggests their
-%%          approach may be improved.
-\begin{align*}
-    \ExpOneCall(S_k,\vec{q}) & = \mathbb{E} \left[\left. \bigvee_{i=1}^{k}r_i=1 \right| s_{1},\dots, s_{k},\vec{q} \right], \\
-    												 & = \sum_{t\in T} P(t|\vec{q}) \left( 1 - \prod_{i=1}^{k}(1-p(t_i = t| q, s_i))\right) 
-\end{align*}
-Clearly our proposed objective is equivalent to the objective
-Equation~\eqref{eq:diversifykObjectiveFunction} proposed
-in \cite{agrawal09diversifying} when one replaces the likelihood
-function $V(s|\vec{q}, c)$ by $p(t_i = t| \vec{q}, s_i)$. More
-recently, \cite{Vargas:SIGIR2012} propose variants of
-IA-Select by introducing several interesting formal probabilistic
-relevance models to instantiate $V(s| q, c)$, which are more
+approximation if optimized greedily as shown in~\cite{Nemhauser:MathProg1978}.
+%
+Referring back to our results shown in Equation~\ref{eq:partial_simp}~and~\eqref{eq:diversifykObjectiveFunction} from 1-call@$k$, we note that the objective function in Equation \eqref{eq:diversifykObjectiveFunction} is related with ours, but it is unclear if Equation \eqref{eq:diversifykObjectiveFunction} can be derived from the 1-call@$k$ objective, suggesting potential improvements in \cite{agrawal09diversifying}. 
+%writing out the mathematical expectation in terms of the sum over all
+%possible topics (e.g., taxomony in \cite{agrawal09diversifying}) the
+%weighted relevance where weights are the topic distributions below
+%%% SHENGBO: the following is not correct, look at Eq (7)
+%%%          you need P(t_k=t|s_k) and i={1..k-1}
+%%%
+%%%          This means P(c|q) should be replaced with P(t|\vec{q}) * P(t_k=t|s_k)
+%%%          if deriving from 1-call@k... it's not clear whether *their* result
+%%%          can be derived from an objective and model and this suggests their
+%%%          approach may be improved.
+%\begin{align*}
+%    \ExpOneCall(S_k,\vec{q}) & = \mathbb{E} \left[\left. \bigvee_{i=1}^{k}r_i=1 \right| s_{1},\dots, s_{k},\vec{q} \right], \\
+%    												 & = \sum_{t\in T} P(t|\vec{q}) \left( 1 - \prod_{i=1}^{k}(1-p(t_i = t| q, s_i))\right) 
+%\end{align*}
+%Clearly our proposed objective is equivalent to the objective
+%Equation~\eqref{eq:diversifykObjectiveFunction} proposed
+%in \cite{agrawal09diversifying} when one replaces the likelihood
+%function $V(s|\vec{q}, c)$ by $p(t_i = t| \vec{q}, s_i)$. 
+More recently, \cite{Vargas:SIGIR2012} introduce several interesting formal probabilistic
+relevance models to instantiate $V(r_i| \vec{q}, s_i)$, which are more
 appopriate in modeling the relevance in a probabilistic
 framework. Furthermore, \cite{Vallet:SIGIR2012} propose to introduce a
 user as an explicit random variable in state of the art
 diversification methods, thus developing a generalized framework for
 personalized diversification.
 
-Another recent interesting instantiation of $V(s|q,c)$ is proposed
+Another recent interesting instantiation of $V(r_i|\vec{q},s_i)$ is proposed
 in \cite{Zuccon:ECIR2012} motivated by the facilitation location
 problem~\cite{Gonzalez:Handbook2007} taken from Operations Research:
 for a set of customer ``locations" $D$, one aims at choosing a subset
-$S$ in $D$ to open $k$ ``facilities" that optimize a graph-theoretic
+$S_k$ in $D$ to open $k$ ``facilities" that optimize a graph-theoretic
 objective that depends on the cost of opening a facility at each
 location and also the distance between each pair of locations. However
-all of the three described methods do not derive their objective
+all of the described methods do not derive their objective
 functions from the expected 1-call@$k$ objective as we have achieved.
 
 \subsection{Portfolio Theory}
 \cite{wang09PortfolioTheory} motivates
 diversification in set-based information retrieval by a
-risk-minimizing portfolio selection approach.  Viewing a result set as
+risk-minimizing portfolio selection approach. Viewing a result set as
 an investment portfolio with the objective to maximize return while
 minimizing risk, the derived result of~\cite{wang09PortfolioTheory}
 mimics both MMR and Exp-$1$-call@$k$ in that the similarity term may
@@ -110,13 +107,28 @@ increase.
 %%            Also I suggest dropping the mention of Shi -- it is not
 %%            clear and it interrupts the flow of discussion about wang
 %%            and the lead-in to the next section.
-Note that diversification based on portfolio theory is
-extended in \cite{Shi:SIGIR2012} by introducing latent factors for
-collaborative filtering tasks. One major difference in the
+%Note that diversification based on portfolio theory is
+%extended in \cite{Shi:SIGIR2012} by introducing latent factors for
+%collaborative filtering tasks. 
+
+One major difference in the
 framework~\cite{wang09PortfolioTheory} is that rather than computing
 the diversity term via a max (MMR) or product (Exp-$1$-call@$k$) the
-portfolio theory derivation uses a summation --- we examine the
-implications of this next.
+portfolio theory derivation uses a summation: 
+\begin{align}
+s_{k}^{*} = \argmax_{s_{k}} \left[ \Sim^{\text{BM25}}(s_k,\vec{q}) \hspace{-.7mm} - \hspace{-.7mm} \lambda \sum_{i=1}^{k-1} \omega_{i} \Sim^{\text{TFIDF}}(s_i,s_k) \right]
+\end{align}
+Here, $\lambda$ is a manually tuned weight parameter, $\omega_1,\ldots,\omega_k$
+are the weights of each position in the result set (for lack of more informed
+choice, we chose a uniform weighting),
+$\Sim^{\text{BM25}}(s_k,\vec{q})$ is the BM25~\citep{bm25} probabilistic
+relevance score of document $s_k$ w.r.t.\ query $\vec{q}$ and
+$\Sim^{\text{TFIDF}}(s_i,s_k)$ is a TFIDF~\citep{salton83Introduction}
+similarity metric between two documents $s_i$ and $s_k$ represented as term
+frequency vectors.
+
+
+We examine the implications of this next.
 
 \subsection{Set Covering}
 Yue and Joachims~\cite{yue081224Predicting} propose a set covering
