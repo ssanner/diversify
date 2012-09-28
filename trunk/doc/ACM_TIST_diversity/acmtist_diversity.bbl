@@ -34,12 +34,14 @@
   Conference on Research and Development in Information Retrieval}. ACM,
   429--436.
 
-\bibitem[\protect\citeauthoryear{Goffman}{Goffman}{1964}]{goffman64OnRelevanceAsAMeasure}
+\bibitem[\protect\citeauthoryear{Goffman}{Goffman}{1964}]{goffman64OnRelevance%
+AsAMeasure}
 {\sc Goffman, W.} 1964.
 \newblock On relevance as a measure.
 \newblock {\em Information Storage and Retrieval\/}~{\em 2,\/}~3, 201--203.
 
-\bibitem[\protect\citeauthoryear{Gonzalez}{Gonzalez}{2007}]{Gonzalez:Handbook2007}
+\bibitem[\protect\citeauthoryear{Gonzalez}{Gonzalez}{2007}]{Gonzalez:Handbook2%
+007}
 {\sc Gonzalez, T.~F.} 2007.
 \newblock {\em Handbook of Approximation Algorithms and Metaheuristics (Chapman
   \& Hall/Crc Computer \& Information Science Series)}.
@@ -73,12 +75,29 @@
   Research and development in information retrieval}. SIGIR '12. ACM, New York,
   NY, USA, 1117--1118.
 
+\bibitem[\protect\citeauthoryear{Nemhauser, Wolsey, and Fisher}{Nemhauser
+  et~al\mbox{.}}{1978}]{Nemhauser:MathProg1978}
+{\sc Nemhauser, G.~L.}, {\sc Wolsey, L.~A.}, {\sc and} {\sc Fisher, M.~L.}
+  1978.
+\newblock An analysis of approximations for maximizing submodular set
+  functions.
+\newblock {\em Mathematical Programming\/}~{\em 14,\/}~1, 265--294.
+
 \bibitem[\protect\citeauthoryear{Radlinski, Bennett, Carterette, , and
   Joachims}{Radlinski et~al\mbox{.}}{2009}]{diversity_types}
 {\sc Radlinski, F.}, {\sc Bennett, P.~N.}, {\sc Carterette, B.}, {\sc }, {\sc
   and} {\sc Joachims, T.} 2009.
 \newblock Redundancy, diversity and interdependent document relevance.
 \newblock {\em SIGIR Forum\/}~{\em 43,\/}~2, 46--52.
+
+\bibitem[\protect\citeauthoryear{Robertson and Walker}{Robertson and
+  Walker}{1994}]{bm25}
+{\sc Robertson, S.~E.} {\sc and} {\sc Walker, S.} 1994.
+\newblock Some simple effective approximations to the 2-poisson model for
+  probabilistic weighted retrieval.
+\newblock In {\em Proceedings of the 17th annual international ACM SIGIR
+  conference on Research and development in information retrieval}. SIGIR '94.
+  Springer-Verlag New York, Inc., New York, NY, USA, 232--241.
 
 \bibitem[\protect\citeauthoryear{Salton and McGill}{Salton and
   McGill}{1983}]{salton83Introduction}
@@ -109,16 +128,6 @@
 \newblock Selectively diversifying web search results.
 \newblock In {\em Proceedings of the 19th ACM international conference on
   Information and knowledge management}. ACM, New York, NY, USA, 1179--1188.
-
-\bibitem[\protect\citeauthoryear{Shi, Zhao, Wang, Larson, and Hanjalic}{Shi
-  et~al\mbox{.}}{2012}]{Shi:SIGIR2012}
-{\sc Shi, Y.}, {\sc Zhao, X.}, {\sc Wang, J.}, {\sc Larson, M.}, {\sc and} {\sc
-  Hanjalic, A.} 2012.
-\newblock Adaptive diversification of recommendation results via latent factor
-  portfolio.
-\newblock In {\em Proceedings of the 35th international ACM SIGIR conference on
-  Research and development in information retrieval}. SIGIR '12. ACM, New York,
-  NY, USA, 175--184.
 
 \bibitem[\protect\citeauthoryear{Vallet and Castells}{Vallet and
   Castells}{2012}]{Vallet:SIGIR2012}
