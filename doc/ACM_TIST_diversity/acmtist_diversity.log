@@ -1,69 +1,56 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  28 SEP 2012 03:20
+This is pdfeTeXk, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.12.23)  28 SEP 2012 19:09
 entering extended mode
- restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **acmtist_diversity.tex
 (./acmtist_diversity.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
-rman-x-2011-07-01, ngerman-x-2011-07-01, afrikaans, ancientgreek, ibycus, arabi
-c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
-h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
-h, french, galician, german, ngerman, swissgerman, monogreek, greek, hungarian,
- icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, or
-iya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji,
- lao, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, pol
-ish, portuguese, romanian, russian, sanskrit, serbian, serbianc, slovak, sloven
-ian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded
-.
+LaTeX2e <2003/12/01>
+Babel <v3.8d> and hyphenation patterns for american, french, german, ngerman, b
+ahasa, basque, bulgarian, catalan, croatian, czech, danish, dutch, esperanto, e
+stonian, finnish, greek, icelandic, irish, italian, latin, magyar, norsk, polis
+h, portuges, romanian, russian, serbian, slovak, slovene, spanish, swedish, tur
+kish, ukrainian, nohyphenation, loaded.
 (./acmsmall.cls
 Document Class: acmsmall 2010/07/15, fonts included on 28 June 2010
 ACM, Production Font style: 2010/06/28 by Aptara
 
 Using ACM, TECS option: 2010/05/04 by Aptara
 
-(/usr/share/texmf-dist/tex/latex/base/latexsym.sty
+(/usr/share/texmf/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
 )
-(/usr/share/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+(/usr/share/texmf/tex/latex/graphics/color.sty
+Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
 
-(/usr/share/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+(/usr/share/texmf/tex/latex/graphics/color.cfg
+File: color.cfg 2005/02/03 v1.3 color configuration of teTeX/TeXLive
 )
-Package color Info: Driver file: pdftex.def on input line 130.
+Package color Info: Driver file: pdftex.def on input line 125.
 
-(/usr/share/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
-)
-(/usr/share/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
-)
+(/usr/share/texmf/tex/latex/graphics/pdftex.def
+File: pdftex.def 2002/06/19 v0.03k graphics/color for pdftex
 \Gread@gobject=\count79
 ))
-(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+(/usr/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/share/texmf/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/usr/share/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+(/usr/share/texmf/tex/latex/graphics/graphics.cfg
+File: graphics.cfg 2005/02/03 v1.3 graphics configuration of teTeX/TeXLive
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: pdftex.def on input line 80.
 )
 \Gin@req@height=\dimen102
 \Gin@req@width=\dimen103
@@ -111,25 +98,15 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `bold'
 ) (./algorithm2e.sty
 Package: algorithm2e 2008/00/00 v3.10 algorithms environments
 \c@AlgoLine=\count91
- (/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+ (/usr/share/texmf/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/share/texmf-dist/tex/latex/tools/xspace.sty
-Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+(/usr/share/texmf/tex/latex/tools/xspace.sty
+Package: xspace 1997/10/13 v1.06 Space after command names (DPC)
 )
-(/usr/share/texmf-dist/tex/latex/relsize/relsize.sty
-Package: relsize 2011/09/21 ver 4.0
-
-Examine \normalsize starts \@setfontsize size may be \@xpt. 
-Examine \small starts \@setfontsize size may be \@ixpt. 
-Examine \footnotesize starts \@setfontsize size may be \@viiipt. 
-Examine \large starts \@setfontsize size may be \@xiipt. 
-Examine \Large starts \@setfontsize size may be \@xivpt. 
-Examine \LARGE starts \@setfontsize size may be \@xviipt. 
-Examine \scriptsize starts \@setfontsize size may be \@viipt. 
-Examine \tiny starts \@setfontsize size may be \@vpt. 
-Examine \huge starts \@setfontsize size may be \@xxpt. 
-Examine \Huge starts \@setfontsize size may be \@xxvpt. )
+(/usr/share/texmf/tex/latex/relsize/relsize.sty
+Package: relsize 2003/07/04 ver 3.1
+)
 ********************************************************
 Package `algorithm2e' Release 4.01 -- december 14 2009 --
 - algorithm2e-announce@lirmm.fr mailing list for announcement about releases
@@ -167,38 +144,38 @@ subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
 \c@algocf=\count94
 \algocf@algoframe=\box39
 \algocf@algobox=\box40
-) (/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
-Package: amssymb 2009/06/22 v3.00
+) (/usr/share/texmf/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2002/01/22 v2.2d
 
-(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+(/usr/share/texmf/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2001/10/25 v2.2f
 \@emptytoks=\toks15
 \symAMSa=\mathgroup6
 \symAMSb=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
-LaTeX Font Info:    Redeclaring math alphabet \mathbb on input line 97.
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 132.
+LaTeX Font Info:    Redeclaring math alphabet \mathbb on input line 133.
 ))
-(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+(/usr/share/texmf/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip60
 
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/share/texmf/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks16
 \ex@=\dimen119
 )
 LaTeX Info: Redefining \text on input line 53.
 )
-(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/share/texmf/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen120
 )
-(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/usr/share/texmf/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count95
@@ -258,93 +235,67 @@ LaTeX Font Info:    ... okay on input line 60.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 60.
 LaTeX Font Info:    ... okay on input line 60.
 LaTeX Font Info:    Try loading font information for OT1+pnc on input line 60.
- (/usr/share/texmf-dist/tex/latex/psnfss/ot1pnc.fd
+ (/usr/share/texmf/tex/latex/psnfss/ot1pnc.fd
 File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
 )
-(/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count107
+(/usr/share/texmf/tex/context/base/supp-pdf.tex
+(/usr/share/texmf/tex/context/base/supp-mis.tex
+loading : Context Support Macros / Miscellaneous (2004.10.26)
+\protectiondepth=\count107
+\scratchcounter=\count108
+\scratchtoks=\toks21
 \scratchdimen=\dimen128
+\scratchskip=\skip63
+\scratchmuskip=\muskip11
 \scratchbox=\box43
-\nofMPsegments=\count108
-\nofMParguments=\count109
-\everyMPshowfont=\toks21
-\MPscratchCnt=\count110
-\MPscratchDim=\dimen129
-\MPnumerator=\count111
-\makeMPintoPDFobject=\count112
-\everyMPtoPDFconversion=\toks22
-) (/usr/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
-
-(/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
+\scratchread=\read1
+\scratchwrite=\write3
+\zeropoint=\dimen129
+\onepoint=\dimen130
+\onebasepoint=\dimen131
+\minusone=\count109
+\thousandpoint=\dimen132
+\onerealpoint=\dimen133
+\emptytoks=\toks22
+\nextbox=\box44
+\nextdepth=\dimen134
+\everyline=\toks23
+\!!counta=\count110
+\!!countb=\count111
+\recursecounter=\count112
 )
-(/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Managing graphics extensions (HO)
-
-(/usr/share/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
-))
-(/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
-
-(/usr/share/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
-
-(/usr/share/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
-
-(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-)) (./abstract.tex
+loading : Context Support Macros / PDF (2004.03.26)
+\nofMPsegments=\count113
+\nofMParguments=\count114
+\MPscratchCnt=\count115
+\MPscratchDim=\dimen135
+\MPnumerator=\count116
+\everyMPtoPDFconversion=\toks24
+) (./abstract.tex
 LaTeX Font Info:    Try loading font information for U+lasy on input line 2.
-(/usr/share/texmf-dist/tex/latex/base/ulasy.fd
+ (/usr/share/texmf/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 LaTeX Font Info:    Try loading font information for U+msa on input line 2.
 
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+(/usr/share/texmf/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2002/01/19 v2.2g AMS font definitions
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 2.
 
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+(/usr/share/texmf/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2002/01/19 v2.2g AMS font definitions
 ))
 LaTeX Font Info:    Try loading font information for OMS+pnc on input line 95.
 
-(/usr/share/texmf-dist/tex/latex/psnfss/omspnc.fd
+(/usr/share/texmf/tex/latex/psnfss/omspnc.fd
 File: omspnc.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 95.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 97.
 
-(/usr/share/texmf-dist/tex/latex/psnfss/ot1phv.fd
+(/usr/share/texmf/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
@@ -360,13 +311,10 @@ Overfull \vbox (72.27pt too high) has occurred while \output is active []
 Non-PDF special ignored!
 
 ]) (./model.tex
-<graphicalModel.pdf, id=14, 229.85875pt x 179.67125pt>
+<graphicalModel.pdf, id=29, 229.85875pt x 179.67125pt>
 File: graphicalModel.pdf Graphic file (type pdf)
 
 <use graphicalModel.pdf>
-Package pdftex.def Info: graphicalModel.pdf used on input line 3.
-(pdftex.def)             Requested size: 183.88722pt x 143.73717pt.
-
 Underfull \vbox (badness 7540) has occurred while \output is active []
 
  [2 <./graphicalModel.pdf>]) (./theory.tex
@@ -382,18 +330,20 @@ Overfull \hbox (2.51967pt too wide) in paragraph at lines 204--204
  []
 
 [7]) (./related_work.tex [8] [9]
-Overfull \hbox (5.9127pt too wide) in paragraph at lines 142--142
+Overfull \hbox (5.9127pt too wide) in paragraph at lines 165--165
 [] 
  []
 
-[10] <inclusionExclusionPrinciple.pdf, id=68, 541.02126pt x 541.02126pt>
+[10] <inclusionExclusionPrinciple.pdf, id=121, 541.02126pt x 541.02126pt>
 File: inclusionExclusionPrinciple.pdf Graphic file (type pdf)
 
 <use inclusionExclusionPrinciple.pdf>
-Package pdftex.def Info: inclusionExclusionPrinciple.pdf used on input line 175
-.
-(pdftex.def)             Requested size: 216.40466pt x 216.40466pt.
- [11 <./inclusionExclusionPrinciple.pdf>]) (./conclusion.tex) (./appendix.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11 <./inclusionExclusionPrinciple.pdf
+Warning: pdflatex (file ./inclusionExclusionPrinciple.pdf): pdf inclusion: Page
+ Group detected which pdfTeX can't handle. Ignoring it.
+>]) (./conclusion.tex) [12] (./appendix.tex
 Overfull \hbox (1.31023pt too wide) in paragraph at lines 16--16
 [] 
  []
@@ -403,48 +353,39 @@ Overfull \hbox (1.31023pt too wide) in paragraph at lines 24--24
 [] 
  []
 
-[12]) [13] (./acmtist_diversity.bbl
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14])
-[15] (./acmtist_diversity.aux)
+[13]) (./acmtist_diversity.bbl [14]) [15] (./acmtist_diversity.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4195 strings out of 493629
- 53349 string characters out of 3148772
- 144301 words of memory out of 3000000
- 7393 multiletter control sequences out of 15000+200000
- 31508 words of font info for 73 fonts, out of 3000000 for 9000
- 831 hyphenation exceptions out of 8191
- 38i,20n,24p,446b,266s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmbx7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb>
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8
-.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/shar
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
-.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
-re/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/lat
-xfont/lasy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
-m10.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/
-texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-dist/fonts/typ
-e1/urw/ncntrsbk/uncb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/ncntrsbk/uncr
-8a.pfb></usr/share/texmf-dist/fonts/type1/urw/ncntrsbk/uncri8a.pfb>
-Output written on acmtist_diversity.pdf (15 pages, 318651 bytes).
+ 3627 strings out of 94500
+ 43390 string characters out of 1176765
+ 124196 words of memory out of 1000000
+ 6723 multiletter control sequences out of 10000+50000
+ 31517 words of font info for 73 fonts, out of 500000 for 2000
+ 580 hyphenation exceptions out of 1000
+ 32i,20n,24p,501b,260s stack positions out of 1500i,500n,5000p,200000b,5000s
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
- 127 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 153 PDF objects out of 300000
+ 0 named destinations out of 131072
+ 11 words of extra memory for PDF output out of 65536
+</usr/share/texmf/fonts/type1/bluesky/cm/cmbx5.pfb></usr/share/texmf/fonts/ty
+pe1/bluesky/cm/cmbx7.pfb></usr/share/texmf/fonts/type1/public/tt2001/fmex8.pfb>
+</usr/share/texmf/fonts/type1/bluesky/latex/lasy10.pfb></usr/share/texmf/fonts/
+type1/bluesky/cm/cmmi6.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr6.pfb></
+usr/share/texmf/fonts/type1/bluesky/cm/cmex10.pfb></usr/share/texmf/fonts/type1
+/bluesky/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr5.pfb><
+/usr/share/texmf/fonts/type1/bluesky/cm/cmsy5.pfb></usr/share/texmf/fonts/type1
+/bluesky/cm/cmmi5.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr7.pfb></usr/s
+hare/texmf/fonts/type1/bluesky/cm/cmbx10.pfb></usr/share/texmf/fonts/type1/blue
+sky/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi7.pfb></usr/share
+/texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/c
+m/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb></usr/share/te
+xmf/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/c
+mr8.pfb>{/usr/share/texmf/fonts/enc/dvips/psnfss/8r.enc}</usr/share/texmf/fonts
+/type1/urw/ncntrsbk/uncb8a.pfb></usr/share/texmf/fonts/type1/urw/ncntrsbk/uncri
+8a.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi8.pfb></usr/share/texmf/fon
+ts/type1/urw/ncntrsbk/uncr8a.pfb></usr/share/texmf/fonts/type1/urw/helvetic/uhv
+r8a.pfb></usr/share/texmf/fonts/type1/urw/helvetic/uhvb8a.pfb>
+Output written on acmtist_diversity.pdf (15 pages, 244935 bytes).
