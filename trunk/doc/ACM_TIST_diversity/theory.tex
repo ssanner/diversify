@@ -34,7 +34,7 @@ This gives us the sum of the probabilities of each individual event.
 We further simplify it by grouping all $r_j = 0$.\footnote{The notation 
 $\{ \cdot \}_C$ refers to a (possibly empty) set of 
 variables (or variable assignments) $\cdot$ that meet constraints $C$.}
-We factorize each joint probability into a conditional and prior, and remove terms and factors that are do not contain $s_k$, noting that these terms only act as constants when optimizing for $s_k$:
+We factorize each joint probability into a conditional and prior, and remove terms and factors that do not contain $s_k$, noting that these terms only act as constants when optimizing for $s_k$:
 \begin{align}   
 s_k^* & = \argmax_{s_k} \sum_{i=1}^{k} P(  r_i=1, \{ r_{j}=0 \}_{j<i} \, | \, \{ s^*_j \}_{j\leq i,j<k},\{ s_{k} \}_{k=i},\vec{q}) \nonumber \\
    &= \argmax_{s_k} \sum_{i=1}^{k} P(  r_i=1 \, | \, \{ r_{j}=0 \}_{j<i} , \{ s^*_j \}_{j\leq i,j<k},\{ s_k \}_{k=i},\vec{q}) \nonumber\\
